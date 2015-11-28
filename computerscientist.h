@@ -6,7 +6,7 @@ using namespace std;
 
 class ComputerScientist
 {
-    string mame;
+    string name;
     string bday;
     string dday;
     string gender;
@@ -16,8 +16,8 @@ public:
 
     string getName();
     string getGender();
-    int getBday();
-    int getDday();
+    string getBday();
+    string getDday();
 
     void setname(const string& tmp);
     void setbday(const string& tmp);

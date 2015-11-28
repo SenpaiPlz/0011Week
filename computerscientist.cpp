@@ -1,6 +1,7 @@
 #include "computerscientist.h"
 
 using namespace std;
+
 //---------------  Construction of Pylons  ---------------//
 ComputerScientist::ComputerScientist()
 {
@@ -48,11 +49,11 @@ string ComputerScientist::getGender()
 {
     return gender;
 }
-int ComputerScientist::getBday()
+string ComputerScientist::getBday()
 {
     return bday;
 }
-int ComputerScientist::getDday()
+string ComputerScientist::getDday()
 {
     return dday;
 }
