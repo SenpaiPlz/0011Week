@@ -4,10 +4,10 @@ using namespace std;
 //---------------  Construction of Pylons  ---------------//
 ComputerScientist::ComputerScientist()
 {
-    name = "";
-    bday = 0;
-    dday = -1;
-    gender = "";
+    name = "NA";
+    bday = "NA";
+    dday = "NA";
+    gender = "NA";
 }
 
 ComputerScientist::ComputerScientist(const string& tmpname, const int& tmpbday, const int& tmpdday, const string& tmpgender)
@@ -24,12 +24,12 @@ void ComputerScientist::setname(const string& tmp)
     name = tmp;
 }
 
-void ComputerScientist::setbday(const int& tmp)
+void ComputerScientist::setbday(const string &tmp)
 {
     bday = tmp;
 }
 
-void ComputerScientist::setdday(const int& tmp)
+void ComputerScientist::setdday(const string& tmp)
 {
     dday = tmp;
 }

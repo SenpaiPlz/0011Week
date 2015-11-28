@@ -7,8 +7,8 @@ using namespace std;
 class ComputerScientist
 {
     string mame;
-    int bday;
-    int dday;
+    string bday;
+    string dday;
     string gender;
 public:
     ComputerScientist();
@@ -20,8 +20,8 @@ public:
     int getDday();
 
     void setname(const string& tmp);
-    void setbday(const int& tmp);
-    void setdday(const int& tmp);
+    void setbday(const string& tmp);
+    void setdday(const string& tmp);
     void setgender(const string& tmp);
     /*
      *  Mabey implement somewhere else.
