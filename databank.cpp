@@ -2,6 +2,8 @@
 #include "computerscientist.h"
 #include <iostream>
 #include <string>
+#include <cstdlib>
+#include <fstream>
 
 using namespace std;
 
@@ -13,7 +15,7 @@ DataBank::DataBank()
 
 void DataBank::PopulateWithCSV()
 {
-    ifstream in("testdata.csv");
+    ifstream in("testdata.csv", ios::in);
 
     if(!in.is_open())
     {
@@ -23,18 +25,19 @@ void DataBank::PopulateWithCSV()
     string tmp;
     ComputerScientist Cstemp;
 
-    while(in.eof())
+    while(!in.eof())
     {
         getline(in,tmp,',');
-        Cstemp.name = tmp;
+        Cstemp.setname(tmp);
         getline(in,tmp,',');
-        Cstemp.bday = tmp;
+        Cstemp.setbday(tmp);
         getline(in,tmp,',');
-        Cstemp.dday = tmp;
+        Cstemp.setdday(tmp);
         getline(in,tmp,',');
-        Cstemp.gender = tmp;
+        Cstemp.setgender(tmp);
         css.push_back(Cstemp);
     }
+
     in.close();
 }
 
