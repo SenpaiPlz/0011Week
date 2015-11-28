@@ -6,6 +6,7 @@ using namespace std;
 
 class ComputerScientist
 {
+    friend class DataBank;
     string name;
     string bday;
     string dday;
@@ -23,6 +24,7 @@ public:
     void setbday(const string& tmp);
     void setdday(const string& tmp);
     void setgender(const string& tmp);
+
     /*
      *  Mabey implement somewhere else.
      *
