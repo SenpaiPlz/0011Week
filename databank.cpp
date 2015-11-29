@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <fstream>
 
+
 using namespace std;
 
 DataBank::DataBank()
@@ -15,7 +16,8 @@ DataBank::DataBank()
 
 void DataBank::PopulateWithCSV()
 {
-    ifstream in("testdata.csv", ios::in);
+    const string filename = "testdata.csv";
+    ifstream in(filename.c_str(), ios::in);
 
     if(!in.is_open())
     {
