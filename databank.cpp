@@ -15,6 +15,11 @@ vector<ComputerScientist> DataBank::GetDataBank()
     return css;
 }
 
+bool DataBank::isempty(ifstream& file)
+{
+    return file.peek() == ifstream::traits_type::eof();
+}
+
 void DataBank::PopulateWithCSV()
 {
     //We clear the current css vector just incase we call PopulateWithCSV a second time,
@@ -33,20 +38,21 @@ void DataBank::PopulateWithCSV()
 
     //Simply iterate through the file and every ',' we set each value.
     //This requires that the data is standardized and not randomly placed within *.csv file.
-
-    while(!in.eof())
+    if(isempty(in) == false)
     {
-        getline(in,tmp,',');
-        Cstemp.setname(tmp);
-        getline(in,tmp,',');
-        Cstemp.setbday(tmp);
-        getline(in,tmp,',');
-        Cstemp.setdday(tmp);
-        getline(in,tmp,',');
-        Cstemp.setgender(tmp);
-        css.push_back(Cstemp);
+        while(!in.eof())
+        {
+            getline(in,tmp,',');
+            Cstemp.setname(tmp);
+            getline(in,tmp,',');
+            Cstemp.setbday(tmp);
+            getline(in,tmp,',');
+            Cstemp.setdday(tmp);
+            getline(in,tmp,',');
+            Cstemp.setgender(tmp);
+            css.push_back(Cstemp);
+        }
     }
-
     in.close();
 }
 
@@ -60,7 +66,11 @@ void DataBank::AddToDataBank(const string& tmpname, const string& tmpbday, const
         cout << "FILE OPEN ERROR";
         exit(8);
     }
-    out << "," << tmpname << "," << tmpbday << "," << tmpdday << "," << tmpgender;
+    if(!css.empty())
+    {
+        out << ",";
+    }
+    out << tmpname << "," << tmpbday << "," << tmpdday << "," << tmpgender;
 
     //If file opens we write the data to the file.
 

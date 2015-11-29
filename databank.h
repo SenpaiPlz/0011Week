@@ -16,6 +16,7 @@ public:
     DataBank();
     void testDataBank();
     void PopulateWithCSV();
+    bool isempty(ifstream& file);
     vector<ComputerScientist> GetDataBank();
     //mabey implement in some other way
     void AddToDataBank(const string& tmpname, const string& tmpbday, const string& tmpdday,const string& tmpgender);
