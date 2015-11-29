@@ -10,6 +10,10 @@ DataBank::DataBank()
     //implying this does nothing...
 }
 
+vector<ComputerScientist> DataBank::GetDataBank()
+{
+    return css;
+}
 
 void DataBank::PopulateWithCSV()
 {
