@@ -6,6 +6,8 @@
 
 using namespace std;
 
+
+//Not sure if this is necessary ?
 DataManipulation::DataManipulation()
 {
     name = "NA";
@@ -14,6 +16,7 @@ DataManipulation::DataManipulation()
     gender = "NA";
 }
 
+//---------sorting----------//
 bool DataManipulation::sortByName(const DataManipulation& lhs, const DataManipulation& rhs)
 {
     return lhs.name < rhs.name;
@@ -34,6 +37,7 @@ bool DataManipulation::sortByDday(const DataManipulation& lhs, const DataManipul
     return lhs.dday < rhs.dday;
 }
 
+//Prints out everything, here or somewhere else?
 void DataManipulation::print()
 {
     for(unsigned int i = 0; i != css.size(); i++)
@@ -43,6 +47,7 @@ void DataManipulation::print()
     }
 }
 
+//-----uses the sorting functions------//
 void DataManipulation::sortChoice()
 {
     char choice;
