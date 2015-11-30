@@ -21,6 +21,6 @@ public:
     bool sortByBday(const DataManipulation& lhs, const DataManipulation& rhs);
     bool sortByDday(const DataManipulation& lhs, const DataManipulation& rhs);
     void print();
-    void sortChoice(string& choice);
+    void sortChoice();
 };
 #endif // DATAMANIPULATION_H

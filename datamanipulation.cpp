@@ -2,6 +2,7 @@
 #include <algorithm>            //for sort
 #include <vector>
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -37,26 +38,35 @@ void DataManipulation::print()
 {
     for(unsigned int i = 0; i != css.size(); i++)
     {
-        cout << css.at(i).name << " " << css.at(i).gender << " " <<
-                css.at(i).bday << " " << css.at(i).dday << endl;
+        cout << css.at(i).name << "\t" << css.at(i).gender << "\t" <<
+                css.at(i).bday << "\t" << css.at(i).dday << endl;
     }
 }
 
-void DataManipulation::sortChoice(string& choice)
+void DataManipulation::sortChoice()
 {
-    if(choice == name)
+    char choice;
+    cout << "Enter a number: " << endl;
+    cout << "1. Sort by name"
+         << "2. Sort by gender"
+         << "3. sort by year of birth"
+         << "4. sort by year of death" << endl;
+
+    cin >> choice;
+
+    if(choice == '1')
     {
         sort(css.begin(), css.end(), sortByName);
     }
-    if(choice == gender)
+    if(choice == '2')
     {
         sort(css.begin(), css.end(), sortByGender);
     }
-    if(choice == bday)
+    if(choice == '3')
     {
         sort(css.begin(), css.end(), sortByBday);
     }
-    if(choice == dday)
+    if(choice == '4')
     {
         sort(css.begin(), css.end(), sortByDday);
     }
