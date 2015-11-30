@@ -6,7 +6,6 @@ using namespace std;
 
 class ComputerScientist
 {
-    friend class DataBank;
     string name;
     string bday;
     string dday;
