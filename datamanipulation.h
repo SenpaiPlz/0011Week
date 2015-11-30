@@ -3,24 +3,21 @@
 #include "computerscientist.h"
 #include "databank.h"
 #include "ui.h"
+#include <algorithm>
 #include <vector>
 #include <string>
-
+#include <iostream>
 
 class DataManipulation
 {
-    string name;
-    string gender;
-    string bday;
-    string dday;
-    vector<DataManipulation> css;
+    vector<ComputerScientist> css;
 public:
-    DataManipulation();
-    bool sortByName(const DataManipulation& lhs, const DataManipulation& rhs);
-    bool sortByGender(const DataManipulation& lhs, const DataManipulation& rhs);
-    bool sortByBday(const DataManipulation& lhs, const DataManipulation& rhs);
-    bool sortByDday(const DataManipulation& lhs, const DataManipulation& rhs);
+    DataManipulation(DataBank& d1);
+    friend bool sortByName( ComputerScientist& lhs, ComputerScientist& rhs);
+    friend bool sortByGender(ComputerScientist& lhs, ComputerScientist& rhs);
+    friend bool sortByBday(ComputerScientist &lhs, ComputerScientist &rhs);
+    friend bool sortByDday(ComputerScientist& lhs, ComputerScientist& rhs);
     void print();
-    void sortChoice();
+    void sortChoice(char choice);
 };
 #endif // DATAMANIPULATION_H

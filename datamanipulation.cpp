@@ -1,79 +1,52 @@
 #include "datamanipulation.h"
-#include <algorithm>            //for sort
-#include <vector>
-#include <string>
-#include <iostream>
 
 using namespace std;
 
-
-//Not sure if this is necessary ?
-DataManipulation::DataManipulation()
+DataManipulation::DataManipulation(DataBank& d1)
 {
-    name = "NA";
-    bday = "NA";
-    dday = "NA";
-    gender = "NA";
+    css = d1.GetDataBank();
 }
 
 //---------sorting----------//
-bool DataManipulation::sortByName(const DataManipulation& lhs, const DataManipulation& rhs)
+bool sortByName(ComputerScientist& lhs,ComputerScientist& rhs)
 {
-    return lhs.name < rhs.name;
+    return lhs.getName() < rhs.getName();
 }
 
-bool DataManipulation::sortByGender(const DataManipulation& lhs, const DataManipulation& rhs)
+bool sortByGender(ComputerScientist& lhs, ComputerScientist& rhs)
 {
-    return lhs.gender < rhs.gender;
+    return lhs.getGender() < rhs.getGender();
 }
 
-bool DataManipulation::sortByBday(const DataManipulation& lhs, const DataManipulation& rhs)
+bool sortByBday(ComputerScientist& lhs, ComputerScientist& rhs)
 {
-    return lhs.bday < rhs.bday;
+    return lhs.getBday() < rhs.getBday();
 }
 
-bool DataManipulation::sortByDday(const DataManipulation& lhs, const DataManipulation& rhs)
+bool sortByDday(ComputerScientist &lhs, ComputerScientist &rhs)
 {
-    return lhs.dday < rhs.dday;
+    return lhs.getDday() < rhs.getDday();
 }
 
-//Prints out everything, here or somewhere else?
+//Prints out everything, here or somewhere else? only for testeroni
 void DataManipulation::print()
 {
     for(unsigned int i = 0; i != css.size(); i++)
     {
-        cout << css.at(i).name << "\t" << css.at(i).gender << "\t" <<
-                css.at(i).bday << "\t" << css.at(i).dday << endl;
+        cout << css[i].getName() << "\t" << css[i].getGender() << "\t" <<
+                css[i].getBday() << "\t" << css[i].getDday() << endl;
     }
 }
 
 //-----uses the sorting functions------//
-void DataManipulation::sortChoice()
+void DataManipulation::sortChoice(char choice)
 {
-    char choice;
-    cout << "Enter a number: " << endl;
-    cout << "1. Sort by name"
-         << "2. Sort by gender"
-         << "3. sort by year of birth"
-         << "4. sort by year of death" << endl;
-
-    cin >> choice;
-
-    if(choice == '1')
-    {
+    if(choice == 'N' || choice == 'n')
         sort(css.begin(), css.end(), sortByName);
-    }
-    if(choice == '2')
-    {
+    else if(choice == 'G' || choice == 'g')
         sort(css.begin(), css.end(), sortByGender);
-    }
-    if(choice == '3')
-    {
-        sort(css.begin(), css.end(), sortByBday);
-    }
-    if(choice == '4')
-    {
+    else if(choice == 'D' || choice == 'd')
         sort(css.begin(), css.end(), sortByDday);
-    }
+    else if(choice == 'B' || choice == 'b')
+        sort(css.begin(), css.end(), sortByBday);
 }
-
