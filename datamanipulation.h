@@ -8,16 +8,17 @@
 #include <string>
 #include <iostream>
 
+
 class DataManipulation
 {
     vector<ComputerScientist> css;
 public:
     DataManipulation(DataBank& d1);
-    friend bool sortByName( ComputerScientist& lhs, ComputerScientist& rhs);
+    friend bool sortByName(ComputerScientist& lhs, ComputerScientist& rhs);
     friend bool sortByGender(ComputerScientist& lhs, ComputerScientist& rhs);
-    friend bool sortByBday(ComputerScientist &lhs, ComputerScientist &rhs);
+    friend bool sortByBday(ComputerScientist& lhs, ComputerScientist& rhs);
     friend bool sortByDday(ComputerScientist& lhs, ComputerScientist& rhs);
     void print();
-    void sortChoice(char choice);
+    void sortChoice(char choise);
 };
 #endif // DATAMANIPULATION_H
