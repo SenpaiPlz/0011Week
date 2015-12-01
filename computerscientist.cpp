@@ -25,7 +25,7 @@ void ComputerScientist::setname(const string& tmp)
     name = tmp;
 }
 
-void ComputerScientist::setbday(const string &tmp)
+void ComputerScientist::setbday(const string& tmp)
 {
     bday = tmp;
 }
@@ -45,31 +45,34 @@ string ComputerScientist::getName()
 {
     return name;
 }
+
 string ComputerScientist::getGender()
 {
     return gender;
 }
+
 string ComputerScientist::getBday()
 {
     return bday;
 }
+
 string ComputerScientist::getDday()
 {
     return dday;
 }
 
-//---------------  Pedo Mellon a Minno  ---------------//
+//------------- Pedo Mellon a Minno -------------//
 
 /*
- *  Not Sure if we should implement these here...
+ * Not sure if we should implement these here...
  *
-friend istream& operator >>(istream& in, ComputerScientist& cs1)
-{
+ friend istream& operator >>(istream& in, ComputerScientist& cs1)
+ {
 
-}
+ }
 
-friend ostream& operator <<(ostream& out, ComputerScientist& cs1)
-{
+ friend ostream& operator <<(ostream& out, ComputerScientist& cs1)
+ {
 
-}
+ }
 */

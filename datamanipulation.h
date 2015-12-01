@@ -21,5 +21,6 @@ public:
     void Update(DataBank& d1);
     void print();
     void sortChoice(char choise);
+    void SearchForScientist(const vector<ComputerScientist> str);
 };
 #endif // DATAMANIPULATION_H

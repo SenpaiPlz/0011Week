@@ -13,14 +13,6 @@ bool sortByName(ComputerScientist& lhs, ComputerScientist& rhs)
     return lhs.getName() < rhs.getName();
 }
 
-/*
- * This is fine but I do think we should give the user
- * choice if he purelly wants to sort by age, gender and so forth,
- * this is good for a priority search, ie. first x, then name.
- * We just have to say so in our UI.
- *
- */
-
 bool sortByGender(ComputerScientist& lhs, ComputerScientist& rhs)
 {
     if(lhs.getGender() == rhs.getGender())
@@ -60,8 +52,8 @@ void DataManipulation::print()
 {
     for(unsigned int i = 0; i != css.size(); i++)
     {
-        cout << css[i].getName() << "\t" << css[i].getGender() << "\t" <<
-                css[i].getBday() << "\t" << css[i].getDday() << endl;
+        cout << css.at(i).getName() << "\t" << css.at(i).getGender() << "\t" <<
+                css.at(i).getBday() << "\t" << css.at(i).getDday << endl;
     }
 }
 
@@ -95,3 +87,21 @@ void DataManipulation::sortChoice(char choice)
     }
 }
 
+void DataManipulation::SearchForScientist(const vector<ComputerScientist> str)
+{
+
+    //vector<ComputerScientist> checkS = css;
+
+    for(vector<ComputerScientist>::iterator i = css.begin(); i != css.end(); ++i)
+        {
+
+            ComputerScientist temp = *i;
+            ComputerScientist name = temp;
+
+            css.find(str);
+            if(found != string::npos)
+            {
+                  temp.testDataBank();
+            }
+        }
+}
