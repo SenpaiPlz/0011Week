@@ -76,11 +76,24 @@ void UI::MainMenu()
     }
 }
 
-void UI::deletePrint(vector<ComputerScientist> css)
+void UI::Print(vector<ComputerScientist> css)
 {
-    for(unsigned int i = 0; i != css.size(); i++)
+    unsigned int tempsize = 0;
+    for(unsigned int i = 0; i < css.size(); i++)
     {
-        cout << i+1 << "\t" << css[i].getName() << "\t" << css[i].getBday() << "\t" << css[i].getDday()
+        if(css[i].getName().size() > tempsize)
+        {
+            tempsize = css[i].getName().size();
+        }
+    }
+    cout << "index\t";
+    cout << left << setw(tempsize) << "Name" << "\t";
+    cout << "BDay" << "\t" << "Dday" << "\t" << "Gender\n";
+    for(unsigned int i = 0; i < css.size(); i++)
+    {
+        cout << i+1 << "\t";
+        cout << left << setw(tempsize) << css[i].getName() << "\t";
+        cout << css[i].getBday() << "\t" << css[i].getDday()
              << "\t" << css[i].getGender() << endl;
     }
 }
@@ -121,7 +134,7 @@ void UI::addUI()
         {
             valid = true;
         }
-        else if(stoi(tmpdday) >= 0 && stoi(tmpdday) <= 2015)
+        else if(stoi(tmpdday) >= 0 && stoi(tmpdday) <= 2015 && (stoi(tmpdday) > stoi(tmpbday)))
         {
             valid = true;
         }
@@ -153,7 +166,7 @@ void UI::addUI()
 
 void UI::deleteUI()
 {
-    deletePrint(Mainframe.GetDataBank());
+    Print(Mainframe.GetDataBank());
     cout << "\nThis is the unsorted Databank, please select a index to delete: ";
     int temp;
     while(!(cin >> temp))
@@ -198,7 +211,8 @@ void UI::displayUI()
             DataManipulation d1;
             d1.Update(Mainframe);
             d1.sortChoice(temp);
-            deletePrint(d1.ReturnVector());
+            cout << "\n";
+            Print(d1.ReturnVector());
             valid = true;
         }
         else
