@@ -108,4 +108,39 @@ void UI::addUI()
             cout << "I dont know the gender you're trying to enter.\n";
         }
     }while(valid == false);
+    do
+    {
+        cout << "Enter his/her birth year(Example 1999): ";
+        cin >> tmpbday;
+        valid = false;
+        if(stoi(tmpbday) >= 0 && stoi(tmpbday) <= 2015)
+        {
+            valid = true;
+        }
+        else
+        {
+            cout << "Wow we have a timetraveler?.\n";
+        }
+    }while(valid == false);
+    do
+    {
+        cout << "Enter his/her year of Death.\n"
+                "Type NA in caps if he has not died yet(Example 1999): ";
+        cin >> tmpdday;
+        valid = false;
+        if(tmpdday == "NA")
+        {
+            valid = true;
+        }
+        else if(stoi(tmpdday) >= 0 && stoi(tmpdday) <= 2015)
+        {
+            valid = true;
+        }
+        else
+        {
+            cout << "Wow we have a timetraveler?.\n";
+        }
+    }while(valid == false);
+    Mainframe.AddToDataBank(tmpname,tmpbday,tmpdday,tmpgender);
+    printData(Mainframe.GetDataBank());
 }
