@@ -11,6 +11,7 @@ class UI
     void addUI();
     void deleteUI();
     void deletePrint(vector<ComputerScientist> css);
+    void displayUI();
     DataBank Mainframe;
 public:
     UI();

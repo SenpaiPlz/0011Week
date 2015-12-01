@@ -94,6 +94,23 @@ void DataBank::DeleteFromDataBank(int ele)
     {
         css.erase(css.begin()+(ele-1));
     }
+
+    const string filename = "testdata.csv";
+    ofstream out(filename.c_str(), ios::trunc | ios::out);
+
+    if(!out.is_open())
+    {
+        cout << "FILE OPEN ERROR";
+        exit(8);
+    }
+    for(size_t i = 0; i < css.size(); i++)
+    {
+        if(i > 0)
+        {
+            out << ",";
+        }
+        out << css[i].getName() << "," << css[i].getBday() << "," << css[i].getDday() << "," << css[i].getGender();
+    }
 }
 
 void DataBank::testDataBank()
@@ -105,5 +122,3 @@ void DataBank::testDataBank()
         cout << css[i].getName() << " " << css[i].getBday() << " " << css[i].getDday()<< " " << css[i].getGender();
     }
 }
-
-

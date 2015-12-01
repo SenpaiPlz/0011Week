@@ -65,6 +65,7 @@ void UI::MainMenu()
         }
         case '3':
         {
+            displayUI();
             break;
         }
         case '4':
@@ -77,7 +78,7 @@ void UI::MainMenu()
 
 void UI::deletePrint(vector<ComputerScientist> css)
 {
-    for(size_t i = 0; i != css.size(); i++)
+    for(unsigned int i = 0; i != css.size(); i++)
     {
         cout << i+1 << "\t" << css[i].getName() << "\t" << css[i].getBday() << "\t" << css[i].getDday()
              << "\t" << css[i].getGender() << endl;
@@ -176,4 +177,33 @@ void UI::deleteUI()
     }while(valid == false);
     Mainframe.DeleteFromDataBank(temp);
     cout << "\n ComputerScientist at index " << temp << " successfully deleted!\n";
+}
+
+void UI::displayUI()
+{
+    cout << "How would you like to sort the DataBank?\n"
+         << "\nn/N(Primary sort name, no secondary sort)\n"
+         << "g/G(Primary sort gender, secondary sort name)\n"
+         << "b/B(Primary sort birth year, secondary sort name)\n"
+         << "d/D(Primary sort death year, secondary sort name)\n"
+         << "\nEnter one of the above letters to choose your sorting method: ";
+    char temp;
+    bool valid = false;
+    do{
+        valid = false;
+        cin >> temp;
+        if(temp == 'n' || temp == 'N' || temp == 'g' ||temp == 'G' ||
+           temp == 'b' || temp == 'B' || temp == 'd' || temp == 'D')
+        {
+            DataManipulation d1;
+            d1.Update(Mainframe);
+            d1.sortChoice(temp);
+            deletePrint(d1.ReturnVector());
+            valid = true;
+        }
+        else
+        {
+            cout << "Please enter one of the options: ";
+        }
+    }while(valid == false);
 }

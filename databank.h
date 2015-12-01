@@ -20,7 +20,6 @@ public:
     vector<ComputerScientist> GetDataBank();
     void AddToDataBank(const string& tmpname, const string& tmpbday, const string& tmpdday,const string& tmpgender);
     void DeleteFromDataBank(int ele);
-
 };
 
 #endif // DATABANK_H
