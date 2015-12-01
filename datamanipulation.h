@@ -28,5 +28,6 @@ public:
     void Update(DataBank& d1);
     void sortChoice(char choice);
     void sortReverseChoice(char choice);
+    //vecor<ComputerScientist> DataManipulation::SearchForScientist(string search);
 };
 #endif // DATAMANIPULATION_H

@@ -130,3 +130,36 @@ void DataManipulation::sortReverseChoice(char choice)
         sort(css.begin(), css.end(), sortByRDday);
     }
 }
+
+/*vecor<ComputerScientist> DataManipulation::SearchForScientist(string search)
+{
+
+    vector<ComputerScientist> tmp;
+    ComputerScientist now;
+
+    for(unsigned int i = 0; i < css.size(); i++)
+        {
+            now = css[i];
+            if(isdigit(search[1]) == 1)
+            {
+                int tmpSearch;
+                stringstream ss(search);
+                ss >> tmpSearch;
+                int searchMore[2] = {now.getName()};
+                if(searchMore[0] == tmpSearch || searchMore[1] == tmpSearch)
+                    tmp.push_back(css[i]);
+            }
+            else
+            {
+                string searchAgain = now.getName();
+                if(searchAgain.find(search) != string::npos)
+                {
+                    tmp.push_back(css[i]);
+                }
+            ]
+        }
+    return tmp;
+}*/
+
+
+
