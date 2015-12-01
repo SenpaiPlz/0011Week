@@ -1,12 +1,26 @@
-//#include <QCoreApplication>
 #include <iostream>
-#include "computerscientist.h"
-#include "databank.h"
+#include "ui.h"
 
-int main()//int argc, char *argv[])
+using namespace std;
+
+int main()
 {
-    //QCoreApplication a(argc, argv);
-    DataBank d1;
-    return 0;//a.exec();
+    UI main;
+    main.InitializeUI();
+    char cont;
+    bool Continue = false;
+    do
+    {
+        Continue = false;
+        main.MainMenu();
+        cout << "Press y/Y to continue, anything else will exit.\n"
+             << "Do you wish to Continue? ";
+        cin >> cont;
+        if(cont == 'Y' || cont == 'y')
+        {
+            main.clrscr();
+            Continue = true;
+        }
+    }while(Continue == true);
+    return 0;
 }
-
