@@ -10,7 +10,7 @@ int main()//(int argc, char *argv[])
 {
     //QCoreApplication a(argc, argv);
 
-    void logo();
+    logo();
 
     //a.exec();
     return 0;
