@@ -18,6 +18,7 @@ public:
     friend bool sortByGender(ComputerScientist& lhs, ComputerScientist& rhs);
     friend bool sortByBday(ComputerScientist& lhs, ComputerScientist& rhs);
     friend bool sortByDday(ComputerScientist& lhs, ComputerScientist& rhs);
+    void Update(DataBank& d1);
     void print();
     void sortChoice(char choise);
 };

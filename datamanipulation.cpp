@@ -48,6 +48,13 @@ bool sortByDday(ComputerScientist& lhs, ComputerScientist& rhs)
     return lhs.getDday() < rhs.getDday();
 }
 
+void DataManipulation::Update(DataBank& d1)
+{
+    css.clear();
+    css = d1.GetDataBank();
+    css.shrink_to_fit();
+}
+
 //Remove once UI is there.
 void DataManipulation::print()
 {

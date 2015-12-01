@@ -24,7 +24,7 @@ void DataBank::PopulateWithCSV()
 {
     //We clear the current css vector just incase we call PopulateWithCSV a second time,
     //So we dont end up with duplicate data. We can therefore use this to "Update".
-    css.clear();
+    css.erase(css.begin(),css.end());
     const string filename = "testdata.csv";
     ifstream in(filename.c_str(), ios::in);
 
@@ -86,6 +86,14 @@ void DataBank::AddToDataBank(const string& tmpname, const string& tmpbday, const
     //We also push the data to our active databank so we do not need to repopulate it.
 
     out.close();
+}
+
+void DataBank::DeleteFromDataBank(int ele)
+{
+    if(static_cast<unsigned>(ele) <= css.size())
+    {
+        css.erase(css.begin()+(ele-1));
+    }
 }
 
 void DataBank::testDataBank()
