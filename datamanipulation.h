@@ -21,5 +21,6 @@ public:
     void Update(DataBank& d1);
     void print();
     void sortChoice(char choise);
+    friend bool age();
 };
 #endif // DATAMANIPULATION_H

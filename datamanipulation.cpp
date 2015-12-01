@@ -13,14 +13,6 @@ bool sortByName(ComputerScientist& lhs, ComputerScientist& rhs)
     return lhs.getName() < rhs.getName();
 }
 
-/*
- * This is fine but I do think we should give the user
- * choice if he purelly wants to sort by age, gender and so forth,
- * this is good for a priority search, ie. first x, then name.
- * We just have to say so in our UI.
- *
- */
-
 bool sortByGender(ComputerScientist& lhs, ComputerScientist& rhs)
 {
     if(lhs.getGender() == rhs.getGender())
@@ -60,8 +52,8 @@ void DataManipulation::print()
 {
     for(unsigned int i = 0; i != css.size(); i++)
     {
-        cout << css[i].getName() << "\t" << css[i].getGender() << "\t" <<
-                css[i].getBday() << "\t" << css[i].getDday() << endl;
+        cout << css.at(i).getName() << "\t" << css.at(i).getGender() << "\t" <<
+                css.at(i).getBday() << "\t" << css.at(i).getDday << endl;
     }
 }
 
@@ -92,6 +84,26 @@ void DataManipulation::sortChoice(char choice)
     else if(choice == 'B' || choice == 'b')
     {
         sort(css.begin(), css.end(), sortByDday);
+    }
+}
+
+//is this allowed?
+//Or notes on how to do something similar.
+
+bool age()
+{
+    int ageOfScientist;
+    int bday = getBday();
+    int dday = getDday();
+    if(getDday() = "")
+    {
+        return ageOfScientist = 2015 - bday;
+    }
+    else
+    {
+        return ageOfScientist = dday - bday;
+        //Then we can write "Died at" << age
+        //Or write another list next to it, alive or dead.
     }
 }
 
