@@ -13,9 +13,17 @@ bool sortByName(ComputerScientist& lhs, ComputerScientist& rhs)
     return lhs.getName() < rhs.getName();
 }
 
+/*
+ * This is fine but I do think we should give the user
+ * choice if he purelly wants to sort by age, gender and so forth,
+ * this is good for a priority search, ie. first x, then name.
+ * We just have to say so in our UI.
+ *
+ */
+
 bool sortByGender(ComputerScientist& lhs, ComputerScientist& rhs)
 {
-    while(lhs.getGender() == rhs.getGender())
+    if(lhs.getGender() == rhs.getGender())
     {
         return lhs.getName() < rhs.getName();
     }
@@ -24,7 +32,7 @@ bool sortByGender(ComputerScientist& lhs, ComputerScientist& rhs)
 
 bool sortByBday(ComputerScientist& lhs, ComputerScientist& rhs)
 {
-    while(lhs.getBday() == rhs.getBday())
+    if(lhs.getBday() == rhs.getBday())
     {
         return lhs.getName() < rhs.getName();
     }
@@ -33,22 +41,22 @@ bool sortByBday(ComputerScientist& lhs, ComputerScientist& rhs)
 
 bool sortByDday(ComputerScientist& lhs, ComputerScientist& rhs)
 {
-    while(lhs.getDday() == rhs.getDday())
+    if(lhs.getDday() == rhs.getDday())
     {
         return lhs.getName() < rhs.getName();
     }
     return lhs.getDday() < rhs.getDday();
 }
 
-//Prints out everything, here or somewhere else? only for testeroni
-/*void DataManipulation::print()
+//Remove once UI is there.
+void DataManipulation::print()
 {
     for(unsigned int i = 0; i != css.size(); i++)
     {
-        cout << css.at(i).getName() << "\t" << css.at(i).getGender() << "\t" <<
-                css.at(i).getBday() << "\t" << css.at(i).getDday << endl;
+        cout << css[i].getName() << "\t" << css[i].getGender() << "\t" <<
+                css[i].getBday() << "\t" << css[i].getDday() << endl;
     }
-}*/
+}
 
 //-----uses the sorting functions------//
 void DataManipulation::sortChoice(char choice)
