@@ -10,12 +10,14 @@ TEMPLATE = app
 SOURCES += main.cpp \
     computerscientist.cpp \
     databank.cpp \
-    ui.cpp
+    ui.cpp \
+    search.cpp
 
 HEADERS += \
     computerscientist.h \
     databank.h \
-    ui.h
+    ui.h \
+    search.h
 
 DISTFILES +=
 
