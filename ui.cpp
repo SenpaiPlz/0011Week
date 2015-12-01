@@ -60,6 +60,7 @@ void UI::MainMenu()
         }
         case '2':
         {
+            deleteUI();
             break;
         }
         case '3':
@@ -74,18 +75,17 @@ void UI::MainMenu()
     }
 }
 
-void UI::printData(vector<ComputerScientist> css)
+void UI::deletePrint(vector<ComputerScientist> css)
 {
     for(size_t i = 0; i != css.size(); i++)
     {
-        cout << css[i].getName() << "\t" << css[i].getGender() << "\t" <<
-                css[i].getBday() << "\t" << css[i].getDday() << endl;
+        cout << i+1 << "\t" << css[i].getName() << "\t" << css[i].getBday() << "\t" << css[i].getDday()
+             << "\t" << css[i].getGender() << endl;
     }
 }
 
 void UI::addUI()
 {
-    printData(Mainframe.GetDataBank());
     string tmpname;
     string tmpbday;
     string tmpdday;
@@ -94,20 +94,7 @@ void UI::addUI()
     cin.ignore();
     getline (cin, tmpname);
     bool valid = false;
-    do
-    {
-        cout << "Enter his/her Gender (Male/Female): ";
-        cin >> tmpgender;
-        valid = false;
-        if(tmpgender == "Male" || tmpgender == "male" || tmpgender == "Female" || tmpgender == "female")
-        {
-            valid = true;
-        }
-        else
-        {
-            cout << "I dont know the gender you're trying to enter.\n";
-        }
-    }while(valid == false);
+
     do
     {
         cout << "Enter his/her birth year(Example 1999): ";
@@ -122,6 +109,7 @@ void UI::addUI()
             cout << "Wow we have a timetraveler?.\n";
         }
     }while(valid == false);
+
     do
     {
         cout << "Enter his/her year of Death.\n"
@@ -141,6 +129,51 @@ void UI::addUI()
             cout << "Wow we have a timetraveler?.\n";
         }
     }while(valid == false);
+
+    do
+    {
+        cout << "Enter his/her Gender (Male/Female): ";
+        cin >> tmpgender;
+        valid = false;
+        if(tmpgender == "Male" || tmpgender == "male" || tmpgender == "Female" || tmpgender == "female")
+        {
+            valid = true;
+        }
+        else
+        {
+            cout << "I dont know the gender you're trying to enter.\n";
+        }
+    }while(valid == false);
+
+
     Mainframe.AddToDataBank(tmpname,tmpbday,tmpdday,tmpgender);
-    printData(Mainframe.GetDataBank());
+    cout << tmpname << ", " << tmpbday << ", " << tmpdday << ", and " << tmpgender << " was added to DataBank\n";
+}
+
+void UI::deleteUI()
+{
+    deletePrint(Mainframe.GetDataBank());
+    cout << "\nThis is the unsorted Databank, please select a index to delete: ";
+    int temp;
+    while(!(cin >> temp))
+    {
+        cin.clear();
+        cin.ignore(1);
+        cout << "Expected integer fatal error, just joking, please select an integer: ";
+    }
+    bool valid = false;
+    do
+    {
+        if(temp > 0 && static_cast<unsigned>(temp) <= Mainframe.GetDataBank().size())
+        {
+            valid = true;
+        }
+        else
+        {
+            cout << "Please Select an integer that is within index range: ";
+            cin >> temp;
+        }
+    }while(valid == false);
+    Mainframe.DeleteFromDataBank(temp);
+    cout << "\n ComputerScientist at index " << temp << " successfully deleted!\n";
 }
