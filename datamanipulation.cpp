@@ -2,9 +2,19 @@
 
 using namespace std;
 
+DataManipulation::DataManipulation()
+{
+
+}
+
 DataManipulation::DataManipulation(DataBank& d1)
 {
     css = d1.GetDataBank();
+}
+
+vector<ComputerScientist> DataManipulation::ReturnVector()
+{
+    return css;
 }
 
 //---------sorting----------//
@@ -47,28 +57,42 @@ void DataManipulation::Update(DataBank& d1)
     css.shrink_to_fit();
 }
 
-//Remove once UI is there.
-void DataManipulation::print()
+//-----Reverse Sorting------//
+bool sortByRName(ComputerScientist& lhs, ComputerScientist& rhs)
 {
-    for(unsigned int i = 0; i != css.size(); i++)
+    return lhs.getName() > rhs.getName();
+}
+
+bool sortByRGender(ComputerScientist& lhs, ComputerScientist& rhs)
+{
+    if(lhs.getGender() == rhs.getGender())
     {
-        cout << css.at(i).getName() << "\t" << css.at(i).getGender() << "\t" <<
-                css.at(i).getBday() << "\t" << css.at(i).getDday << endl;
+        return lhs.getName() > rhs.getName();
     }
+    return lhs.getGender() > rhs.getGender();
+}
+
+bool sortByRBday(ComputerScientist& lhs, ComputerScientist& rhs)
+{
+    if(lhs.getBday() == rhs.getBday())
+    {
+        return lhs.getName() > rhs.getName();
+    }
+    return lhs.getBday() > rhs.getBday();
+}
+
+bool sortByRDday(ComputerScientist& lhs, ComputerScientist& rhs)
+{
+    if(lhs.getDday() == rhs.getDday())
+    {
+        return lhs.getName() > rhs.getName();
+    }
+    return lhs.getDday() > rhs.getDday();
 }
 
 //-----uses the sorting functions------//
 void DataManipulation::sortChoice(char choice)
 {
-    /*char choice;
-    cout << "Enter a letter: " << endl;
-    cout << "N. Sort by name"
-         << "G. Sort by gender"
-         << "B. sort by year of birth"
-         << "D. sort by year of death" << endl;
-
-    cin >> choice;*/
-
     if(choice == 'N' || choice == 'n')
     {
         sort(css.begin(), css.end(), sortByName);
@@ -87,21 +111,22 @@ void DataManipulation::sortChoice(char choice)
     }
 }
 
-void DataManipulation::SearchForScientist(const vector<ComputerScientist> str)
+void DataManipulation::sortReverseChoice(char choice)
 {
-
-    //vector<ComputerScientist> checkS = css;
-
-    for(vector<ComputerScientist>::iterator i = css.begin(); i != css.end(); ++i)
-        {
-
-            ComputerScientist temp = *i;
-            ComputerScientist name = temp;
-
-            css.find(str);
-            if(found != string::npos)
-            {
-                  temp.testDataBank();
-            }
-        }
+    if(choice == 'N' || choice == 'n')
+    {
+        sort(css.begin(), css.end(), sortByRName);
+    }
+    else if(choice == 'G' || choice == 'g')
+    {
+        sort(css.begin(), css.end(), sortByRGender);
+    }
+    else if(choice == 'D' || choice == 'd')
+    {
+        sort(css.begin(), css.end(), sortByRBday);
+    }
+    else if(choice == 'B' || choice == 'b')
+    {
+        sort(css.begin(), css.end(), sortByRDday);
+    }
 }

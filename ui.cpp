@@ -208,9 +208,19 @@ void UI::displayUI()
         if(temp == 'n' || temp == 'N' || temp == 'g' ||temp == 'G' ||
            temp == 'b' || temp == 'B' || temp == 'd' || temp == 'D')
         {
+            char tmp;
             DataManipulation d1;
             d1.Update(Mainframe);
-            d1.sortChoice(temp);
+            cout << "Do you wish to sort it in reverse order y/Y: ";
+            cin >> tmp;
+            if(tmp == 'y' || tmp == 'Y')
+            {
+                d1.sortReverseChoice(temp);
+            }
+            else
+            {
+                d1.sortChoice(temp);
+            }
             cout << "\n";
             Print(d1.ReturnVector());
             valid = true;
