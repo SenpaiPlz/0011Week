@@ -2,7 +2,7 @@
 
 using namespace std;
 
-//---------------  Construction of Pylons  ---------------//
+//------------- Construction of Pylos -------------//
 ComputerScientist::ComputerScientist()
 {
     name = "NA";
@@ -13,19 +13,19 @@ ComputerScientist::ComputerScientist()
 
 ComputerScientist::ComputerScientist(const string& tmpname, const int& tmpbday, const int& tmpdday, const string& tmpgender)
 {
-    name = tmpname;
-    bday = tmpbday;
-    dday = tmpdday;
-    gender = tmpgender;
+        name = tmpname;
+        bday = tmpbday;
+        dday = tmpdday;
+        gender = tmpgender;
 }
 
-//---------------  Do we get Set bonuses?  ---------------//
+//------------- Do we get Set bonuses? -------------//
 void ComputerScientist::setname(const string& tmp)
 {
     name = tmp;
 }
 
-void ComputerScientist::setbday(const string &tmp)
+void ComputerScientist::setbday(const string& tmp)
 {
     bday = tmp;
 }
@@ -40,36 +40,63 @@ void ComputerScientist::setgender(const string& tmp)
     gender = tmp;
 }
 
-//---------------  Quads Get  ---------------//
+//------------- Quads Get -------------//
 string ComputerScientist::getName()
 {
     return name;
 }
+
 string ComputerScientist::getGender()
 {
     return gender;
 }
+
 string ComputerScientist::getBday()
 {
     return bday;
 }
+
 string ComputerScientist::getDday()
 {
     return dday;
 }
 
-//---------------  Pedo Mellon a Minno  ---------------//
+ComputerScientist operator- (const ComputerScientist& d, const ComputerScientist& b)
+{
+    ComputerScientist temp;
+    if(d.empty())
+        temp.age = 2015 - b.bday;
+    else
+        temp.age = d.dday - b.bday;
+    return temp;
+}
+
+string ComputerScientist::getAge()
+{
+    if(dday.empty())
+    {
+        return age = 2015 - bday;
+    }
+    else
+    {
+        return age = dday - bday;
+        //Then we can write "Died at" << age
+        //Or write another list next to it, alive or dead.
+    }
+}
+
+//------------- Pedo Mellon a Minno -------------//
 
 /*
- *  Not Sure if we should implement these here...
+ * Not sure if we should implement these here...
  *
-friend istream& operator >>(istream& in, ComputerScientist& cs1)
-{
+ friend istream& operator >>(istream& in, ComputerScientist& cs1)
+ {
 
-}
+ }
 
-friend ostream& operator <<(ostream& out, ComputerScientist& cs1)
-{
+ friend ostream& operator <<(ostream& out, ComputerScientist& cs1)
+ {
 
-}
+ }
 */

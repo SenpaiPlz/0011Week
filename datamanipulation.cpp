@@ -87,23 +87,3 @@ void DataManipulation::sortChoice(char choice)
     }
 }
 
-//is this allowed?
-//Or notes on how to do something similar.
-
-bool age()
-{
-    int ageOfScientist;
-    int bday = getBday();
-    int dday = getDday();
-    if(getDday() = "")
-    {
-        return ageOfScientist = 2015 - bday;
-    }
-    else
-    {
-        return ageOfScientist = dday - bday;
-        //Then we can write "Died at" << age
-        //Or write another list next to it, alive or dead.
-    }
-}
-
