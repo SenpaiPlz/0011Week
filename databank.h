@@ -6,9 +6,6 @@
 #include <string>
 #include <cstdlib>
 #include <fstream>
-#include <algorithm>
-#include <list>
-#include <sstream>
 
 using namespace std;
 
@@ -23,7 +20,7 @@ public:
     vector<ComputerScientist> GetDataBank();
     void AddToDataBank(const string& tmpname, const string& tmpbday, const string& tmpdday,const string& tmpgender);
     void DeleteFromDataBank(int ele);
-    void SearchForScientist(const vector<ComputerScientist> str);
+
 };
 
 #endif // DATABANK_H

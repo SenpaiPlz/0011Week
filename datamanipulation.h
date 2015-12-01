@@ -22,5 +22,6 @@ public:
     void print();
     void sortChoice(char choise);
     friend bool age();
+    void SearchForScientist(const vector<ComputerScientist> str);
 };
 #endif // DATAMANIPULATION_H

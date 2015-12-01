@@ -106,21 +106,4 @@ void DataBank::testDataBank()
     }
 }
 
-void DataBank::SearchForScientist(const vector<ComputerScientist> str)
-{
 
-    vector<ComputerScientist> checkS = GetDataBank();
-
-    for(vector<ComputerScientist>::iterator i = checkS.begin(); i != checkS.end(); ++i)
-        {
-
-            ComputerScientist temp = *i;
-            ComputerScientist name = temp;
-
-            css.find(str);
-            if(found != string::npos)
-            {
-                  temp.testDataBank();
-            }
-        }
-}

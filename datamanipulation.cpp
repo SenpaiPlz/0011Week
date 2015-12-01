@@ -107,3 +107,21 @@ bool age()
     }
 }
 
+void DataManipulation::SearchForScientist(const vector<ComputerScientist> str)
+{
+
+    //vector<ComputerScientist> checkS = css;
+
+    for(vector<ComputerScientist>::iterator i = css.begin(); i != css.end(); ++i)
+        {
+
+            ComputerScientist temp = *i;
+            ComputerScientist name = temp;
+
+            css.find(str);
+            if(found != string::npos)
+            {
+                  temp.testDataBank();
+            }
+        }
+}
