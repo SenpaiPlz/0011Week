@@ -21,7 +21,10 @@ public:
     void Update(DataBank& d1);
     void print();
     void sortChoice(char choise);
+<<<<<<< HEAD
     friend bool age();
     void SearchForScientist(const vector<ComputerScientist> str);
+=======
+>>>>>>> 2d084bc88a0595f2421f4d0e515380b5252b8948
 };
 #endif // DATAMANIPULATION_H

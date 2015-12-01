@@ -87,6 +87,7 @@ void DataManipulation::sortChoice(char choice)
     }
 }
 
+<<<<<<< HEAD
 //is this allowed?
 //Or notes on how to do something similar.
 
@@ -125,3 +126,5 @@ void DataManipulation::SearchForScientist(const vector<ComputerScientist> str)
             }
         }
 }
+=======
+>>>>>>> 2d084bc88a0595f2421f4d0e515380b5252b8948

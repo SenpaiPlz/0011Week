@@ -6,6 +6,8 @@ using namespace std;
 
 class ComputerScientist
 {
+    friend class Databank;
+    friend class DataManipulation;
     string name;
     string bday;
     string dday;
@@ -24,12 +26,12 @@ public:
     void setdday(const string& tmp);
     void setgender(const string& tmp);
 
-    /*
-     *  Mabey implement somewhere else.
+     /*
+     * Maybe implement somewhere else.
      *
-    friend istream& operator >>(istream& in, ComputerScientist& cs1);
-    friend ostream& operator <<(ostream& out, ComputerScientist& cs1);
-    */
+     friend istream& operator >>(istream& in, ComputerScientist& cs1);
+     friend ostream& operator <<(ostream& out, ComputerScientist& cs1);
+     */
 };
 
 #endif // COMPUTERSCIENTIST_H
