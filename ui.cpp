@@ -105,43 +105,69 @@ void UI::addUI()
     string tmpbday;
     string tmpdday;
     string tmpgender;
-    cout << "Enter the name of the person you would like to add: ";
-    cin.ignore();
-    getline (cin, tmpname);
+    cout << "Adding a ComputerScientist is tricky, please dont use commas ','!\n";
     bool valid = false;
+    do
+    {
+        valid = true;
+        cout << "Enter the name of the person you would like to add: ";
+        cin.ignore();
+        getline (cin, tmpname);
+        string nono = ",";
+        const char *ptr = strstr(tmpname.c_str(),nono.c_str());
+        if(ptr != NULL)
+        {
+            cout << "I thought I told you not to put commas.\n";
+            valid = false;
+        }
+    }while(valid == false);
 
     do
     {
         cout << "Enter his/her birth year(Example 1999): ";
         cin >> tmpbday;
         valid = false;
-        if(stoi(tmpbday) >= 0 && stoi(tmpbday) <= 2015)
+        if(isdigit(tmpbday[0]))
         {
-            valid = true;
+            if(stoi(tmpbday) >= 0 && stoi(tmpbday) <= 2015 && isdigit(tmpbday[0]))
+            {
+                valid = true;
+            }
+            else
+            {
+                cout << "Wow we have a timetraveler?.\n";
+            }
         }
         else
         {
-            cout << "Wow we have a timetraveler?.\n";
+            cout << "That's not a digit!!\n";
         }
     }while(valid == false);
 
     do
     {
         cout << "Enter his/her year of Death.\n"
-                "Type NA in caps if he has not died yet(Example 1999): ";
+                "Type 9999 if he has not died yet(Example 1999): ";
         cin >> tmpdday;
         valid = false;
-        if(tmpdday == "NA")
+        if(isdigit(tmpdday[0]))
         {
-            valid = true;
-        }
-        else if(stoi(tmpdday) >= 0 && stoi(tmpdday) <= 2015 && (stoi(tmpdday) > stoi(tmpbday)))
-        {
-            valid = true;
+            if(tmpdday == "9999")
+            {
+                valid = true;
+            }
+            else if(stoi(tmpdday) >= 0 && stoi(tmpdday) <= 2015 && (stoi(tmpdday) > stoi(tmpbday)))
+            {
+                valid = true;
+            }
+            else
+            {
+                cout << "Wow we have a timetraveler?.\n";
+            }
         }
         else
         {
-            cout << "Wow we have a timetraveler?.\n";
+            cout << "That's not a digit!!\n";
         }
     }while(valid == false);
 

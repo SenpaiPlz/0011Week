@@ -6,6 +6,8 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <cstring>
+#include <cctype>
 
 class UI
 {
