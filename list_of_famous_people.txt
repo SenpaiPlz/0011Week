@@ -3,7 +3,7 @@ Ada Lovelace, female, 1815, 1852
 Blaise Pascal, male, 1623, 1662
 John Vincent Atanasoff, male, 1903, 1995
 John William Mauchly, male, 1907, 1980
-John Adam Presper Eckert, Jr., male, 1919, 1995
+John Adam Presper Eckert, male, 1919, 1995
 Grace Hopper, female, 1906, 1992
 Margaret Heafield Hamilton, female, 1936,
 Mark Zuckerberg, male, 1984,
