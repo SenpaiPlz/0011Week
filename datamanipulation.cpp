@@ -71,11 +71,11 @@ void DataManipulation::sortChoice(char choice, char r)
     }
     else if(choice == 'D' || choice == 'd')
     {
-        sort(css.begin(), css.end(), sortByBday);
+        sort(css.begin(), css.end(), sortByDday);
     }
     else if(choice == 'B' || choice == 'b')
     {
-        sort(css.begin(), css.end(), sortByDday);
+        sort(css.begin(), css.end(), sortByBday);
     }
     if(r == 'y')
     {
