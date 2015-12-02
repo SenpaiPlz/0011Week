@@ -13,6 +13,7 @@ class UI
     void deleteUI();
     void Print(vector<ComputerScientist> css);
     void displayUI();
+    void searchUI();
     DataBank Mainframe;
 public:
     UI();

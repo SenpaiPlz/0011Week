@@ -70,6 +70,7 @@ void UI::MainMenu()
         }
         case '4':
         {
+            searchUI();
             break;
         }
     default: cout << "how did you even get here?"; break;
@@ -215,11 +216,11 @@ void UI::displayUI()
             cin >> tmp;
             if(tmp == 'y' || tmp == 'Y')
             {
-                d1.sortReverseChoice(temp);
+                d1.sortChoice(temp, 'y');
             }
             else
             {
-                d1.sortChoice(temp);
+                d1.sortChoice(temp,'n');
             }
             cout << "\n";
             Print(d1.ReturnVector());
@@ -228,6 +229,54 @@ void UI::displayUI()
         else
         {
             cout << "Please enter one of the options: ";
+        }
+    }while(valid == false);
+}
+
+void UI::searchUI()
+{
+    cout << "\nPlease choice a searching method!\n"
+         << "1. Exact Search(String Search)\n"
+         << "2. Partial Search (Substring Search)\n"
+         << "Enter your choice here: ";
+    char choice;
+    bool valid = false;
+    do
+    {
+        valid = false;
+        cin >> choice;
+        if(choice == '1' || choice == '2')
+        {
+            cout << "Enter a Search string: ";
+            string search;
+            cin >> search;
+            bool found = false;
+            DataManipulation d1;
+            d1.Update(Mainframe);
+            if(choice == '1')
+            {
+                found = d1.Search(search);
+            }
+            else
+            {
+                found = d1.substringSearch(search);
+            }
+
+            if(found == true)
+            {
+                d1.sortChoice('n','n');
+                Print(d1.ReturnVector());
+            }
+            else
+            {
+                cout << "Nothing of value was found!!";
+            }
+            valid = true;
+        }
+        else
+        {
+            cout << "That's not a valid choice and you know it!!\n"
+                 << "Please Enter a valid choice this time: ";
         }
     }while(valid == false);
 }
