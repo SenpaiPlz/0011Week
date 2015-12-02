@@ -14,7 +14,6 @@ class DataBank
     vector<ComputerScientist> css;
 public:
     DataBank();
-    void testDataBank();
     void PopulateWithCSV();
     bool isempty(ifstream& file);
     vector<ComputerScientist> GetDataBank();

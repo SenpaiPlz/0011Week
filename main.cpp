@@ -9,6 +9,7 @@ int main()
     main.InitializeUI();
     char cont;
     bool Continue = false;
+    //Program continues as long as user inputs y/Y;
     do
     {
         Continue = false;

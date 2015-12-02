@@ -17,7 +17,7 @@ vector<ComputerScientist> DataManipulation::ReturnVector()
     return css;
 }
 
-//---------sorting----------//
+//---------sorting booleans----------//
 bool sortByName(ComputerScientist& lhs, ComputerScientist& rhs)
 {
     return lhs.getName() < rhs.getName();
@@ -60,6 +60,7 @@ void DataManipulation::Update(DataBank& d1)
 //-----uses the sorting functions------//
 void DataManipulation::sortChoice(char choice, char r)
 {
+    //calls upon correct sort. if r == y we reverse the vector.
     if(choice == 'N' || choice == 'n')
     {
         sort(css.begin(), css.end(), sortByName);
@@ -127,6 +128,7 @@ bool DataManipulation::Search(string& str)
     }
     css = temp;
     css.shrink_to_fit();
+    //Makes sure that size of css, is as little as can be. Returns true as long as we found something.
     if(!css.empty())
     {
         return true;
@@ -140,7 +142,7 @@ bool DataManipulation::substringSearch(string& str)
     for(unsigned int i = 0; i < css.size(); i++)
     {
         //Thanks for being there http://www.cplusplus.com/reference/cstring/strstr/
-        //I literrally did not know what I was doing here until google turned up this...
+        //I literrally did not know what I was doing here until google found this...
         string tmpname = css[i].getName();
         string tmpbday = css[i].getBday();
         string tmpdday = css[i].getDday();
@@ -166,6 +168,7 @@ bool DataManipulation::substringSearch(string& str)
     }
     css = temp;
     css.shrink_to_fit();
+    //Makes sure that size of css, is as little as can be. Returns true as long as we found something.
     if(!css.empty())
     {
         return true;

@@ -57,19 +57,3 @@ string ComputerScientist::getDday()
 {
     return dday;
 }
-
-//---------------  Pedo Mellon a Minno  ---------------//
-
-/*
- *  Not Sure if we should implement these here...
- *
-friend istream& operator >>(istream& in, ComputerScientist& cs1)
-{
-
-}
-
-friend ostream& operator <<(ostream& out, ComputerScientist& cs1)
-{
-
-}
-*/

@@ -23,7 +23,7 @@ bool DataBank::isempty(ifstream& file)
 void DataBank::PopulateWithCSV()
 {
     //We clear the current css vector just incase we call PopulateWithCSV a second time,
-    //So we dont end up with duplicate data. We can therefore use this to "Update".
+    //this is so we dont end up with duplicate data. We can therefore use this to "Update".
     css.erase(css.begin(),css.end());
     const string filename = "testdata.csv";
     ifstream in(filename.c_str(), ios::in);
@@ -90,14 +90,14 @@ void DataBank::AddToDataBank(const string& tmpname, const string& tmpbday, const
 
 void DataBank::DeleteFromDataBank(int ele)
 {
-    if(static_cast<unsigned>(ele) <= css.size())
+    if(static_cast<unsigned>(ele) <= css.size() && !css.empty())
     {
         css.erase(css.begin()+(ele-1));
     }
 
     const string filename = "testdata.csv";
     ofstream out(filename.c_str(), ios::trunc | ios::out);
-
+    //Rewrites files for beginning - the ComputerScientist we deleted.
     if(!out.is_open())
     {
         cout << "FILE OPEN ERROR";
@@ -110,15 +110,5 @@ void DataBank::DeleteFromDataBank(int ele)
             out << ",";
         }
         out << css[i].getName() << "," << css[i].getBday() << "," << css[i].getDday() << "," << css[i].getGender();
-    }
-}
-
-void DataBank::testDataBank()
-{
-    //Simply for testing purposes while we dont have an interface.
-
-    for(size_t i = 0; i < css.size(); i++)
-    {
-        cout << css[i].getName() << " " << css[i].getBday() << " " << css[i].getDday()<< " " << css[i].getGender();
     }
 }

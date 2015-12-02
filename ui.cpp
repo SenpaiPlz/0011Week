@@ -9,11 +9,13 @@ UI::UI()
 
 void UI::clrscr()
 {
+    //dirty but works... kinda
     cout << string(50,'\n');
 }
 
 void UI::InitializeUI()
 {
+    //              GG-eZ
     cout << " ________________________________________________\n"
          << "|                                                |\n"
          << "|\t _____ _____                 ______\t |\n"
@@ -38,6 +40,7 @@ void UI::MainMenu()
          << "Enter your choice: ";
     char choice;
     bool valid = false;
+    //checks input and puts input into switch cases.
     do
     {
         valid = false;
@@ -80,6 +83,7 @@ void UI::MainMenu()
 void UI::Print(vector<ComputerScientist> css)
 {
     unsigned int tempsize = 0;
+    //gets the size of the largest name.
     for(unsigned int i = 0; i < css.size(); i++)
     {
         if(css[i].getName().size() > tempsize)
@@ -87,6 +91,8 @@ void UI::Print(vector<ComputerScientist> css)
             tempsize = css[i].getName().size();
         }
     }
+    //we use the size we got to make sure that our table is formatted correclty.
+    //well unless you go offscreen.
     cout << "index\t";
     cout << left << setw(tempsize) << "Name" << "\t";
     cout << "BDay" << "\t" << "Dday" << "\t" << "Gender\n";
@@ -107,17 +113,28 @@ void UI::addUI()
     string tmpgender;
     cout << "Adding a ComputerScientist is tricky, please dont use commas ','!\n";
     bool valid = false;
+    int n = 1;
     do
     {
         valid = true;
         cout << "Enter the name of the person you would like to add: ";
-        cin.ignore();
+        cin.ignore(n);
+        //This is for a edge case, if you repeatedly press enter on the naming screen
+        //instead of taking two enter inputs before we repeat the cout above, this will
+        //make us only take one enter input after the initial ignore(1)
+
         getline (cin, tmpname);
         string nono = ",";
         const char *ptr = strstr(tmpname.c_str(),nono.c_str());
         if(ptr != NULL)
         {
             cout << "I thought I told you not to put commas.\n";
+            valid = false;
+        }
+        else if(tmpname == "")
+        {
+            cout << "I've never heard of a person being called 'Empty String'\n";
+            n = 0;
             valid = false;
         }
     }while(valid == false);
@@ -127,6 +144,7 @@ void UI::addUI()
         cout << "Enter his/her birth year(Example 1999): ";
         cin >> tmpbday;
         valid = false;
+        //if 1st char of string is digit and not before year 0 or after year 2015 it's valid
         if(isdigit(tmpbday[0]))
         {
             if(stoi(tmpbday) >= 0 && stoi(tmpbday) <= 2015 && isdigit(tmpbday[0]))
@@ -150,6 +168,8 @@ void UI::addUI()
                 "Type 9999 if he has not died yet(Example 1999): ";
         cin >> tmpdday;
         valid = false;
+        //if 1st char of string is digit and not before year 0 or after year 2015
+        //and it isn't greater than bday it's valid.
         if(isdigit(tmpdday[0]))
         {
             if(tmpdday == "9999")
@@ -196,6 +216,7 @@ void UI::deleteUI()
     Print(Mainframe.GetDataBank());
     cout << "\nThis is the unsorted Databank, please select a index to delete: ";
     int temp;
+    //throws error if input is not integer
     while(!(cin >> temp))
     {
         cin.clear();
@@ -205,6 +226,7 @@ void UI::deleteUI()
     bool valid = false;
     do
     {
+        //unsigned cast to avoid signed to unsigned comparison flag.
         if(temp > 0 && static_cast<unsigned>(temp) <= Mainframe.GetDataBank().size())
         {
             valid = true;
@@ -232,6 +254,7 @@ void UI::displayUI()
     do{
         valid = false;
         cin >> temp;
+        //simply checks input and calls correct functions.
         if(temp == 'n' || temp == 'N' || temp == 'g' ||temp == 'G' ||
            temp == 'b' || temp == 'B' || temp == 'd' || temp == 'D')
         {
@@ -287,7 +310,6 @@ void UI::searchUI()
             {
                 found = d1.substringSearch(search);
             }
-
             if(found == true)
             {
                 d1.sortChoice('n','n');
