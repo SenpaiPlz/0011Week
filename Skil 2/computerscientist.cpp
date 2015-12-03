@@ -8,19 +8,28 @@ ComputerScientist::ComputerScientist()
     id = -1337;
 }
 
-ComputerScientist::ComputerScientist(const string& tmpname, const int& tmpbday, const int& tmpdday, const string& tmpgender)
+//---------------  Do we get Set bonuses?  ---------------//
+void ComputerScientist::setID(const int &tmp)
 {
-    name = tmpname;
-    bday = tmpbday;
-    dday = tmpdday;
-    gender = tmpgender;
+    if(id == -1337)
+        id = tmp;
 }
 
-//---------------  Do we get Set bonuses?  ---------------//
-void ComputerScientist::setname(const string& tmp)
+void ComputerScientist::setFirst(const string& tmp)
 {
-    name = tmp;
+    firstname = tmp;
 }
+
+void ComputerScientist::setMid(const string& tmp)
+{
+    middlename = tmp;
+}
+
+void ComputerScientist::setLast(const string& tmp)
+{
+    lastname = tmp;
+}
+
 
 void ComputerScientist::setbday(const int &tmp)
 {
@@ -38,9 +47,17 @@ void ComputerScientist::setgender(const string& tmp)
 }
 
 //---------------  Quads Get  ---------------//
-string ComputerScientist::getName()
+string ComputerScientist::getFirst()
 {
-    return name;
+    return firstname;
+}
+string ComputerScientist::getMid()
+{
+    return middlename;
+}
+string ComputerScientist::getLast()
+{
+    return lastname;
 }
 string ComputerScientist::getGender()
 {

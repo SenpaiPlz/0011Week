@@ -26,7 +26,7 @@ public:
 
     void setID(const int& ID);
     void setFirst(const string& tmp);
-    void setMiddle(const string& tmp);
+    void setMid(const string& tmp);
     void setLast(const string& tmp);
     void setbday(const int& tmp);
     void setdday(const int& tmp);
