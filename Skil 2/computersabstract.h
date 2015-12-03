@@ -16,6 +16,13 @@ private:
 
 public:
     computersabstract();
+
+    void setid(const int &tmp);
+    void setname(const string& tmp);
+    void setyear(const int& tmp);
+    void settype(const string& tmp);
+    void setbuilt(const bool &tmp);
+
     int getid();
     string getname();
     int getbuiltyear();
