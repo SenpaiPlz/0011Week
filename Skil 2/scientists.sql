@@ -1,9 +1,11 @@
+DROP TABLE IF EXISTS "scientists";
+CREATE TABLE "scientists" ("id" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE , "first_name" VARCHAR NOT NULL , "middle_name" VARCHAR, "last_name" VARCHAR NOT NULL , "gender" VARCHAR NOT NULL , "birth_year" INTEGER NOT NULL , "death_year" INTEGER NOT NULL , "valid" BOOL NOT NULL );
 INSERT INTO "scientists" VALUES(1,'Charles',NULL,'Babbage','male',1791,1871,0);
 INSERT INTO "scientists" VALUES(2,'Ada',NULL,'Lovelace','female',1815,1852,0);
 INSERT INTO "scientists" VALUES(3,'Blaise',NULL,'Pascal','male',1623,1662,0);
 INSERT INTO "scientists" VALUES(4,'John','Vincent','Atanasoff','male',1903,1995,0);
 INSERT INTO "scientists" VALUES(5,'John','William','Mauchly','male',1907,1980,0);
-INSERT INTO "scientists" VALUES(6,'John','Adam','Eckert','male',1919,1995,0);
+INSERT INTO "scientists" VALUES(6,'John','Presper','Eckert','male',1919,1995,0);
 INSERT INTO "scientists" VALUES(7,'Grace',NULL,'Hopper','female',1906,1992,0);
 INSERT INTO "scientists" VALUES(8,'Margaret','Heafield','Hamilton','female',1936,'',0);
 INSERT INTO "scientists" VALUES(9,'Mark','Elliot','Zuckerberg','male',1984,'',0);
