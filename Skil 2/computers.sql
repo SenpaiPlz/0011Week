@@ -1,5 +1,9 @@
 DROP TABLE IF EXISTS "computers";
-CREATE TABLE "computers" ("id" INTEGER PRIMARY KEY  NOT NULL ,"name" VARCHAR NOT NULL  DEFAULT (null) ,"year" INTEGER NOT NULL ,"type" VARCHAR NOT NULL  DEFAULT (null) ,"built" BOOL NOT NULL ,"valid" BOOL);
+CREATE TABLE "computers" ("id" INTEGER PRIMARY KEY  
+NOT NULL ,"name" VARCHAR NOT NULL  DEFAULT (null) ,
+"year" INTEGER NOT NULL ,"type" VARCHAR NOT NULL  
+DEFAULT (null) ,"built" BOOL NOT NULL ,"valid" BOOL);
+
 INSERT INTO "computers" VALUES(1,'Pascaline',1642,'Mechanical',1,0);
 INSERT INTO "computers" VALUES(2,'ABC',1942,'Electronic',1,0);
 INSERT INTO "computers" VALUES(3,'Colossus',1943,'Electronic',1,0);
