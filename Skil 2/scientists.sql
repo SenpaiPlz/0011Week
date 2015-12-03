@@ -1,5 +1,12 @@
 DROP TABLE IF EXISTS "scientists";
-CREATE TABLE "scientists" ("id" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE , "first_name" VARCHAR NOT NULL , "middle_name" VARCHAR, "last_name" VARCHAR NOT NULL , "gender" VARCHAR NOT NULL , "birth_year" INTEGER NOT NULL , "death_year" INTEGER NOT NULL , "valid" BOOL NOT NULL );
+CREATE TABLE "scientists" ("id" INTEGER PRIMARY KEY  
+AUTOINCREMENT  NOT NULL  UNIQUE , 
+"first_name" VARCHAR NOT NULL , "middle_name" 
+VARCHAR, "last_name" VARCHAR NOT NULL , 
+"gender" VARCHAR NOT NULL , "birth_year" 
+INTEGER NOT NULL , "death_year" INTEGER NOT NULL , 
+"valid" BOOL NOT NULL );
+
 INSERT INTO "scientists" VALUES(1,'Charles',NULL,'Babbage','male',1791,1871,0);
 INSERT INTO "scientists" VALUES(2,'Ada',NULL,'Lovelace','female',1815,1852,0);
 INSERT INTO "scientists" VALUES(3,'Blaise',NULL,'Pascal','male',1623,1662,0);
