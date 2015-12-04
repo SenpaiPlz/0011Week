@@ -1,19 +1,22 @@
+DROP TABLE IF EXISTS "scientists";
+CREATE TABLE "scientists" (
+"id" INTEGER PRIMARY KEY  NOT NULL UNIQUE,
+"first_name" VARCHAR NOT NULL ,
+"middle_name" VARCHAR,
+"last_name" VARCHAR NOT NULL ,
+"gender" VARCHAR NOT NULL ,
+"birth_year" INTEGER NOT NULL ,
+"death_year" INTEGER NOT NULL ,
+"deleted" BOOL NOT NULL  DEFAULT (null) );
+
 DROP TABLE IF EXISTS "computers";
 CREATE TABLE "computers" (
-"id" INTEGER PRIMARY KEY  NOT NULL ,
+"id" INTEGER PRIMARY KEY  NOT NULL UNIQUE,
 "name" VARCHAR NOT NULL  DEFAULT (null) ,
 "year" INTEGER NOT NULL ,
 "type" VARCHAR NOT NULL  DEFAULT (null) ,
 "built" BOOL NOT NULL ,
 "deleted" BOOL DEFAULT (null) );
-
-INSERT INTO "computers" VALUES(1,'Pascaline',1642,'Mechanical',1,0);
-INSERT INTO "computers" VALUES(2,'ABC',1942,'Electronic',1,0);
-INSERT INTO "computers" VALUES(3,'Colossus',1943,'Electronic',1,0);
-INSERT INTO "computers" VALUES(4,'Difference Engine',1822,'Mechanical',1,0);
-INSERT INTO "computers" VALUES(5,'Analytical Engine',1837,'Mechanical',1,0);
-INSERT INTO "computers" VALUES(6,'Apple 1',1976,'Electronic',1,0);
-INSERT INTO "computers" VALUES(7,'ENIAC',1946,'Electronic',1,0);
 
 DROP TABLE IF EXISTS "computers_scientists";
 CREATE TABLE computers_scientists (
@@ -22,6 +25,14 @@ computers_id INTERGER,
 FOREIGN KEY (scientists_id) REFERENCES scientists(id),
 FOREIGN KEY (computers_id) REFERENCES computers(id),
 PRIMARY KEY (computers_id, scientists_id));
+
+INSERT INTO "computers" VALUES(1,'Pascaline',1642,'Mechanical',1,0);
+INSERT INTO "computers" VALUES(2,'ABC',1942,'Electronic',1,0);
+INSERT INTO "computers" VALUES(3,'Colossus',1943,'Electronic',1,0);
+INSERT INTO "computers" VALUES(4,'Difference Engine',1822,'Mechanical',1,0);
+INSERT INTO "computers" VALUES(5,'Analytical Engine',1837,'Mechanical',1,0);
+INSERT INTO "computers" VALUES(6,'Apple 1',1976,'Electronic',1,0);
+INSERT INTO "computers" VALUES(7,'ENIAC',1946,'Electronic',1,0);
 
 INSERT INTO "computers_scientists" VALUES(3,1);
 INSERT INTO "computers_scientists" VALUES(4,2);
@@ -33,17 +44,6 @@ INSERT INTO "computers_scientists" VALUES(1,5);
 INSERT INTO "computers_scientists" VALUES(36,6);
 INSERT INTO "computers_scientists" VALUES(5,7);
 INSERT INTO "computers_scientists" VALUES(6,7);
-
-DROP TABLE IF EXISTS "scientists";
-CREATE TABLE "scientists" (
-"id" INTEGER PRIMARY KEY  NOT NULL ,
-"first_name" VARCHAR NOT NULL ,
-"middle_name" VARCHAR,
-"last_name" VARCHAR NOT NULL ,
-"gender" VARCHAR NOT NULL ,
-"birth_year" INTEGER NOT NULL ,
-"death_year" INTEGER NOT NULL ,
-"deleted" BOOL NOT NULL  DEFAULT (null) );
 
 INSERT INTO "scientists" VALUES(1,'Charles',NULL,'Babbage','male',1791,1871,0);
 INSERT INTO "scientists" VALUES(2,'Ada',NULL,'Lovelace','female',1815,1852,0);
