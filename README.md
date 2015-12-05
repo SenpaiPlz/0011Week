@@ -2,6 +2,9 @@
 3Vikna
 Skil fyrir verklegt námskeið í HR vetur 2015;
 
+Bugfixes for Skil 1.
+-Search currently implemented with >> operator, should be getline. Fix will come after code is graded.
+
 **Eftirfarandi kröfur eru gerðar til kerfisins í þessari útgáfu:**
 
 *Forkröfur (ath. verður að uppfylla til að fá einkunn!):
