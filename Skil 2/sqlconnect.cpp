@@ -87,8 +87,9 @@ QSqlQuery SQLConnect::GetQuery()
     QSqlQuery query(db);
     return query;
 }
-
+/*
 QString SQLConnect::GetConnectionName()
 {
     return db.connectionName();
 }
+*/

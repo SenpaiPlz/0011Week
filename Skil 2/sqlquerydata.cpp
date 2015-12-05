@@ -39,7 +39,6 @@ vector<ComputerScientist> SQLQueryData::GetComputerScientist()
 vector<computersabstract> SQLQueryData::GetComputers()
 {
     //Create objects
-    QString databasename;
     vector<computersabstract> returnvec;
     SQLConnect database;
     computersabstract temp;
@@ -47,7 +46,6 @@ vector<computersabstract> SQLQueryData::GetComputers()
     //Connect to database and get query
     database.ConnectToDB();
     QSqlQuery query = database.GetQuery();
-    database.GetConnectionName();
 
     //Prepare and execute sql statement
     query.prepare("SELECT * FROM computers ORDER BY name");
