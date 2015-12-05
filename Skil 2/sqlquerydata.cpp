@@ -74,7 +74,6 @@ void SQLQueryData::FillcsVector(QSqlQuery& query, vector<ComputerScientist> &tem
             tmp.setLast(query.value("last_name").toString().toStdString());
             tmp.setgender((query.value("gender").toString().toStdString()));
             tmp.setbday((query.value("birth_year").toInt()));
-            tmp.setbday((query.value("birth_year").toInt()));
             tmp.setdday((query.value("death_year").toInt()));
 
             temp.push_back(tmp);
