@@ -30,7 +30,7 @@ vector<ComputerScientist> SQLQueryData::GetComputerScientist()
 
     //Close the database and make sure that the vector has only values nothing empty.
     database.Disconnect();
-    returnvec.shrink_to_fit();
+    query.clear();
 
     //return vector
     return returnvec;
@@ -41,7 +41,6 @@ vector<computersabstract> SQLQueryData::GetComputers()
     //Create objects
     QString databasename;
     vector<computersabstract> returnvec;
-    {
     SQLConnect database;
     computersabstract temp;
 
@@ -56,10 +55,9 @@ vector<computersabstract> SQLQueryData::GetComputers()
 
     FillcomputerVector(query,returnvec);
     //Close the database and make sure that the vector has only values nothing empty.
+    database.Disconnect();
     query.clear();
 
-    returnvec.shrink_to_fit();
-    }
     //return vector
     return returnvec;
 }
@@ -84,6 +82,7 @@ void SQLQueryData::FillcsVector(QSqlQuery& query, vector<ComputerScientist> &tem
             temp.push_back(tmp);
         }
     }
+    temp.shrink_to_fit();
 }
 
 void SQLQueryData::FillcomputerVector(QSqlQuery& query, vector<computersabstract> &temp)
@@ -103,4 +102,5 @@ void SQLQueryData::FillcomputerVector(QSqlQuery& query, vector<computersabstract
             temp.push_back(tmp);
         }
     }
+    temp.shrink_to_fit();
 }

@@ -34,17 +34,6 @@ INSERT INTO "computers" VALUES(5,'Analytical Engine',1837,'Mechanical',1,0);
 INSERT INTO "computers" VALUES(6,'Apple 1',1976,'Electronic',1,0);
 INSERT INTO "computers" VALUES(7,'ENIAC',1946,'Electronic',1,0);
 
-INSERT INTO "computers_scientists" VALUES(3,1);
-INSERT INTO "computers_scientists" VALUES(4,2);
-INSERT INTO "computers_scientists" VALUES(5,2);
-INSERT INTO "computers_scientists" VALUES(6,2);
-INSERT INTO "computers_scientists" VALUES(10,3);
-INSERT INTO "computers_scientists" VALUES(1,4);
-INSERT INTO "computers_scientists" VALUES(1,5);
-INSERT INTO "computers_scientists" VALUES(36,6);
-INSERT INTO "computers_scientists" VALUES(5,7);
-INSERT INTO "computers_scientists" VALUES(6,7);
-
 INSERT INTO "scientists" VALUES(1,'Charles',NULL,'Babbage','male',1791,1871,0);
 INSERT INTO "scientists" VALUES(2,'Ada',NULL,'Lovelace','female',1815,1852,0);
 INSERT INTO "scientists" VALUES(3,'Blaise',NULL,'Pascal','male',1623,1662,0);
@@ -85,3 +74,14 @@ INSERT INTO "scientists" VALUES(37,'Hal',NULL,'Abelson','male',1947,'',0);
 INSERT INTO "scientists" VALUES(38,'Leslie',NULL,'Lamport','male',1941,'',0);
 INSERT INTO "scientists" VALUES(39,'Tony',NULL,'Hoare','male',1934,'',0);
 INSERT INTO "scientists" VALUES(40,'Stephen','Arthur','Cook','male',1939,'',0);
+
+INSERT INTO "computers_scientists" VALUES(3,1);
+INSERT INTO "computers_scientists" VALUES(4,2);
+INSERT INTO "computers_scientists" VALUES(5,2);
+INSERT INTO "computers_scientists" VALUES(6,2);
+INSERT INTO "computers_scientists" VALUES(10,3);
+INSERT INTO "computers_scientists" VALUES(1,4);
+INSERT INTO "computers_scientists" VALUES(1,5);
+INSERT INTO "computers_scientists" VALUES(36,6);
+INSERT INTO "computers_scientists" VALUES(5,7);
+INSERT INTO "computers_scientists" VALUES(6,7);

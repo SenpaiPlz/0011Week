@@ -44,7 +44,6 @@ SQLConnect::~SQLConnect()
 
 void SQLConnect::Disconnect()
 {
-    //db.removeDatabase(db.connectionName());
     db.close();
 }
 
