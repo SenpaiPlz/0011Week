@@ -19,8 +19,8 @@ class SQLQueryData
 public:
     SQLQueryData();
     void InitConnect();
-    vector<computersabstract> GetComputers();
-    vector<ComputerScientist> GetComputerScientist();
+    vector<computersabstract> GetComputers(const QString &str, bool desc);
+    vector<ComputerScientist> GetComputerScientist(const QString &str, bool desc);
 };
 
 #endif // SQLQUERYDATA_H

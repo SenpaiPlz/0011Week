@@ -12,7 +12,7 @@ void SQLQueryData::InitConnect()
     db.Connect();
 }
 
-vector<ComputerScientist> SQLQueryData::GetComputerScientist()
+vector<ComputerScientist> SQLQueryData::GetComputerScientist(const QString& str,bool desc)
 {
     //Create objects
     SQLConnect database;
@@ -23,8 +23,24 @@ vector<ComputerScientist> SQLQueryData::GetComputerScientist()
     database.ConnectToDB();
     QSqlQuery query = database.GetQuery();
 
+    //-----      WARNIG! THE CODE BELOW IS INJECTABLE!   ----//
+
+    /*
+     * Only way to have a variable column is to either hardcode it
+     * or take it in as a argument. If the second option is chosen,
+     * then do keep in mind that people could attempt to inject SQL commands.
+     *
+     */
+
     //Prepare and execute sql statement
-    query.prepare("SELECT * FROM scientists ORDER BY first_name");
+    if(desc == true)
+    {
+        query.prepare(QString("SELECT * FROM scientists ORDER BY %1 DESC").arg(str));
+    }
+    else
+    {
+        query.prepare(QString("SELECT * FROM scientists ORDER BY %1").arg(str));
+    }
     query.exec();
     FillcsVector(query,returnvec);
 
@@ -36,7 +52,7 @@ vector<ComputerScientist> SQLQueryData::GetComputerScientist()
     return returnvec;
 }
 
-vector<computersabstract> SQLQueryData::GetComputers()
+vector<computersabstract> SQLQueryData::GetComputers(const QString& str, bool desc)
 {
     //Create objects
     vector<computersabstract> returnvec;
@@ -47,8 +63,17 @@ vector<computersabstract> SQLQueryData::GetComputers()
     database.ConnectToDB();
     QSqlQuery query = database.GetQuery();
 
+    //-----      WARNIG! THE CODE BELOW IS INJECTABLE!   ----//
+
     //Prepare and execute sql statement
-    query.prepare("SELECT * FROM computers ORDER BY name");
+    if(desc == true)
+    {
+        query.prepare(QString("SELECT * FROM computers ORDER BY %1 DESC").arg(str));
+    }
+    else
+    {
+        query.prepare(QString("SELECT * FROM computers ORDER BY %1").arg(str));
+    }
     query.exec();
 
     FillcomputerVector(query,returnvec);
