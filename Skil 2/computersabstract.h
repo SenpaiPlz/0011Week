@@ -17,17 +17,17 @@ private:
 public:
     computersabstract();
 
-    void setid(const int &tmp);
-    void setname(const string& tmp);
-    void setyear(const int& tmp);
-    void settype(const string& tmp);
-    void setbuilt(const bool &tmp);
+    void setID(const int &tmp);
+    void setName(const string& tmp);
+    void setYear(const int& tmp);
+    void setType(const string& tmp);
+    void setBuilt(const bool &tmp);
 
-    int getid();
-    string getname();
-    int getbuiltyear();
-    string gettype();
-    bool getbuilt();
+    int getID();
+    string getName();
+    int getYear();
+    string getType();
+    bool getBuilt();
 
 };
 

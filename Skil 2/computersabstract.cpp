@@ -6,54 +6,53 @@ computersabstract::computersabstract()
 }
 
 //---------------  Do we get Set bonuses?  ---------------//
-void computersabstract::setid(const int &tmp)
+void computersabstract::setID(const int &tmp)
 {
     if(id == -42)
         id = tmp;
 }
 
-void computersabstract::setname(const string& tmp)
+void computersabstract::setName(const string& tmp)
 {
     name = tmp;
 }
 
-void computersabstract::setyear(const int& tmp)
+void computersabstract::setYear(const int& tmp)
 {
     builtyear = tmp;
 }
 
-void computersabstract::settype(const string& tmp)
+void computersabstract::setType(const string& tmp)
 {
     type = tmp;
 }
 
 
-void computersabstract::setbuilt(const bool &tmp)
+void computersabstract::setBuilt(const bool &tmp)
 {
     built = tmp;
 }
 
 //---------------  Quads Get  ---------------//
 
-int computersabstract::getid()
+int computersabstract::getID()
 {
     return id;
 }
-string computersabstract::getname()
+string computersabstract::getName()
 {
     return name;
 }
 
-int computersabstract::getbuiltyear()
+int computersabstract::getYear()
 {
     return builtyear;
 }
-string computersabstract::gettype()
+string computersabstract::getType()
 {
     return type;
 }
-bool computersabstract::getbuilt()
+bool computersabstract::getBuilt()
 {
     return built;
 }
-

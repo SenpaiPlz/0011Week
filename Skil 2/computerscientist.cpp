@@ -12,10 +12,12 @@ ComputerScientist::ComputerScientist()
 void ComputerScientist::setID(const int &tmp)
 {
     if(id == -1337)
+    {
         id = tmp;
+    }
 }
 
-void ComputerScientist::setFirst(const string& tmp)
+void ComputerScientist::setFirst(const string &tmp)
 {
     firstname = tmp;
 }
@@ -47,6 +49,10 @@ void ComputerScientist::setgender(const string& tmp)
 }
 
 //---------------  Quads Get  ---------------//
+int ComputerScientist::getID()
+{
+    return id;
+}
 string ComputerScientist::getFirst()
 {
     return firstname;

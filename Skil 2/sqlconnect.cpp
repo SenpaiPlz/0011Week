@@ -7,6 +7,10 @@ SQLConnect::SQLConnect()
 
 }
 
+void SQLConnect::ConnectToDB()
+{
+    db = QSqlDatabase::database();
+}
 
 void SQLConnect::Connect()
 {
@@ -35,18 +39,13 @@ void SQLConnect::Connect()
 
 SQLConnect::~SQLConnect()
 {
-    if(db.isOpen())
-    {
-        db.close();
-    }
+
 }
 
 void SQLConnect::Disconnect()
 {
-    if(db.isOpen())
-    {
-        db.close();
-    }
+    //db.removeDatabase(db.connectionName());
+    db.close();
 }
 
 void SQLConnect::TranslateSQLFile()
@@ -80,7 +79,7 @@ void SQLConnect::TranslateSQLFile()
     }
 }
 
-QSqlQuery SQLConnect::Test()
+QSqlQuery SQLConnect::GetQuery()
 {
     if(!db.isOpen())
     {
@@ -88,4 +87,9 @@ QSqlQuery SQLConnect::Test()
     }
     QSqlQuery query(db);
     return query;
+}
+
+QString SQLConnect::GetConnectionName()
+{
+    return db.connectionName();
 }

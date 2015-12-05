@@ -14,7 +14,9 @@ class SQLConnect
 {
     QSqlDatabase db;
 public:
-    QSqlQuery Test();
+    QString GetConnectionName();
+    QSqlQuery GetQuery();
+    void ConnectToDB();
     void TranslateSQLFile();
     void Connect();
     void Disconnect();
