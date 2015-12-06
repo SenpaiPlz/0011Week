@@ -26,6 +26,8 @@ public:
     bool DeleteAllMarked();
     vector<computersabstract> GetComputers(const QString &str, bool desc);
     vector<ComputerScientist> GetComputerScientist(const QString &str, bool desc);
+    vector<ComputerScientist> GetDeletedCS();
+    vector<computersabstract> GetDeletedComputers();
 };
 
 #endif // SQLQUERYDATA_H

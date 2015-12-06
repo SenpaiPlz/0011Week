@@ -35,11 +35,11 @@ vector<ComputerScientist> SQLQueryData::GetComputerScientist(const QString& str,
     //Prepare and execute sql statement
     if(desc == true)
     {
-        query.prepare(QString("SELECT * FROM scientists ORDER BY %1 DESC").arg(str));
+        query.prepare(QString("SELECT * FROM scientists WHERE deleted = 0 ORDER BY %1 DESC").arg(str));
     }
     else
     {
-        query.prepare(QString("SELECT * FROM scientists ORDER BY %1").arg(str));
+        query.prepare(QString("SELECT * FROM scientists WHERE deleted = 0 ORDER BY %1").arg(str));
     }
     query.exec();
     FillcsVector(query,returnvec);
@@ -69,11 +69,11 @@ vector<computersabstract> SQLQueryData::GetComputers(const QString& str, bool de
     //Prepare and execute sql statement
     if(desc == true)
     {
-        query.prepare(QString("SELECT * FROM computers ORDER BY %1 DESC").arg(str));
+        query.prepare(QString("SELECT * FROM computers WHERE deleted = 0 ORDER BY %1 DESC").arg(str));
     }
     else
     {
-        query.prepare(QString("SELECT * FROM computers ORDER BY %1").arg(str));
+        query.prepare(QString("SELECT * FROM computers WHERE deleted = 0 ORDER BY %1").arg(str));
     }
     query.exec();
 
@@ -92,18 +92,16 @@ void SQLQueryData::FillcsVector(QSqlQuery& query, vector<ComputerScientist> &tem
     while(query.next())
     {
         ComputerScientist tmp;
-        if(!query.value("deleted").toBool())
-        {
-            tmp.setID(query.value("id").toInt());
-            tmp.setFirst(query.value("first_name").toString().toStdString());
-            tmp.setMid((query.value("middle_name").toString().toStdString()));
-            tmp.setLast(query.value("last_name").toString().toStdString());
-            tmp.setgender((query.value("gender").toString().toStdString()));
-            tmp.setbday((query.value("birth_year").toInt()));
-            tmp.setdday((query.value("death_year").toInt()));
 
-            temp.push_back(tmp);
-        }
+        tmp.setID(query.value("id").toInt());
+        tmp.setFirst(query.value("first_name").toString().toStdString());
+        tmp.setMid((query.value("middle_name").toString().toStdString()));
+        tmp.setLast(query.value("last_name").toString().toStdString());
+        tmp.setgender((query.value("gender").toString().toStdString()));
+        tmp.setbday((query.value("birth_year").toInt()));
+        tmp.setdday((query.value("death_year").toInt()));
+
+        temp.push_back(tmp);
     }
     temp.shrink_to_fit();
 }
@@ -114,16 +112,15 @@ void SQLQueryData::FillcomputerVector(QSqlQuery& query, vector<computersabstract
     while(query.next())
     {
         computersabstract tmp;
-        if(!query.value("deleted").toBool())
-        {
-            tmp.setID(query.value("id").toInt());
-            tmp.setName(query.value("name").toString().toStdString());
-            tmp.setYear((query.value("year").toInt()));
-            tmp.setType((query.value("type").toString().toStdString()));
-            tmp.setBuilt((query.value("built").toBool()));
 
-            temp.push_back(tmp);
-        }
+        tmp.setID(query.value("id").toInt());
+        tmp.setName(query.value("name").toString().toStdString());
+        tmp.setYear((query.value("year").toInt()));
+        tmp.setType((query.value("type").toString().toStdString()));
+        tmp.setBuilt((query.value("built").toBool()));
+
+        temp.push_back(tmp);
+
     }
     temp.shrink_to_fit();
 }
@@ -177,8 +174,12 @@ bool SQLQueryData::AddComputer(computersabstract& input)
 
     if(query.exec())
     {
+        query.clear();
+        database.Disconnect();
         return true;
     }
+    query.clear();
+    database.Disconnect();
     return false;
 }
 
@@ -196,8 +197,12 @@ bool SQLQueryData::MarkDeleted(const QString& tab, const int& id)
 
     if(query.exec())
     {
+        query.clear();
+        database.Disconnect();
         return true;
     }
+    query.clear();
+    database.Disconnect();
     return false;
 }
 
@@ -239,4 +244,38 @@ bool SQLQueryData::DeleteAllMarked()
         return true;
     }
     return false;
+}
+
+vector<ComputerScientist> SQLQueryData::GetDeletedCS()
+{
+    SQLConnect database;
+    vector<ComputerScientist> returnvec;
+    database.ConnectToDB();
+    QSqlQuery query = database.GetQuery();
+
+    query.prepare("SELECT * FROM scientists WHERE deleted = 1 ORDER BY first_name");
+    query.exec();
+
+    FillcsVector(query,returnvec);
+    database.Disconnect();
+    query.clear();
+
+    return returnvec;
+}
+
+vector<computersabstract> SQLQueryData::GetDeletedComputers()
+{
+    SQLConnect database;
+    vector<computersabstract> returnvec;
+    database.ConnectToDB();
+    QSqlQuery query = database.GetQuery();
+
+    query.prepare("SELECT * FROM computers WHERE deleted = 1 ORDER BY name");
+    query.exec();
+
+    FillcomputerVector(query,returnvec);
+    database.Disconnect();
+    query.clear();
+
+    return returnvec;
 }
