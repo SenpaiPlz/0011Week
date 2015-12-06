@@ -307,3 +307,59 @@ vector<computersabstract> SQLQueryData::GetDeletedComputers()
 
     return returnvec;
 }
+
+vector<int> SQLQueryData::GetLinkID()
+{
+    //---Returns a vector where i = scientists_id and i+1 = computers_id ordered by rowid---//
+
+    SQLConnect database;
+    vector<int> returnvec;
+    database.ConnectToDB();
+    QSqlQuery query = database.GetQuery();
+
+    query.prepare("SELECT * FROM computers_scientists ORDER BY rowid");
+    query.exec();
+
+    while(query.next())
+    {
+        auto temp = query.value("scientists_id").toInt();
+        returnvec.push_back(temp);
+        temp = query.value("computers_id").toInt();
+        returnvec.push_back(temp);
+    }
+    returnvec.shrink_to_fit();
+
+    return returnvec;
+}
+
+
+bool SQLQueryData::DeleteLink(const int& rowid)
+{
+    SQLConnect database;
+    database.ConnectToDB();
+    QSqlQuery query = database.GetQuery();
+
+    query.prepare("DELETE FROM computers_scientists WHERE rowid = ?");
+    query.bindValue(0,rowid);
+    if(query.exec())
+    {
+        return true;
+    }
+    return false;
+}
+
+bool SQLQueryData::AddLink(const int& scientists_id, const int& computers_id)
+{
+    SQLConnect database;
+    database.ConnectToDB();
+    QSqlQuery query = database.GetQuery();
+
+    query.prepare("INSERT INTO computers_scientists VALUES (?, ?)");
+    query.bindValue(0,scientists_id);
+    query.bindValue(1,computers_id);
+    if(query.exec())
+    {
+        return true;
+    }
+    return false;
+}

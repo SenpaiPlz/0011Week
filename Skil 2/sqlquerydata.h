@@ -28,6 +28,9 @@ public:
     vector<ComputerScientist> GetComputerScientist(const QString &str, bool desc);
     vector<ComputerScientist> GetDeletedCS();
     vector<computersabstract> GetDeletedComputers();
+    vector<int> GetLinkID();
+    bool DeleteLink(const int& rowid);
+    bool AddLink(const int& scientists_id, const int& computers_id);
 };
 
 #endif // SQLQUERYDATA_H
