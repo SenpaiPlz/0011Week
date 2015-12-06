@@ -24,12 +24,12 @@ vector<ComputerScientist> SQLQueryData::GetComputerScientist(const QString& str,
     QSqlQuery query = database.GetQuery();
 
     //-----      WARNIG! THE CODE BELOW IS INJECTABLE!   ----//
+    //___________HARDCORE THE INPUT FOR THIS FUNCTION________//
 
     /*
      * Only way to have a variable column is to either hardcode it
      * or take it in as a argument. If the second option is chosen,
      * then do keep in mind that people could attempt to inject SQL commands.
-     *
      */
 
     //Prepare and execute sql statement
@@ -64,6 +64,7 @@ vector<computersabstract> SQLQueryData::GetComputers(const QString& str, bool de
     QSqlQuery query = database.GetQuery();
 
     //-----      WARNIG! THE CODE BELOW IS INJECTABLE!   ----//
+    //___________HARDCORE THE INPUT FOR THIS FUNCTION________//
 
     //Prepare and execute sql statement
     if(desc == true)
@@ -181,3 +182,40 @@ bool SQLQueryData::AddComputer(computersabstract& input)
     return false;
 }
 
+bool SQLQueryData::MarkDeleted(const QString& tab, const int& id)
+{
+    SQLConnect database;
+    database.ConnectToDB();
+    QSqlQuery query = database.GetQuery();
+
+    //-----      WARNIG! THE CODE BELOW IS INJECTABLE!   ----//
+    //___________HARDCORE THE INPUT FOR THIS FUNCTION________//
+
+    query.prepare(QString("UPDATE %1 SET deleted = 1 WHERE id = ?").arg(tab));
+    query.bindValue(0,id);
+
+    if(query.exec())
+    {
+        return true;
+    }
+    return false;
+}
+
+bool SQLQueryData::UnmarkDeleted(const QString& tab, const int& id)
+{
+    SQLConnect database;
+    database.ConnectToDB();
+    QSqlQuery query = database.GetQuery();
+
+    //-----      WARNIG! THE CODE BELOW IS INJECTABLE!   ----//
+    //___________HARDCORE THE INPUT FOR THIS FUNCTION________//
+
+    query.prepare(QString("UPDATE %1 SET deleted = 0 WHERE id = ?").arg(tab));
+    query.bindValue(0,id);
+
+    if(query.exec())
+    {
+        return true;
+    }
+    return false;
+}
