@@ -162,3 +162,22 @@ bool SQLQueryData::AddComputerScientist(ComputerScientist& input)
     return false;
 }
 
+bool SQLQueryData::AddComputer(computersabstract& input)
+{
+    SQLConnect database;
+    database.ConnectToDB();
+    QSqlQuery query = database.GetQuery();
+
+    query.prepare("INSERT INTO computers (name, year, type, built, deleted) VALUES (?, ?, ?, ?, 0)");
+    query.bindValue(0,QString::fromStdString(input.getName()));
+    query.bindValue(1,input.getYear());
+    query.bindValue(2,QString::fromStdString(input.getType()));
+    query.bindValue(3,input.getBuilt());
+
+    if(query.exec())
+    {
+        return true;
+    }
+    return false;
+}
+
