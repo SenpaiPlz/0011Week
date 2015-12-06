@@ -11,6 +11,18 @@ int main()
 
     SQLQueryData data;
     data.InitConnect();
+
+    ComputerScientist tere;
+    tere.setFirst("test");
+    tere.setLast("desu");
+    tere.setgender("male");
+    tere.setbday(1999);
+
+    if(data.AddComputerScientist(tere))
+    {
+        cout << "Added to Database";
+    }
+/*
     vector<ComputerScientist> test = data.GetComputerScientist("first_name",true);
     for(size_t i = 0; i < test.size(); i++)
     {
@@ -27,5 +39,6 @@ int main()
     {
         cout << i+1 << "\t" << temp[i].getID() << ": " << temp[i].getName() << "\n";
     }
+    */
     return 0;
 }

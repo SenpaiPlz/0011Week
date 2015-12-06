@@ -126,3 +126,39 @@ void SQLQueryData::FillcomputerVector(QSqlQuery& query, vector<computersabstract
     }
     temp.shrink_to_fit();
 }
+
+bool SQLQueryData::AddComputerScientist(ComputerScientist& input)
+{
+    SQLConnect database;
+    database.ConnectToDB();
+    QSqlQuery query = database.GetQuery();
+
+    query.prepare("INSERT INTO scientists (first_name, middle_name, last_name, gender, birth_year, death_year, deleted) VALUES (?, ?, ?, ?, ?, ?, 0)");
+    query.bindValue(0,QString::fromStdString(input.getFirst()));
+    if(input.getMid() != "")
+    {
+        query.bindValue(1, QString::fromStdString(input.getMid()));
+    }
+    else
+    {
+        query.bindValue(1,"NULL");
+    }
+    query.bindValue(2,QString::fromStdString(input.getLast()));
+    query.bindValue(3,QString::fromStdString(input.getGender()));
+    query.bindValue(4,input.getBday());
+    if(input.getDday() != 0)
+    {
+        query.bindValue(5,input.getDday());
+    }
+    else
+    {
+        query.bindValue(5,"");
+    }
+
+    if(query.exec())
+    {
+        return true;
+    }
+    return false;
+}
+
