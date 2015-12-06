@@ -33,13 +33,27 @@ vector<ComputerScientist> SQLQueryData::GetComputerScientist(const QString& str,
      */
 
     //Prepare and execute sql statement
-    if(desc == true)
+    if(str == "first_name")
     {
-        query.prepare(QString("SELECT * FROM scientists WHERE deleted = 0 ORDER BY %1 DESC").arg(str));
+        if(desc == true)
+        {
+            query.prepare(QString("SELECT * FROM scientists WHERE deleted = 0 ORDER BY %1 DESC, last_name DESC").arg(str));
+        }
+        else
+        {
+            query.prepare(QString("SELECT * FROM scientists WHERE deleted = 0 ORDER BY %1, last_name").arg(str));
+        }
     }
     else
     {
-        query.prepare(QString("SELECT * FROM scientists WHERE deleted = 0 ORDER BY %1").arg(str));
+        if(desc == true)
+        {
+            query.prepare(QString("SELECT * FROM scientists WHERE deleted = 0 ORDER BY %1 DESC, first_name DESC").arg(str));
+        }
+        else
+        {
+            query.prepare(QString("SELECT * FROM scientists WHERE deleted = 0 ORDER BY %1, first_name").arg(str));
+        }
     }
     query.exec();
     FillcsVector(query,returnvec);
@@ -67,13 +81,27 @@ vector<computersabstract> SQLQueryData::GetComputers(const QString& str, bool de
     //___________HARDCORE THE INPUT FOR THIS FUNCTION________//
 
     //Prepare and execute sql statement
-    if(desc == true)
+    if(str == "name")
     {
-        query.prepare(QString("SELECT * FROM computers WHERE deleted = 0 ORDER BY %1 DESC").arg(str));
+        if(desc == true)
+        {
+            query.prepare(QString("SELECT * FROM computers WHERE deleted = 0 ORDER BY %1 DESC, year DESC").arg(str));
+        }
+        else
+        {
+            query.prepare(QString("SELECT * FROM computers WHERE deleted = 0 ORDER BY %1, year").arg(str));
+        }
     }
     else
     {
-        query.prepare(QString("SELECT * FROM computers WHERE deleted = 0 ORDER BY %1").arg(str));
+        if(desc == true)
+        {
+            query.prepare(QString("SELECT * FROM computers WHERE deleted = 0 ORDER BY %1 DESC, name DESC").arg(str));
+        }
+        else
+        {
+            query.prepare(QString("SELECT * FROM computers WHERE deleted = 0 ORDER BY %1, name").arg(str));
+        }
     }
     query.exec();
 
