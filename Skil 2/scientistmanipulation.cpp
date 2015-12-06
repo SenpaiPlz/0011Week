@@ -10,7 +10,6 @@ vector<ComputerScientist> ScientistManipulation::sortScientists(char& choice)
     //Create objects
     SQLConnect database;
     vector<ComputerScientist> returnvec;
-    ComputerScientist temp;
 
     //Connect to database and get query
     database.ConnectToDB();
