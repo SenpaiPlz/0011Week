@@ -5,7 +5,7 @@ ComputerManipulation::ComputerManipulation()
 
 }
 
-vector<computersabstract> ComputerManipulation::sortComputers(char& choice)
+vector<computersabstract> ComputerManipulation::sortComputers(QString& str, char& choice)
 {
     //Create objects
     SQLConnect database;
@@ -18,13 +18,13 @@ vector<computersabstract> ComputerManipulation::sortComputers(char& choice)
     switch(choice)
     {
         case 1:
-            query.exec("SELECT * FROM scientists ORDER BY name, year");
+            query.prepare(QString("SELECT * FROM scientists ORDER BY name, year").arg(str));
             break;
         case 2:
-            query.exec("SELECT * FROM scientists ORDER BY year, name");
+            query.prepare(QString("SELECT * FROM scientists ORDER BY year, name").arg(str));
             break;
         case 3:
-            query.exec("SELECT * FROM scientists ORDER BY type, name");
+            query.prepare(QString("SELECT * FROM scientists ORDER BY type, name").arg(str));
             break;
     }
     query.exec();

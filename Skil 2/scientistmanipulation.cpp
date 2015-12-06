@@ -5,7 +5,7 @@ ScientistManipulation::ScientistManipulation()
 
 }
 
-vector<ComputerScientist> ScientistManipulation::sortScientists(char& choice)
+vector<ComputerScientist> ScientistManipulation::sortScientists(QString& str, char& choice)
 {
     //Create objects
     SQLConnect database;
@@ -18,22 +18,22 @@ vector<ComputerScientist> ScientistManipulation::sortScientists(char& choice)
     switch(choice)
     {
         case 1:
-            query.exec("SELECT * FROM scientists ORDER BY first_name, last_name");
+            query.prepare(QString("SELECT * FROM scientists ORDER BY first_name, last_name").arg(str));
             break;
         case 2:
-            query.exec("SELECT * FROM scientists ORDER BY middle_name, first_name");
+            query.prepare(QString("SELECT * FROM scientists ORDER BY middle_name, first_name").arg(str));
             break;
         case 3:
-            query.exec("SELECT * FROM scientists ORDER BY last_name, first_name");
+            query.prepare(QString("SELECT * FROM scientists ORDER BY last_name, first_name").arg(str));
             break;
         case 4:
-            query.exec("SELECT * FROM scientists ORDER BY gender, first_name");
+            query.prepare(QString("SELECT * FROM scientists ORDER BY gender, first_name").arg(str));
             break;
         case 5:
-            query.exec("SELECT * FROM scientists ORDER BY birth_year, first_name");
+            query.prepare(QString("SELECT * FROM scientists ORDER BY birth_year, first_name").arg(str));
             break;
         case 6:
-            query.exec("SELECT * FROM scientists ORDER BY deleted, first_name");
+            query.prepare(QString("SELECT * FROM scientists ORDER BY deleted, first_name").arg(str));
             break;
 
     }
