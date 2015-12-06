@@ -219,3 +219,24 @@ bool SQLQueryData::UnmarkDeleted(const QString& tab, const int& id)
     }
     return false;
 }
+
+bool SQLQueryData::DeleteAllMarked()
+{
+    SQLConnect database;
+    database.ConnectToDB();
+    QSqlQuery query = database.GetQuery();
+    bool css = false;
+
+    query.prepare("DELETE FROM scientists WHERE deleted = 1");
+    if(query.exec())
+    {
+        css = true;
+        query.clear();
+    }
+    query.prepare("DELETE FROM computers WHERE deleted = 1");
+    if(css && query.exec())
+    {
+        return true;
+    }
+    return false;
+}
