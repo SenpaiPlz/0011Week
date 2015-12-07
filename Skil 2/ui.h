@@ -16,6 +16,7 @@ class UI
 public:
     UI();
     void InitialMenu();
+    void MainMenu();
     void scientistTable(vector<ComputerScientist>& tmp);
     void computerTable(vector<computersabstract>& tmp);
 };

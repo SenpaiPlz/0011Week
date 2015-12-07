@@ -59,4 +59,17 @@ void UI::InitialMenu()
     cout << "\t   d88P Y88b        888   \"   888  d8888888888 Y88b  d88P \n";
     cout << "\t  d88P   Y88b       888       888 d88P     888  \"Y8888P\n\n";
     cout << "\t    ~~The super cool Scientist&Computer SQL Program~~\n\n\n";
+    MainMenu();
+}
+
+void UI::MainMenu()
+{
+    //while(true)
+    {
+        cout << "\t#######-------------    MAIN MENU    -------------#######\n";
+        cout << "\t 1.\n";
+        cout << "\t 2.\n";
+        cout << "\t 3.\n";
+        cout << "\t 4.\n";
+    }
 }
