@@ -82,7 +82,13 @@ void UI::MainMenu()
     cout << "\n#######-----------        MAIN MENU        -----------#######\n";
     cout << "1.\t\tView Computerscientists\n";
     cout << "2.\t\tView Computers\n";
-    cout << "3.\t\tI dont know what I am supposed to write here\n";
+    cout << "3.\t\tAdd Computerscientists\n";
+    cout << "4.\t\tEdit Computerscientists\n";
+    cout << "5.\t\tAdd Computers\n";
+    cout << "6.\t\tEdit Computers\n";
+    cout << "7.\t\tLink Menu\n";
+    cout << "8.\t\tSearch Menu\n";
+    cout << "9.\t\tDelete Menu\n";
     cout << "0.\t\tQUIT\n\n";
     cout << "choice: ";
     while(true)
@@ -93,6 +99,11 @@ void UI::MainMenu()
         {
         case '1': {SortScientistMenu(); break;}
         case '2': {SortComputerMenu(); break;}
+        case '3': {break;}
+        case '4': {break;}
+        case '5': {break;}
+        case '6': {break;}
+        case '7': {break;}
         case '0': {exit(0); break;}
         default: break;
         }
