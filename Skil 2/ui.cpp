@@ -25,7 +25,15 @@ void UI::scientistTable(vector<ComputerScientist>& tmp)
              << tmp[i].getFirst() << "| " << setw(12) << tmp[i].getMid()
              << "| " << setw(14) << tmp[i].getLast() << "| " << setw(7)
              << tmp[i].getGender() << "| " << setw(6) << tmp[i].getBday()
-             << "| " << setw(6) << tmp[i].getDday() << "|" << endl;
+             << "| ";
+        if (tmp[i].getDday() != 0)
+        {
+            cout << setw(6) << tmp[i].getDday() << "|" << endl;;
+        }
+        else
+        {
+            cout<< setw(6) << "      |" << endl;
+        }
     }
 }
 
@@ -43,8 +51,15 @@ void UI::computerTable(vector<computersabstract>& tmp)
     {
         cout << left << "| " << setw(3) << tmp[i].getID() << "| " << setw(18)
              << tmp[i].getName() << "| " << setw(5) << tmp[i].getYear()
-             << "| " << setw(11) << tmp[i].getType() << "| " << setw(7)
-             << tmp[i].getBuilt() << "|" << endl;
+             << "| " << setw(11) << tmp[i].getType() << "| ";
+        if(tmp[i].getBuilt() == 1)
+        {
+             cout << setw(7) << "Yes" << "|" << endl;
+        }
+        else
+        {
+             cout << setw(7) << "No" << "|" << endl;
+        }
     }
 }
 
@@ -68,7 +83,7 @@ void UI::MainMenu()
     cout << "1.\t\tView Computerscientists\n";
     cout << "2.\t\tView Computers\n";
     cout << "3.\t\tI dont know what I am supposed to write here\n";
-    cout << "0.\t\tPress 0 to QUIT this program\n\n";
+    cout << "0.\t\tQUIT\n\n";
     cout << "choice: ";
     while(true)
     {
@@ -77,7 +92,7 @@ void UI::MainMenu()
         switch(choice)
         {
         case '1': {SortScientistMenu(); break;}
-        case '2': break;
+        case '2': {SortComputerMenu(); break;}
         case '0': {exit(0); break;}
         default: break;
         }
@@ -149,6 +164,7 @@ void UI::SortScientistSwitches(const QString& tmp)
     else if(in == 'y')
     {
         temp = sort.GetComputerScientist(tmp,1);
+        cout << "\n";
         scientistTable(temp);
         cout << "Press enter to continue.";
         getline(cin,test);
@@ -157,9 +173,80 @@ void UI::SortScientistSwitches(const QString& tmp)
     else
     {
         temp = sort.GetComputerScientist(tmp,0);
+        cout << "\n";
         scientistTable(temp);
         cout << "Press enter to continue.";
         getline(cin,test);
         SortScientistMenu();
+    }
+}
+
+void UI::SortComputerMenu()
+{
+    cin.ignore(numeric_limits<streamsize>::max(),'\n');
+    vector<ComputerScientist> temp;
+    cout << "\n#######-----------      Sort Scientist     -----------#######\n";
+    cout << "1.\t\tSort by Name\n";
+    cout << "2.\t\tSort by Year\n";
+    cout << "3.\t\tSort by Type\n";
+    cout << "0.\t\tMAIN MENU\n\n";
+    cout << "choice: ";
+    while(true)
+    {
+        char choice = cin.get();
+        cin.ignore(numeric_limits<streamsize>::max(),'\n');
+        switch(choice)
+        {
+        case '1':
+        {
+            SortComputerSwitches("name");
+            break;
+        }
+        case '2':
+        {
+            SortComputerSwitches("year");
+            break;
+        }
+        case '3':
+        {
+            SortComputerSwitches("type");
+            break;
+        }
+        case '0': {MainMenu(); break;}
+        default: {cout << "Invalid choice\n"; break;}
+        }
+    }
+}
+
+void UI::SortComputerSwitches(const QString& tmp)
+{
+    domain sort;
+    string test;
+    vector<computersabstract> temp;
+    cout << "Do you wish to sort in Descending order? y/n: ";
+    char in = std::cin.get();
+    in = tolower(in);
+    if(in != 'y' && in != 'n')
+    {
+        cout << "Invalid input\n";
+        SortComputerMenu();
+    }
+    else if(in == 'y')
+    {
+        temp = sort.GetComputers(tmp,1);
+        cout << "\n";
+        computerTable(temp);
+        cout << "Press enter to continue.";
+        getline(cin,test);
+        SortComputerMenu();
+    }
+    else
+    {
+        temp = sort.GetComputers(tmp,0);
+        cout << "\n";
+        computerTable(temp);
+        cout << "Press enter to continue.";
+        getline(cin,test);
+        SortComputerMenu();
     }
 }

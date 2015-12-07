@@ -12,11 +12,13 @@
 class UI
 {
     void SortScientistSwitches(const QString& tmp);
+    void SortComputerSwitches(const QString& tmp);
 public:
     UI();
     void InitialMenu();
     void MainMenu();
     void SortScientistMenu();
+    void SortComputerMenu();
     void scientistTable(vector<ComputerScientist>& tmp);
     void computerTable(vector<computersabstract>& tmp);
 };
