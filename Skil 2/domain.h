@@ -16,8 +16,8 @@ public:
     vector<computersabstract> GetComputers(const QString &str, bool desc);
     vector<ComputerScientist> GetComputerScientist(const QString &str, bool desc);
     bool AddComputerScientist(ComputerScientist& input);
-    /*bool AddComputer(computersabstract& input);
-    bool MarkDeleted(const QString &tab, const int& id);
+    bool AddComputer(computersabstract& input);
+    /*bool MarkDeleted(const QString &tab, const int& id);
     bool UnmarkDeleted(const QString& tab, const int& id);
     bool DeleteAllMarked();
     vector<ComputerScientist> GetDeletedCS();

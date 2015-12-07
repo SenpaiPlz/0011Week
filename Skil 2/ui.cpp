@@ -109,7 +109,7 @@ void UI::MainMenu()
         case '2': {SortComputerMenu(); break;}
         case '3': {AddComputerScientist(); break;}
         case '4': {break;}
-        case '5': {break;}
+        case '5': {AddComputer(); break;}
         case '6': {break;}
         case '7': {break;}
         case '8': {break;}
@@ -380,7 +380,79 @@ void UI::AddComputerScientist()
     }
     else
     {
-        cout << "An unexpected error occurred data has not been added";
+        cout << "An unexpected error occurred Data has not been added";
+        //always prints out this error, check out tomorrow
+    }
+
+    MainMenu();
+}
+
+void UI::AddComputer()
+{
+    computersabstract ca;
+    string temp;
+    int yeartemp = -1;
+    bool built = true;
+    cout << "To enter a new computer please fill in the fields\n";
+
+    do{
+        cout << "Enter name: ";
+        cin.sync();
+        getline(cin,temp);
+        if(!CheckValidtyOfStringPunct(temp)){
+            cout << "Found an error in your string\n";
+        }
+    }while(!CheckValidtyOfStringPunct(temp));
+
+    temp[0] = toupper(temp[0]);
+    ca.setName(temp);
+    temp = "";
+
+    cout << "Enter year of discovery: ";
+    cin.sync();
+    while(!(cin >> yeartemp) || yeartemp < 0){
+        cin.clear();
+        cin.ignore(1);
+        cout << "Error Expected integer OR below 0\n";
+        cout << "Enter year of discovery: ";
+    }
+    ca.setYear(yeartemp);
+
+    do{
+        cout << "Enter type(example: Electronic): ";
+        cin.sync();
+        getline(cin,temp);
+        if(!CheckValidtyOfString(temp))
+        {
+            cout << "Found an error in your string\n";
+        }
+    }while(!CheckValidtyOfString(temp));
+
+    temp[0] = toupper(temp[0]);
+    ca.setType(temp);
+    temp = "";
+
+    cout << "Has it been built yet(write 1 for yes, 0 for no): ";
+    cin.sync();
+    while(!(cin >> built))
+        //Needs fixing, will look at better tomorrow
+    {
+        cin.clear();
+        cin.ignore(1);
+        cout << "Error Not 0 or 1\n";
+        cout << "Has it been built yet(write 1 for yes, 0 for no): ";
+    }
+    ca.setBuilt(built);
+
+    domain add;
+    if(add.AddComputer(ca))
+    {
+        cout << "Computer has been added to the database!\n";
+    }
+    else
+    {
+        cout << "An unexpected error occurred Data has not been added";
+        //Always prints out this error, check out tomorrow
     }
 
     MainMenu();
@@ -397,6 +469,19 @@ bool UI::CheckValidtyOfString(string& tmp)
     }
     return !tmp.empty();
 }
+
+bool UI::CheckValidtyOfStringPunct(string& tmp)
+{
+    for(size_t i = 0; i < tmp.size(); i++)
+    {
+        if(ispunct(tmp[i]))
+        {
+            return false;
+        }
+    }
+    return !tmp.empty();
+}
+//not sure if correct, but allows to make space, maybe max to 3 spaces
 
 void UI::Tolower(string &temp)
 {

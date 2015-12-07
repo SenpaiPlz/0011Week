@@ -18,6 +18,7 @@ class UI
     void SortScientistSwitches(const QString& tmp);
     void SortComputerSwitches(const QString& tmp);
     bool CheckValidtyOfString(string& tmp);
+    bool CheckValidtyOfStringPunct(string& tmp);
 public:
     UI();
     void InitialMenu();
@@ -25,6 +26,7 @@ public:
     void SortScientistMenu();
     void SortComputerMenu();
     void AddComputerScientist();
+    void AddComputer();
     void scientistTable(vector<ComputerScientist>& tmp);
     void computerTable(vector<computersabstract>& tmp);
 };

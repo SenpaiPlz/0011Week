@@ -28,3 +28,9 @@ bool domain::AddComputerScientist(ComputerScientist& input)
     SQLQueryData add;
     return add.AddComputerScientist(input);
 }
+
+bool domain::AddComputer(computersabstract& input)
+{
+    SQLQueryData add;
+    return add.AddComputer(input);
+}
