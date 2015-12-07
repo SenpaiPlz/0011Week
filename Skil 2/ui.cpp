@@ -64,11 +64,12 @@ void UI::InitialMenu()
 
 void UI::MainMenu()
 {
-    cout << "#######-----------        MAIN MENU        -----------#######\n";
+    cout << "\n#######-----------        MAIN MENU        -----------#######\n";
     cout << "1.\t\tView Computerscientists\n";
     cout << "2.\t\tView Computers\n";
     cout << "3.\t\tI dont know what I am supposed to write here\n";
-    cout << "0.\t\tPress 0 to QUIT this program\n";
+    cout << "0.\t\tPress 0 to QUIT this program\n\n";
+    cout << "choice: ";
     while(true)
     {
         char choice;
@@ -87,15 +88,14 @@ void UI::SortScientistMenu()
 {
     cin.ignore(numeric_limits<streamsize>::max(),'\n');
     vector<ComputerScientist> temp;
-    domain sort;
-    string test;
-    cout << "#######-----------      Sort Scientist     -----------#######\n";
+    cout << "\n#######-----------      Sort Scientist     -----------#######\n";
     cout << "1.\t\tSort by First Name\n";
     cout << "2.\t\tSort by Middle Name\n";
     cout << "3.\t\tSort by Last Name\n";
     cout << "4.\t\tSort by Birth Year\n";
     cout << "5.\t\tSort by Death Year\n";
-    cout << "0.\t\tPress 0 to go back to MainMenu\n";
+    cout << "0.\t\tPress 0 to go back to MainMenu\n\n";
+    cout << "choice: ";
     while(true)
     {
         char choice = cin.get();
@@ -104,146 +104,62 @@ void UI::SortScientistMenu()
         {
         case '1':
         {
-            cout << "Do you wish to sort in Descending order? y/n: ";
-            char in = std::cin.get();
-            in = tolower(in);
-            if(in != 'y' && in != 'n')
-            {
-                cout << "Invalid input\n";
-                SortScientistMenu();
-            }
-            else if(in == 'y')
-            {
-                temp = sort.GetComputerScientist("first_name",1);
-                scientistTable(temp);
-                cout << "Type in anything to go back to the Scientist Sorting menu: ";
-                getline(cin,test);
-                SortScientistMenu();
-            }
-            else
-            {
-                temp = sort.GetComputerScientist("first_name",0);
-                scientistTable(temp);
-                cout << "Type in anything to go back to the Scientist Sorting menu: ";
-                getline(cin,test);
-                SortScientistMenu();
-            }
+            SortScientistSwitches("first_name");
             break;
         }
         case '2':
         {
-            cout << "Do you wish to sort in Descending order? y/n: ";
-            char in = std::cin.get();
-            in = tolower(in);
-            if(in != 'y' && in != 'n')
-            {
-                cout << "Invalid input\n";
-                SortScientistMenu();
-            }
-            else if(in == 'y')
-            {
-                temp = sort.GetComputerScientist("middle_name",1);
-                scientistTable(temp);
-                cout << "Type in anything to go back to the Scientist Sorting menu: ";
-                getline(cin,test);
-                SortScientistMenu();
-            }
-            else
-            {
-                temp = sort.GetComputerScientist("middle_name",0);
-                scientistTable(temp);
-                cout << "Type in anything to go back to the Scientist Sorting menu: ";
-                getline(cin,test);
-                SortScientistMenu();
-            }
+            SortScientistSwitches("middle_name");
             break;
         }
         case '3':
         {
-            cout << "Do you wish to sort in Descending order? y/n: ";
-            char in = std::cin.get();
-            in = tolower(in);
-            if(in != 'y' && in != 'n')
-            {
-                cout << "Invalid input\n";
-                SortScientistMenu();
-            }
-            else if(in == 'y')
-            {
-                temp = sort.GetComputerScientist("last_name",1);
-                scientistTable(temp);
-                cout << "Type in anything to go back to the Scientist Sorting menu: ";
-                getline(cin,test);
-                SortScientistMenu();
-            }
-            else
-            {
-                temp = sort.GetComputerScientist("last_name",0);
-                scientistTable(temp);
-                cout << "Type in anything to go back to the Scientist Sorting menu: ";
-                getline(cin,test);
-                SortScientistMenu();
-            }
+            SortScientistSwitches("last_name");
             break;
         }
         case '4':
         {
-            cout << "Do you wish to sort in Descending order? y/n: ";
-            char in = std::cin.get();
-            in = tolower(in);
-            if(in != 'y' && in != 'n')
-            {
-                cout << "Invalid input\n";
-                SortScientistMenu();
-            }
-            else if(in == 'y')
-            {
-                temp = sort.GetComputerScientist("birth_year",1);
-                scientistTable(temp);
-                cout << "Type in anything to go back to the Scientist Sorting menu: ";
-                getline(cin,test);
-                SortScientistMenu();
-            }
-            else
-            {
-                temp = sort.GetComputerScientist("birth_year",0);
-                scientistTable(temp);
-                cout << "Type in anything to go back to the Scientist Sorting menu: ";
-                getline(cin,test);
-                SortScientistMenu();
-            }
+            SortScientistSwitches("birth_year");
             break;
         }
         case '5':
         {
-            cout << "Do you wish to sort in Descending order? y/n: ";
-            char in = std::cin.get();
-            in = tolower(in);
-            if(in != 'y' && in != 'n')
-            {
-                cout << "Invalid input\n";
-                SortScientistMenu();
-            }
-            else if(in == 'y')
-            {
-                temp = sort.GetComputerScientist("death_year",1);
-                scientistTable(temp);
-                cout << "Type in anything to go back to the Scientist Sorting menu: ";
-                getline(cin,test);
-                SortScientistMenu();
-            }
-            else
-            {
-                temp = sort.GetComputerScientist("death_year",0);
-                scientistTable(temp);
-                cout << "Type in anything to go back to the Scientist Sorting menu: ";
-                getline(cin,test);
-                SortScientistMenu();
-            }
+            SortScientistSwitches("death_year");
             break;
         }
         case '0': {MainMenu(); break;}
         default: {cout << "Invalid choice\n"; break;}
         }
+    }
+}
+
+void UI::SortScientistSwitches(const QString& tmp)
+{
+    domain sort;
+    string test;
+    vector<ComputerScientist> temp;
+    cout << "Do you wish to sort in Descending order? y/n: ";
+    char in = std::cin.get();
+    in = tolower(in);
+    if(in != 'y' && in != 'n')
+    {
+        cout << "Invalid input\n";
+        SortScientistMenu();
+    }
+    else if(in == 'y')
+    {
+        temp = sort.GetComputerScientist(tmp,1);
+        scientistTable(temp);
+        cout << "Type in anything to go back to the Scientist Sorting menu: ";
+        getline(cin,test);
+        SortScientistMenu();
+    }
+    else
+    {
+        temp = sort.GetComputerScientist(tmp,0);
+        scientistTable(temp);
+        cout << "Type in anything to go back to the Scientist Sorting menu: ";
+        getline(cin,test);
+        SortScientistMenu();
     }
 }

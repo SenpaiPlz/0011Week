@@ -11,6 +11,7 @@
 
 class UI
 {
+    void SortScientistSwitches(const QString& tmp);
 public:
     UI();
     void InitialMenu();
