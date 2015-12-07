@@ -13,6 +13,7 @@ class UI
 {
     void SortScientistSwitches(const QString& tmp);
     void SortComputerSwitches(const QString& tmp);
+    domain Domain;
 public:
     UI();
     void InitialMenu();
@@ -21,6 +22,7 @@ public:
     void SortComputerMenu();
     void scientistTable(vector<ComputerScientist>& tmp);
     void computerTable(vector<computersabstract>& tmp);
+    void AddComputerScientist();
 };
 
 #endif // SCIENTISTUI_H

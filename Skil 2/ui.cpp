@@ -8,6 +8,43 @@ UI::UI()
     InitialMenu();
 }
 
+void UI::AddComputerScientist()
+{
+    ComputerScientist cs;
+    string str;
+    bool valid = true;
+
+    for(size_t i = 0; i < str.size(); i++)
+    {
+        if(!isalpha(str[i]))
+            valid = false;
+    }
+
+    if(valid)
+    {
+        cout << "Enter first name: ";
+        cin.ignore();
+        getline(cin, cs.firstname);
+        cout << "Enter middle name (if no middle name leave empty): ";
+        cin >> cs.middlename;
+        //need to be able to have "" without anything
+        cout << "Enter last name: ";
+        cin >> cs.lastname;
+        cout << "Enter gender: ";
+        cin >> cs.gender;
+        cout << "Enter birth year: ";
+        cin >> cs.bday;
+        cout << "Ente death year (if no death year leave empty): ";
+        cin >> cs.dday;
+        //also need to be able to not write anything
+    }
+
+    //after this, nothing happens?
+    //is the info added?
+
+    Domain.AddComputerScientist(cs);
+}
+
 void UI::scientistTable(vector<ComputerScientist>& tmp)
 {
     //Header for table
@@ -99,7 +136,7 @@ void UI::MainMenu()
         {
         case '1': {SortScientistMenu(); break;}
         case '2': {SortComputerMenu(); break;}
-        case '3': {break;}
+        case '3': {AddComputerScientist(); break;}
         case '4': {break;}
         case '5': {break;}
         case '6': {break;}

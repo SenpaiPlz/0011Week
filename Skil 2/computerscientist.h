@@ -31,6 +31,7 @@ public:
     void setbday(const int& tmp);
     void setdday(const int& tmp);
     void setgender(const string& tmp);
+    friend class UI;
 };
 
 #endif // COMPUTERSCIENTIST_H
