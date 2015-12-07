@@ -19,13 +19,8 @@ void SQLConnect::Connect()
     db.setDatabaseName(dbname);
     if(db.open() && db.isOpen())
     {
-        if(sqlite3found)
+        if(!sqlite3found)
         {
-            cout << "Connection established!\n";
-        }
-        else
-        {
-            cout << "Reading from sql file!\n";
             TranslateSQLFile();
         }
     }

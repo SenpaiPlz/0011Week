@@ -8,61 +8,6 @@ UI::UI()
     InitialMenu();
 }
 
-void UI::AddComputerScientist()
-{
-    ComputerScientist cs;
-    string str;
-
-    bool valid = true;
-
-
-    for(size_t i = 0; i < str.size(); i++)
-    {
-        if(!isalpha(str[i]))
-            valid = false;
-    }
-
-    if(valid)
-    {
-        cout << "Enter first name: ";
-        getline(cin, str);
-        cin.ignore();
-        cs.getFirst();
-        cout << "Enter middle name (if no middle name leave empty): ";
-        getline(cin, str);
-        cin.ignore();
-        cs.getMid();
-        //need to be able to have "" without anything
-        cout << "Enter last name: ";
-        getline(cin, str);
-        cin.ignore();
-        cs.getLast();
-        cout << "Enter gender: ";
-        getline(cin, str);
-        cin.ignore();
-        cs.getGender();
-        cout << "Enter birth year: ";
-        getline(cin, str);
-        cin.ignore();
-        cs.getBday();
-        cout << "Ente death year (if no death year leave empty): ";
-        getline(cin, str);
-        cin.ignore();
-        cs.getDday();
-        //also need to be able to not write anything
-    }
-
-    cout << endl;
-    cout << "\t~~Scientist has been added to your database~~\n\n";
-    cout << "\t    ~~What would you like to do next?~~" << endl;
-    MainMenu();
-
-    //after this, nothing happens?
-    //is the info added?
-
-    Domain.AddComputerScientist(cs);
-}
-
 void UI::scientistTable(vector<ComputerScientist>& tmp)
 {
     //Header for table
@@ -77,8 +22,16 @@ void UI::scientistTable(vector<ComputerScientist>& tmp)
     for(size_t i = 0; i < tmp.size(); i++)
     {
         cout << left << "| " << setw(3) << tmp[i].getID() << "| " << setw(13)
-             << tmp[i].getFirst() << "| " << setw(12) << tmp[i].getMid()
-             << "| " << setw(14) << tmp[i].getLast() << "| " << setw(7)
+             << tmp[i].getFirst() << "| " ;
+        if(tmp[i].getMid() != "NULL")
+        {
+        cout << setw(12) << tmp[i].getMid();
+        }
+        else
+        {
+            cout << "            ";
+        }
+        cout << "| " << setw(14) << tmp[i].getLast() << "| " << setw(7)
              << tmp[i].getGender() << "| " << setw(6) << tmp[i].getBday()
              << "| ";
         if (tmp[i].getDday() != 0)
@@ -316,5 +269,139 @@ void UI::SortComputerSwitches(const QString& tmp)
         cout << "Press enter to continue.";
         getline(cin,test);
         SortComputerMenu();
+    }
+}
+
+void UI::AddComputerScientist()
+{
+    ComputerScientist cs;
+    string temp;
+    int bdaytemp = -1, dday = -1;
+    cout << "To enter a new scientist please fill in the fields with only a single string\n";
+
+    //Checks input for every name to see if it's valid//
+    do{
+        cout << "Enter First Name: ";
+        cin.sync();
+        getline(cin,temp);
+        if(!CheckValidtyOfString(temp))
+        {
+            cout << "Found an error in your string\n";
+        }
+    }while(!CheckValidtyOfString(temp));
+
+    temp[0] = toupper(temp[0]);
+    cs.setFirst(temp);
+    temp = "";
+
+    do{
+        cout << "Enter Middle Name (Type NULL if it's empty): ";
+        cin.sync();
+        getline(cin,temp);
+        if(!CheckValidtyOfString(temp))
+        {
+            cout << "Found an error in your string\n";
+        }
+    }while(!CheckValidtyOfString(temp));
+
+    Tolower(temp);
+    if(temp == "null")
+    {
+        temp = "NULL";
+        temp.clear();
+    }
+    else
+    {
+        temp[0] = toupper(temp[0]);
+    }
+    cs.setMid(temp);
+    temp = "";
+
+    do{
+        cout << "Enter Last Name: ";
+        cin.sync();
+        getline(cin,temp);
+        if(!CheckValidtyOfString(temp))
+        {
+            cout << "Found an error in your string\n";
+        }
+    }while(!CheckValidtyOfString(temp));
+
+    temp[0] = toupper(temp[0]);
+    cs.setLast(temp);
+    temp = "";
+
+    do{
+        cout << "Enter the Gender: ";
+        cin.sync();
+        getline(cin,temp);
+        Tolower(temp);
+        if(!CheckValidtyOfString(temp) || (temp != "male" && temp != "female"))
+        {
+            cout << "Found an error in your string\n";
+        }
+    }while(!CheckValidtyOfString(temp) || (temp != "male" && temp != "female"));
+
+    cs.setgender(temp);
+
+    cout << "Enter the birth year of the Computerscientist: ";
+
+    cin.sync();
+    while(!(cin >> bdaytemp) || bdaytemp < 0)
+    {
+        cin.clear();
+        cin.ignore(1);
+        cout << "Error Expected integer OR below 0\n";
+        cout << "Enter the birth year of the Computerscientist: ";
+    }
+
+    cs.setbday(bdaytemp);
+
+
+    cout << "Enter the death year of the Computerscientist (0 for null): ";
+    cin.sync();
+    while(!(cin >> dday) || bdaytemp > dday)
+    {
+        if(dday == 0)
+        {
+            break;
+        }
+        cin.clear();
+        cin.ignore(1);
+        cout << "Error Expected integer OR less than birth year\n";
+        cout << "Enter the death year of the Computerscientist: ";
+    }
+        cs.setdday(dday);
+
+    domain add;
+    if(add.AddComputerScientist(cs))
+    {
+        cout << "ComputerScientist has been added to the database!\n";
+    }
+    else
+    {
+        cout << "An unexpected error occurred data has not been added";
+    }
+
+    MainMenu();
+}
+
+bool UI::CheckValidtyOfString(string& tmp)
+{
+    for(size_t i = 0; i < tmp.size(); i++)
+    {
+        if(!isalpha(tmp[i]))
+        {
+            return false;
+        }
+    }
+    return !tmp.empty();
+}
+
+void UI::Tolower(string &temp)
+{
+    for(unsigned int i = 0; i < temp.size(); i++)
+    {
+        temp[i] = tolower(temp[i]);
     }
 }

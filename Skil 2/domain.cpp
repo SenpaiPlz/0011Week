@@ -22,3 +22,9 @@ vector<ComputerScientist> domain::GetComputerScientist(const QString &str, bool 
     SQLQueryData get;
     return get.GetComputerScientist(str,desc);
 }
+
+bool domain::AddComputerScientist(ComputerScientist& input)
+{
+    SQLQueryData add;
+    return add.AddComputerScientist(input);
+}

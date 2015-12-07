@@ -167,7 +167,7 @@ bool SQLQueryData::AddComputerScientist(ComputerScientist& input)
     }
     else
     {
-        query.bindValue(1,"NULL");
+        query.bindValue(1,QString());
     }
     query.bindValue(2,QString::fromStdString(input.getLast()));
     query.bindValue(3,QString::fromStdString(input.getGender()));
