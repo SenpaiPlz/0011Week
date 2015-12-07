@@ -9,11 +9,13 @@
 #include "computerscientist.h"
 #include "computersabstract.h"
 #include <iomanip>
+#include "domain.h"
 
 class UI
 {
 public:
     UI();
+    void InitialMenu();
     void scientistTable(vector<ComputerScientist>& tmp);
     void computerTable(vector<computersabstract>& tmp);
 };
