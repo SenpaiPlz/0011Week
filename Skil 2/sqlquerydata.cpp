@@ -481,7 +481,14 @@ bool SQLQueryData::UpdateCS(const QString& tempfirst, const QString& tempmid, co
 
     query.prepare("UPDATE scientists SET first_name = ?, middle_name = ?, last_name = ?, gender =?, birth_year =?, death_year=? WHERE id=?");
     query.bindValue(0,tempfirst);
-    query.bindValue(1,tempmid);
+    if(tempmid != "")
+    {
+        query.bindValue(1,tempmid);
+    }
+    else
+    {
+        query.bindValue(1,QString());
+    }
     query.bindValue(2,templast);
     query.bindValue(3,tempgender);
     query.bindValue(4,bday);

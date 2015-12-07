@@ -318,14 +318,15 @@ void UI::AddComputerScientist()
     temp = "";
 
     do{
+        cout << "(You can enter a single space i.e von Neuman)\n";
         cout << "Enter Last Name: ";
         cin.sync();
         getline(cin,temp);
-        if(!CheckValidtyOfString(temp))
+        if(!CheckValidtyOfStringWithASingleSpace(temp))
         {
             cout << "Found an error in your string\n";
         }
-    }while(!CheckValidtyOfString(temp));
+    }while(!CheckValidtyOfStringWithASingleSpace(temp));
 
     temp[0] = toupper(temp[0]);
     cs.setLast(temp);
@@ -470,18 +471,47 @@ bool UI::CheckValidtyOfString(string& tmp)
     return !tmp.empty();
 }
 
-bool UI::CheckValidtyOfStringPunct(string& tmp)
+bool UI::CheckValidtyOfStringWithASingleSpace(string& tmp)
 {
+    int count = 0;
     for(size_t i = 0; i < tmp.size(); i++)
     {
-        if(ispunct(tmp[i]))
+        if(tmp[i] == ' ')
+        {
+            count++;
+        }
+        if(count >= 2)
+        {
+            return false;
+        }
+    }
+    for(size_t i = 0; i < tmp.size(); i++)
+    {
+        if(!isalpha(tmp[i]) && count >= 2)
         {
             return false;
         }
     }
     return !tmp.empty();
 }
-//not sure if correct, but allows to make space, maybe max to 3 spaces
+
+bool UI::CheckValidtyOfStringPunct(string& tmp)
+{
+    int count = 0;
+    for(size_t i = 0; i < tmp.size(); i++)
+    {        
+        if(tmp[i] == ' ')
+        {
+            count++;
+        }
+        if(ispunct(tmp[i]) || count > 1)
+        {
+            return false;
+        }
+    }
+    return !tmp.empty();
+}
+//Made it so that the can have 1 space, no more.
 
 void UI::Tolower(string &temp)
 {

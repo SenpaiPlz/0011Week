@@ -19,6 +19,7 @@ class UI
     void SortComputerSwitches(const QString& tmp);
     bool CheckValidtyOfString(string& tmp);
     bool CheckValidtyOfStringPunct(string& tmp);
+    bool CheckValidtyOfStringWithASingleSpace(string& tmp);
 public:
     UI();
     void InitialMenu();
