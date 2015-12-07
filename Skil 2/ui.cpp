@@ -35,19 +35,19 @@ void UI::AddComputerScientist()
         //need to be able to have "" without anything
         cout << "Enter last name: ";
         getline(cin, str);
-        cin.ignore();
+        //cin.ignore();
         cs.getLast();
         cout << "Enter gender: ";
         getline(cin, str);
-        cin.ignore();
+        //cin.ignore();
         cs.getGender();
         cout << "Enter birth year: ";
         getline(cin, str);
-        cin.ignore();
+        //cin.ignore();
         cs.getBday();
         cout << "Ente death year (if no death year leave empty): ";
         getline(cin, str);
-        cin.ignore();
+        //cin.ignore
         cs.getDday();
         //also need to be able to not write anything
     }
