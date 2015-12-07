@@ -2,7 +2,7 @@
 
 UI::UI()
 {
-    cout << "\t######## PARSING SQL FILE AND CONNECTING TO DATABASE ########\n\n";
+    cout << "############ PARSING SQL FILE AND CONNECTING TO DATABASE ############\n\n";
     domain d;
     d.connect();
     InitialMenu();
@@ -64,12 +64,21 @@ void UI::InitialMenu()
 
 void UI::MainMenu()
 {
-    //while(true)
+    cout << "#######-----------        MAIN MENU        -----------#######\n";
+    cout << "1.\t\tView Computerscientists\n";
+    cout << "2.\t\tView Computers\n";
+    cout << "3.\t\tI dont know what I am supposed to write here\n";
+    cout << "0.\t\tPress 0 to QUIT this program\n";
+    while(true)
     {
-        cout << "\t#######-------------    MAIN MENU    -------------#######\n";
-        cout << "\t 1.\n";
-        cout << "\t 2.\n";
-        cout << "\t 3.\n";
-        cout << "\t 4.\n";
+        char choice;
+        cin >> choice;
+        switch(choice)
+        {
+        case '1': break;
+        case '2': break;
+        case '0': {exit(0); break;}
+        default: break;
+        }
     }
 }
