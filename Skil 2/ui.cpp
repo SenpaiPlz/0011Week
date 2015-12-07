@@ -12,7 +12,9 @@ void UI::AddComputerScientist()
 {
     ComputerScientist cs;
     string str;
+
     bool valid = true;
+
 
     for(size_t i = 0; i < str.size(); i++)
     {
@@ -23,19 +25,30 @@ void UI::AddComputerScientist()
     if(valid)
     {
         cout << "Enter first name: ";
+        getline(cin, str);
         cin.ignore();
-        getline(cin, cs.firstname);
+        cs.getFirst();
         cout << "Enter middle name (if no middle name leave empty): ";
-        cin >> cs.middlename;
+        getline(cin, str);
+        cin.ignore();
+        cs.getMid();
         //need to be able to have "" without anything
         cout << "Enter last name: ";
-        cin >> cs.lastname;
+        getline(cin, str);
+        cin.ignore();
+        cs.getLast();
         cout << "Enter gender: ";
-        cin >> cs.gender;
+        getline(cin, str);
+        cin.ignore();
+        cs.getGender();
         cout << "Enter birth year: ";
-        cin >> cs.bday;
+        getline(cin, str);
+        cin.ignore();
+        cs.getBday();
         cout << "Ente death year (if no death year leave empty): ";
-        cin >> cs.dday;
+        getline(cin, str);
+        cin.ignore();
+        cs.getDday();
         //also need to be able to not write anything
     }
 
@@ -117,12 +130,12 @@ void UI::InitialMenu()
 void UI::MainMenu()
 {
     cout << "\n#######-----------        MAIN MENU        -----------#######\n";
-    cout << "1.\t\tView Computerscientists\n";
-    cout << "2.\t\tView Computers\n";
-    cout << "3.\t\tAdd Computerscientists\n";
-    cout << "4.\t\tEdit Computerscientists\n";
-    cout << "5.\t\tAdd Computers\n";
-    cout << "6.\t\tEdit Computers\n";
+    cout << "\t\t1.\tView Computerscientists\n";
+    cout << "\t\t2.\tView Computers\n";
+    cout << "\t3.\tAdd Computerscientists\n";
+    cout << "\t4.\tEdit Computerscientists\n";
+    cout << "\t5.\tAdd Computers\n";
+    cout << "\t6.\tEdit Computers\n";
     cout << "7.\t\tLink Menu\n";
     cout << "8.\t\tSearch Menu\n";
     cout << "9.\t\tDelete Menu\n";
