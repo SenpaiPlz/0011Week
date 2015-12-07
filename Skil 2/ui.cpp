@@ -51,12 +51,12 @@ void UI::computerTable(vector<computersabstract>& tmp)
 void UI::InitialMenu()
 {
     cout << "\t  Y88b   d88P       888b     d888        d8888  .d8888b.  \n";
-    cout << "\t    Y88b d88P        8888b   d8888       d88888 d88P  Y88b \n";
-    cout << "\t     Y88o88P         88888b.d88888      d88P888 Y88b.      \n";
-    cout << "\t      Y888P   888888 888Y88888P888     d88P 888  \"Y888b.   \n";
-    cout << "\t      d888b   888888 888 Y888P 888    d88P  888     \"Y88b. \n";
-    cout << "\t     d88888b         888  Y8P  888   d88P   888       \"888 \n";
-    cout << "\t    d88P Y88b        888   \"   888  d8888888888 Y88b  d88P \n";
-    cout << "\t   d88P   Y88b       888       888 d88P     888  \"Y8888P\n\n";
+    cout << "\t   Y88b d88P        8888b   d8888       d88888 d88P  Y88b \n";
+    cout << "\t    Y88o88P         88888b.d88888      d88P888 Y88b.      \n";
+    cout << "\t     Y888P   888888 888Y88888P888     d88P 888  \"Y888b.   \n";
+    cout << "\t     d888b   888888 888 Y888P 888    d88P  888     \"Y88b. \n";
+    cout << "\t    d88888b         888  Y8P  888   d88P   888       \"888 \n";
+    cout << "\t   d88P Y88b        888   \"   888  d8888888888 Y88b  d88P \n";
+    cout << "\t  d88P   Y88b       888       888 d88P     888  \"Y8888P\n\n";
     cout << "\t    ~~The super cool Scientist&Computer SQL Program~~\n\n\n";
 }
