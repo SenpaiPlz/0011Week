@@ -183,8 +183,12 @@ bool SQLQueryData::AddComputerScientist(ComputerScientist& input)
 
     if(query.exec())
     {
+        database.Disconnect();
+        query.clear();
         return true;
     }
+    database.Disconnect();
+    query.clear();
     return false;
 }
 
@@ -248,8 +252,12 @@ bool SQLQueryData::UnmarkDeleted(const QString& tab, const int& id)
 
     if(query.exec())
     {
+        database.Disconnect();
+        query.clear();
         return true;
     }
+    database.Disconnect();
+    query.clear();
     return false;
 }
 
@@ -269,8 +277,12 @@ bool SQLQueryData::DeleteAllMarked()
     query.prepare("DELETE FROM computers WHERE deleted = 1");
     if(css && query.exec())
     {
+        database.Disconnect();
+        query.clear();
         return true;
     }
+    database.Disconnect();
+    query.clear();
     return false;
 }
 
@@ -329,6 +341,8 @@ vector<int> SQLQueryData::GetLinkID()
     }
     returnvec.shrink_to_fit();
 
+    database.Disconnect();
+    query.clear();
     return returnvec;
 }
 
@@ -343,8 +357,12 @@ bool SQLQueryData::DeleteLink(const int& rowid)
     query.bindValue(0,rowid);
     if(query.exec())
     {
+        database.Disconnect();
+        query.clear();
         return true;
     }
+    database.Disconnect();
+    query.clear();
     return false;
 }
 
@@ -359,8 +377,148 @@ bool SQLQueryData::AddLink(const int& scientists_id, const int& computers_id)
     query.bindValue(1,computers_id);
     if(query.exec())
     {
+        database.Disconnect();
+        query.clear();
         return true;
     }
+    database.Disconnect();
+    query.clear();
+    return false;
+}
+
+vector<ComputerScientist> SQLQueryData::SearchCS(const QString& search)
+{
+    SQLConnect database;
+    database.ConnectToDB();
+    QSqlQuery query = database.GetQuery();
+    vector<ComputerScientist> returnvec;
+
+    query.prepare("SELECT * FROM scientists WHERE ((first_name LIKE '%'||?||'%') OR (middle_name LIKE '%'||?||'%') OR "
+                  "(last_name LIKE '%'||?||'%') OR (birth_year LIKE '%'||?||'%') OR (death_year LIKE '%'||?||'%')) ORDER BY first_name");
+    query.bindValue(0,search);
+    query.bindValue(1,search);
+    query.bindValue(2,search);
+    query.bindValue(3,search);
+    query.bindValue(4,search);
+    query.exec();
+
+    FillcsVector(query,returnvec);
+
+    returnvec.shrink_to_fit();
+
+    database.Disconnect();
+    query.clear();
+
+    return returnvec;
+}
+
+vector<ComputerScientist> SQLQueryData::SearchCSID(const int& search)
+{
+    SQLConnect database;
+    database.ConnectToDB();
+    QSqlQuery query = database.GetQuery();
+    vector<ComputerScientist> returnvec;
+
+    query.prepare("SELECT * FROM scientists WHERE id LIKE '%'||?||'%'");
+    query.bindValue(0,search);
+    query.exec();
+
+    FillcsVector(query,returnvec);
+
+    database.Disconnect();
+    query.clear();
+
+    return returnvec;
+}
+
+
+vector<computersabstract> SQLQueryData::SearchComputerID(const int& search)
+{
+    SQLConnect database;
+    database.ConnectToDB();
+    QSqlQuery query = database.GetQuery();
+    vector<computersabstract> returnvec;
+
+    query.prepare("SELECT * FROM computers WHERE id LIKE '%'||?||'%'");
+    query.bindValue(0,search);
+    query.exec();
+
+    FillcomputerVector(query,returnvec);
+
+    database.Disconnect();
+    query.clear();
+
+    return returnvec;
+}
+
+vector<computersabstract> SQLQueryData::SearchComputer(const QString& search)
+{
+    SQLConnect database;
+    database.ConnectToDB();
+    QSqlQuery query = database.GetQuery();
+    vector<computersabstract> returnvec;
+
+    query.prepare("SELECT * FROM computers WHERE ((name LIKE '%'||?||'%') OR (year LIKE '%'||?||'%') OR (type LIKE '%'||?||'%')) ORDER BY name");
+    query.bindValue(0,search);
+    query.bindValue(1,search);
+    query.bindValue(2,search);
+    query.exec();
+
+    FillcomputerVector(query,returnvec);
+
+    database.Disconnect();
+    query.clear();
+
+    return returnvec;
+}
+
+bool SQLQueryData::UpdateCS(const QString& tempfirst, const QString& tempmid, const QString& templast, const QString& tempgender, const int& bday, const int& dday, const int& id)
+{
+
+    SQLConnect database;
+    database.ConnectToDB();
+    QSqlQuery query = database.GetQuery();
+
+    query.prepare("UPDATE scientists SET first_name = ?, middle_name = ?, last_name = ?, gender =?, birth_year =?, death_year=? WHERE id=?");
+    query.bindValue(0,tempfirst);
+    query.bindValue(1,tempmid);
+    query.bindValue(2,templast);
+    query.bindValue(3,tempgender);
+    query.bindValue(4,bday);
+    query.bindValue(5,dday);
+    query.bindValue(6,id);
+
+    if(query.exec())
+    {
+        database.Disconnect();
+        query.clear();
+        return true;
+    }
+    database.Disconnect();
+    query.clear();
+    return false;
+}
+
+bool SQLQueryData::UpdateComputer(const QString& tempname,const int& year, const QString& type, const int& id)
+{
+    SQLConnect database;
+    database.ConnectToDB();
+    QSqlQuery query = database.GetQuery();
+
+    query.prepare("UPDATE computers SET name =?, year=?, type=? WHERE id=?");
+    query.bindValue(0,tempname);
+    query.bindValue(1,year);
+    query.bindValue(2,type);
+    query.bindValue(3,id);
+
+    if(query.exec())
+    {
+        database.Disconnect();
+        query.clear();
+        return true;
+    }
+    database.Disconnect();
+    query.clear();
     return false;
 }
 
