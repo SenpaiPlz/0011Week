@@ -57,6 +57,6 @@ void UI::InitialMenu()
     cout << "\t      d888b   888888 888 Y888P 888    d88P  888     \"Y88b. \n";
     cout << "\t     d88888b         888  Y8P  888   d88P   888       \"888 \n";
     cout << "\t    d88P Y88b        888   \"   888  d8888888888 Y88b  d88P \n";
-    cout << "\t   d88P   Y88b       888       888 d88P     888  \"Y8888P\n";
+    cout << "\t   d88P   Y88b       888       888 d88P     888  \"Y8888P\n\n";
     cout << "\t    ~~The super cool Scientist&Computer SQL Program~~\n\n\n";
 }
