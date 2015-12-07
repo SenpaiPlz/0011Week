@@ -94,7 +94,7 @@ void UI::SortScientistMenu()
     cout << "3.\t\tSort by Last Name\n";
     cout << "4.\t\tSort by Birth Year\n";
     cout << "5.\t\tSort by Death Year\n";
-    cout << "0.\t\tPress 0 to go back to MainMenu\n\n";
+    cout << "0.\t\tMAIN MENU\n\n";
     cout << "choice: ";
     while(true)
     {
@@ -150,7 +150,7 @@ void UI::SortScientistSwitches(const QString& tmp)
     {
         temp = sort.GetComputerScientist(tmp,1);
         scientistTable(temp);
-        cout << "Type in anything to go back to the Scientist Sorting menu: ";
+        cout << "Press enter to continue.";
         getline(cin,test);
         SortScientistMenu();
     }
@@ -158,7 +158,7 @@ void UI::SortScientistSwitches(const QString& tmp)
     {
         temp = sort.GetComputerScientist(tmp,0);
         scientistTable(temp);
-        cout << "Type in anything to go back to the Scientist Sorting menu: ";
+        cout << "Press enter to continue.";
         getline(cin,test);
         SortScientistMenu();
     }
