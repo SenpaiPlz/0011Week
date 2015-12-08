@@ -824,46 +824,73 @@ void UI::SearchMenu()
         {
         case '1':
         {
-            vector<ComputerScientist> list = search.GetComputerScientist("id",0);
-            string str;
+            vector<ComputerScientist> list;
+            vector<string> temp;
+            string input;
             bool valid = false;
             do{
                 cout << "\nEnter any info you have on your beloved Scientist: ";
-                getline(cin, str);
-                if(str.empty())
+                getline(cin, input);
+                temp.push_back(input);
+                if(temp.empty())
                 {
+                    list = search.GetComputerScientist("id",0);
                     scientistTable(list);
                 }
                 else
                 {
+                    //list = search.SearchCS("first_name");
+                    //scientistTable(temp);
                     valid = true;
                 }
 
             }while(!valid);
 
-            cout << "\nEnter any info you have on your beloved Scientist: ";
 
             SearchMenu();
             break;
         }
         case '2':
         {
+            int stoitemp = 0;
             vector<ComputerScientist> list = search.GetComputerScientist("id",0);
             string str;
             bool valid = false;
             do{
                 cout << "\nEnter Scientist ID: ";
+                cin.sync();
                 getline(cin, str);
                 if(str.empty())
                 {
                     scientistTable(list);
+                    cout << "Choose an ID from the list.\n";
+                }
+                else if(ValidNumber(str))
+                {
+                    stoitemp = stoi(str);
+                    if(!ValidCSId(list,stoitemp))
+                    {
+                        cout << "No scientist with that ID.\n";
+                    }
+                    else
+                    {
+                        valid = true;
+                    }
                 }
                 else
                 {
-                    valid = true;
+                    cout << "Error: Unexpected input.\n";
+                    stoitemp = 0;
                 }
 
             }while(!valid);
+            //Need to be able to show only nr. 1, not all with 1 in them...
+
+            vector<ComputerScientist> tmp = search.SearchCSID(stoitemp);
+
+            scientistTable(tmp);
+
+            cout << "\nPress ENTER to continue.\n";
 
             SearchMenu();
             break;
@@ -894,24 +921,45 @@ void UI::SearchMenu()
         }
         case '4':
         {
+            int stoitemp = 0;
             vector<computersabstract> list = search.GetComputers("id",0);
             string str;
             bool valid = false;
             do{
                 cout << "\nEnter Computer ID: ";
+                cin.sync();
                 getline(cin, str);
                 if(str.empty())
                 {
                     computerTable(list);
+                    cout << "Choose an ID from the list.\n";
+                }
+                else if(ValidNumber(str))
+                {
+                    stoitemp = stoi(str);
+                    if(!ValidComputerId(list,stoitemp))
+                    {
+                        cout << "No computer with that ID.\n";
+                    }
+                    else
+                    {
+                        valid = true;
+                    }
                 }
                 else
                 {
-                    valid = true;
+                    cout << "Error: Unexpected input.\n";
+                    stoitemp = 0;
                 }
 
             }while(!valid);
+            //Need to be able to show only nr. 1, not all with 1 in them...
 
+            vector<computersabstract> tmp = search.SearchComputerID(stoitemp);
 
+            computerTable(tmp);
+
+            cout << "\nPress ENTER to continue.\n";
 
             SearchMenu();
             break;
