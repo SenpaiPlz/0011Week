@@ -123,7 +123,7 @@ void UI::MainMenu()
         case '5': {AddComputer(); break;}
         case '6': {break;}
         case '7': {LinkMenu(); break;}
-        case '8': {break;}
+        case '8': {SearchMenu(); break;}
         case '9': {DeleteMenu(); break;}
         case '0': {exit(0); break;}
         default: break;
@@ -139,8 +139,9 @@ void UI::SortScientistMenu()
     cout << "1.\t\tSort by First Name\n";
     cout << "2.\t\tSort by Middle Name\n";
     cout << "3.\t\tSort by Last Name\n";
-    cout << "4.\t\tSort by Birth Year\n";
-    cout << "5.\t\tSort by Death Year\n";
+    cout << "4.\t\tSort by Gender\n";
+    cout << "5.\t\tSort by Birth Year\n";
+    cout << "6.\t\tSort by Death Year\n";
     cout << "0.\t\tMAIN MENU\n\n";
     cout << "choice: ";
     while(true)
@@ -166,10 +167,15 @@ void UI::SortScientistMenu()
         }
         case '4':
         {
-            SortScientistSwitches("birth_year");
+            SortScientistSwitches("gender");
             break;
         }
         case '5':
+        {
+            SortScientistSwitches("birth_year");
+            break;
+        }
+        case '6':
         {
             SortScientistSwitches("death_year");
             break;
@@ -185,7 +191,8 @@ void UI::SortScientistSwitches(const QString& tmp)
     domain sort;
     string test;
     vector<ComputerScientist> temp;
-    cout << "Do you wish to sort in Descending order? y/n: ";
+    cout << "---------------------------------------------------";
+    cout << "\nDo you wish to sort in Descending order? y/n: ";
     char in = std::cin.get();
     in = tolower(in);
     if(in != 'y' && in != 'n')
@@ -198,7 +205,8 @@ void UI::SortScientistSwitches(const QString& tmp)
         temp = sort.GetComputerScientist(tmp,1);
         cout << "\n";
         scientistTable(temp);
-        cout << "Press enter to continue.";
+        cout << "---------------------------------------------------";
+        cout << "\nPress ENTER to continue.";
         getline(cin,test);
         SortScientistMenu();
     }
@@ -207,7 +215,8 @@ void UI::SortScientistSwitches(const QString& tmp)
         temp = sort.GetComputerScientist(tmp,0);
         cout << "\n";
         scientistTable(temp);
-        cout << "Press enter to continue.";
+        cout << "---------------------------------------------------";
+        cout << "\nPress ENTER to continue.";
         getline(cin,test);
         SortScientistMenu();
     }
@@ -255,12 +264,14 @@ void UI::SortComputerSwitches(const QString& tmp)
     domain sort;
     string test;
     vector<computersabstract> temp;
-    cout << "Do you wish to sort in Descending order? y/n: ";
+    cout << "---------------------------------------------------";
+    cout << "\nDo you wish to sort in Descending order? y/n: ";
     char in = std::cin.get();
     in = tolower(in);
     if(in != 'y' && in != 'n')
     {
-        cout << "Invalid input\n";
+        cout << "---------------------------------------------------";
+        cout << "\nInvalid input\n";
         SortComputerMenu();
     }
     else if(in == 'y')
@@ -268,7 +279,8 @@ void UI::SortComputerSwitches(const QString& tmp)
         temp = sort.GetComputers(tmp,1);
         cout << "\n";
         computerTable(temp);
-        cout << "Press enter to continue.";
+        cout << "---------------------------------------------------";
+        cout << "\nPress enter to continue.";
         getline(cin,test);
         SortComputerMenu();
     }
@@ -277,7 +289,8 @@ void UI::SortComputerSwitches(const QString& tmp)
         temp = sort.GetComputers(tmp,0);
         cout << "\n";
         computerTable(temp);
-        cout << "Press enter to continue.";
+        cout << "---------------------------------------------------";
+        cout << "\nPress enter to continue.";
         getline(cin,test);
         SortComputerMenu();
     }
@@ -288,16 +301,19 @@ void UI::AddComputerScientist()
     ComputerScientist cs;
     string temp;
     int bdaytemp = -1, dday = -1;
-    cout << "To enter a new scientist please fill in the fields with only a single string\n";
+    cout << "---------------------------------------------------";
+    cout << "\nTo enter a new scientist please fill in \nthe fields with only a single string\n";
 
     //Checks input for every name to see if it's valid//
     do{
-        cout << "Enter First Name: ";
+        cout << "---------------------------------------------------";
+        cout << "\nEnter First Name: ";
         cin.sync();
         getline(cin,temp);
         if(!CheckValidtyOfString(temp))
         {
-            cout << "Found an error in your string\n";
+            cout << "---------------------------------------------------";
+            cout << "\nFound an error in your string\n";
         }
     }while(!CheckValidtyOfString(temp));
 
@@ -306,12 +322,14 @@ void UI::AddComputerScientist()
     temp = "";
 
     do{
-        cout << "Enter Middle Name (Type NULL if it's empty): ";
+        cout << "---------------------------------------------------";
+        cout << "\nEnter Middle Name (Type NULL if it's empty): ";
         cin.sync();
         getline(cin,temp);
         if(!CheckValidtyOfString(temp))
         {
-            cout << "Found an error in your string\n";
+            cout << "---------------------------------------------------";
+            cout << "\nFound an error in your string\n";
         }
     }while(!CheckValidtyOfString(temp));
 
@@ -328,13 +346,16 @@ void UI::AddComputerScientist()
     temp = "";
 
     do{
-        cout << "(You can enter a single space i.e von Neuman)\n";
-        cout << "Enter Last Name: ";
+        cout << "---------------------------------------------------";
+        cout << "\n(You can enter a single space i.e von Neuman)\n";
+        cout << "---------------------------------------------------";
+        cout << "\nEnter Last Name: ";
         cin.sync();
         getline(cin,temp);
         if(!CheckValidtyOfStringWithASingleSpace(temp))
         {
-            cout << "Found an error in your string\n";
+            cout << "---------------------------------------------------";
+            cout << "\nFound an error in your string\n";
         }
     }while(!CheckValidtyOfStringWithASingleSpace(temp));
 
@@ -343,33 +364,39 @@ void UI::AddComputerScientist()
     temp = "";
 
     do{
-        cout << "Enter the Gender: ";
+        cout << "---------------------------------------------------";
+        cout << "\nEnter the Gender: ";
         cin.sync();
         getline(cin,temp);
         Tolower(temp);
         if(!CheckValidtyOfString(temp) || (temp != "male" && temp != "female"))
         {
-            cout << "Found an error in your string\n";
+            cout << "---------------------------------------------------";
+            cout << "\nFound an error in your string\n";
         }
     }while(!CheckValidtyOfString(temp) || (temp != "male" && temp != "female"));
 
     cs.setgender(temp);
 
-    cout << "Enter the birth year of the Computerscientist: ";
+    cout << "---------------------------------------------------";
+    cout << "\nEnter the birth year of the Computerscientist: ";
 
     cin.sync();
     while(!(cin >> bdaytemp) || (bdaytemp < 0 || bdaytemp > 2015))
     {
         cin.clear();
         cin.ignore(1);
-        cout << "Error: Expected integer OR value is below 0\n";
-        cout << "Enter the birth year of the Computerscientist: ";
+        cout << "---------------------------------------------------";
+        cout << "\nError: Expected integer OR value is below 0\n";
+        cout << "---------------------------------------------------";
+        cout << "\nEnter the birth year of the Computerscientist: ";
     }
 
     cs.setbday(bdaytemp);
 
 
-    cout << "Enter the death year of the Computerscientist (0 for null): ";
+    cout << "---------------------------------------------------";
+    cout << "\nEnter the death year of the Computerscientist (0 for null): ";
     cin.sync();
     while(!(cin >> dday) || (bdaytemp > dday || dday > 2015))
     {
@@ -379,20 +406,23 @@ void UI::AddComputerScientist()
         }
         cin.clear();
         cin.ignore(1);
-        cout << "Error Expected integer OR less than birth year\n";
-        cout << "Enter the death year of the Computerscientist: ";
+        cout << "---------------------------------------------------";
+        cout << "\nError Expected integer OR less than birth year\n";
+        cout << "---------------------------------------------------";
+        cout << "\nEnter the death year of the Computerscientist: ";
     }
         cs.setdday(dday);
 
     domain add;
     if(add.AddComputerScientist(cs))
     {
-        cout << "ComputerScientist has been added to the database!\n";
+        cout << "---------------------------------------------------";
+        cout << "\nComputerScientist has been added to the database!\n";
     }
     else
     {
-        cout << "An unexpected error occurred Data has not been added";
-        //always prints out this error, check out tomorrow
+        cout << "---------------------------------------------------";
+        cout << "\nAn unexpected error occurred Data has not been added";
     }
 
     MainMenu();
@@ -404,14 +434,17 @@ void UI::AddComputer()
     string temp;
     int yeartemp = -1;
     bool built = true;
-    cout << "To enter a new computer please fill in the fields\n";
+    cout << "---------------------------------------------------";
+    cout << "\nTo enter a new computer please fill in the fields\n";
 
     do{
-        cout << "Enter name: ";
+        cout << "---------------------------------------------------";
+        cout << "\nEnter name: ";
         cin.sync();
         getline(cin,temp);
         if(!CheckValidtyOfStringPunct(temp)){
-            cout << "Found an error in your string\n";
+            cout << "---------------------------------------------------";
+            cout << "\nFound an error in your string\n";
         }
     }while(!CheckValidtyOfStringPunct(temp));
 
@@ -419,23 +452,28 @@ void UI::AddComputer()
     ca.setName(temp);
     temp = "";
 
-    cout << "Enter year of discovery: ";
+    cout << "---------------------------------------------------";
+    cout << "\nEnter year of discovery: ";
     cin.sync();
     while(!(cin >> yeartemp) || yeartemp < 0){
         cin.clear();
         cin.ignore(1);
-        cout << "Error Expected integer OR value is below 0\n";
-        cout << "Enter year of discovery: ";
+        cout << "---------------------------------------------------";
+        cout << "\nError Expected integer OR value is below 0\n";
+        cout << "---------------------------------------------------";
+        cout << "\nEnter year of discovery: ";
     }
     ca.setYear(yeartemp);
 
     do{
-        cout << "Enter type(example: Electronic): ";
+        cout << "---------------------------------------------------";
+        cout << "\nEnter type(example: Electronic): ";
         cin.sync();
         getline(cin,temp);
         if(!CheckValidtyOfString(temp))
         {
-            cout << "Found an error in your string\n";
+            cout << "---------------------------------------------------";
+            cout << "\nFound an error in your string\n";
         }
     }while(!CheckValidtyOfString(temp));
 
@@ -443,27 +481,31 @@ void UI::AddComputer()
     ca.setType(temp);
     temp = "";
 
-    cout << "Has it been built yet(write 1 for yes, 0 for no): ";
+    cout << "---------------------------------------------------";
+    cout << "\nHas it been built yet(write 1 for yes, 0 for no): ";
     cin.sync();
     while(!(cin >> built))
         //Needs fixing, will look at better tomorrow
     {
         cin.clear();
         cin.ignore(1);
-        cout << "Error Not 0 or 1\n";
-        cout << "Has it been built yet(write 1 for yes, 0 for no): ";
+        cout << "---------------------------------------------------";
+        cout << "\nError Not 0 or 1\n";
+        cout << "---------------------------------------------------";
+        cout << "\nHas it been built yet(write 1 for yes, 0 for no): ";
     }
     ca.setBuilt(built);
 
     domain add;
     if(add.AddComputer(ca))
     {
-        cout << "Computer has been added to the database!\n";
+        cout << "---------------------------------------------------";
+        cout << "\nComputer has been added to the database!\n";
     }
     else
     {
-        cout << "An unexpected error occurred Data has not been added";
-        //Always prints out this error, check out tomorrow
+        cout << "---------------------------------------------------";
+        cout << "\nAn unexpected error occurred Data has not been added";
     }
 
     MainMenu();
@@ -509,7 +551,7 @@ bool UI::CheckValidtyOfStringPunct(string& tmp)
 {
     int count = 0;
     for(size_t i = 0; i < tmp.size(); i++)
-    {        
+    {
         if(tmp[i] == ' ')
         {
             count++;
@@ -547,7 +589,6 @@ void UI::DeleteMenu()
 {
     domain del;
     cin.ignore(numeric_limits<streamsize>::max(),'\n');
-    vector<ComputerScientist> temp;
     cout << "\n#######-----------      Delete Menu     -----------#######\n";
     cout << "1.\t\tMark Scientist for Deletion\n";
     cout << "2.\t\tUn-Mark Scientist for Deletion\n";
@@ -573,7 +614,8 @@ void UI::DeleteMenu()
             scientistTable(temp);
             do
             {
-                cout << "Enter an id to Mark: ";
+                cout << "---------------------------------------------------";
+                cout << "\nEnter an ID to Mark: ";
                 cin.sync();
                 getline(cin,tmp);
                 if(ValidNumber(tmp))
@@ -581,7 +623,8 @@ void UI::DeleteMenu()
                     stoitemp = stoi(tmp);
                     if(!ValidCSId(temp,stoitemp))
                     {
-                        cout << "No scientist matching that ID.\n";
+                        cout << "---------------------------------------------------";
+                        cout << "\nNo scientist matching that ID.\n";
                     }
                     else
                     {
@@ -590,18 +633,25 @@ void UI::DeleteMenu()
                 }
                 else
                 {
-                    cout << "Error: Unexpect input in baggage area\n";
+                    cout << "---------------------------------------------------";
+                    cout << "\nError: Unexpect input in baggage area\n";
                     stoitemp = 0;
                 }
             }while(!valid);
 
             if(del.MarkDeleted("scientists",stoitemp))
             {
-                cout << "\nMarked ID: " << stoitemp << " for deletion";
+                cout << "---------------------------------------------------";
+                cout << "\nMarked ID: " << stoitemp << " for deletion\n";
+                cout << "---------------------------------------------------";
+                cout << "\nPress ENTER to go back to DELETE MENU.";
             }
             else
             {
-                cout << "\nERROR: something went wrong here.";
+                cout << "---------------------------------------------------";
+                cout << "\nERROR: something went wrong here.\n";
+                cout << "---------------------------------------------------";
+                cout << "\nPress ENTER to go back to DELETE MENU.";
             }
             DeleteMenu();
             break;
@@ -615,7 +665,8 @@ void UI::DeleteMenu()
             scientistTable(temp);
             do
             {
-                cout << "Enter an id to Un-Mark: ";
+                cout << "---------------------------------------------------";
+                cout << "\nEnter an ID to Un-Mark: ";
                 cin.sync();
                 getline(cin,tmp);
                 if(ValidNumber(tmp))
@@ -623,7 +674,8 @@ void UI::DeleteMenu()
                     stoitemp = stoi(tmp);
                     if(!ValidCSId(temp,stoitemp))
                     {
-                        cout << "No scientist matching that ID.\n";
+                        cout << "---------------------------------------------------";
+                        cout << "\nNo scientist matching that ID.\n";
                     }
                     else
                     {
@@ -632,18 +684,25 @@ void UI::DeleteMenu()
                 }
                 else
                 {
-                    cout << "Error: Unexpect input in baggage area\n";
+                    cout << "---------------------------------------------------";
+                    cout << "\nError: Unexpect input in baggage area\n";
                     stoitemp = 0;
                 }
             }while(!valid);
 
             if(del.UnmarkDeleted("scientists",stoitemp))
             {
-                cout << "\nUn-Marked ID: " << stoitemp << " for deletion";
+                cout << "---------------------------------------------------";
+                cout << "\nUn-Marked ID: " << stoitemp << " for deletion\n";
+                cout << "---------------------------------------------------";
+                cout << "\nPress ENTER to go back to DELETE MENU.";
             }
             else
             {
-                cout << "\nERROR: something went wrong here.";
+                cout << "---------------------------------------------------";
+                cout << "\nERROR: something went wrong here.\n";
+                cout << "---------------------------------------------------";
+                cout << "\nPress ENTER to go back to DELETE MENU.";
             }
             DeleteMenu();
             break;
@@ -657,7 +716,8 @@ void UI::DeleteMenu()
             computerTable(temp);
             do
             {
-                cout << "Enter an id to Mark: ";
+                cout << "---------------------------------------------------";
+                cout << "\nEnter an ID to Mark: ";
                 cin.sync();
                 getline(cin,tmp);
                 if(ValidNumber(tmp))
@@ -665,7 +725,8 @@ void UI::DeleteMenu()
                     stoitemp = stoi(tmp);
                     if(!ValidComputerId(temp,stoitemp))
                     {
-                        cout << "No computer matching that ID.\n";
+                        cout << "---------------------------------------------------";
+                        cout << "\nNo computer matching that ID.\n";
                     }
                     else
                     {
@@ -674,18 +735,25 @@ void UI::DeleteMenu()
                 }
                 else
                 {
-                    cout << "Error: Unexpect input in baggage area\n";
+                    cout << "---------------------------------------------------";
+                    cout << "\nError: Unexpect input in baggage area\n";
                     stoitemp = 0;
                 }
             }while(!valid);
 
             if(del.MarkDeleted("computers",stoitemp))
             {
-                cout << "\nMarked ID: " << stoitemp << " for deletion";
+                cout << "---------------------------------------------------";
+                cout << "\nMarked ID: " << stoitemp << " for deletion\n";
+                cout << "---------------------------------------------------";
+                cout << "\nPress ENTER to go back to DELETE MENU.";
             }
             else
             {
-                cout << "\nERROR: something went wrong here.";
+                cout << "---------------------------------------------------";
+                cout << "\nERROR: something went wrong here.\n";
+                cout << "---------------------------------------------------";
+                cout << "\nPress ENTER to go back to DELETE MENU.";
             }
             DeleteMenu();
             break;
@@ -699,7 +767,8 @@ void UI::DeleteMenu()
             computerTable(temp);
             do
             {
-                cout << "Enter an id to Un-Mark: ";
+                cout << "---------------------------------------------------";
+                cout << "\nEnter an ID to Un-Mark: ";
                 cin.sync();
                 getline(cin,tmp);
                 if(ValidNumber(tmp))
@@ -707,7 +776,8 @@ void UI::DeleteMenu()
                     stoitemp = stoi(tmp);
                     if(!ValidComputerId(temp,stoitemp))
                     {
-                        cout << "No computer matching that ID.\n";
+                        cout << "---------------------------------------------------";
+                        cout << "\nNo computer matching that ID.\n";
                     }
                     else
                     {
@@ -716,18 +786,25 @@ void UI::DeleteMenu()
                 }
                 else
                 {
-                    cout << "Error: Unexpect input in baggage area\n";
+                    cout << "---------------------------------------------------";
+                    cout << "\nError: Unexpect input in baggage area\n";
                     stoitemp = 0;
                 }
             }while(!valid);
 
             if(del.UnmarkDeleted("computers",stoitemp))
             {
-                cout << "\nUn-Marked ID: " << stoitemp << " for deletion";
+                cout << "---------------------------------------------------";
+                cout << "\nUn-Marked ID: " << stoitemp << " for deletion\n";
+                cout << "---------------------------------------------------";
+                cout << "\nPress ENTER to go back to DELETE MENU.";
             }
             else
             {
-                cout << "\nERROR: something went wrong here.";
+                cout << "---------------------------------------------------";
+                cout << "\nERROR: something went wrong here.\n";
+                cout << "---------------------------------------------------";
+                cout << "\nPress ENTER to go back to DELETE MENU.";
             }
             DeleteMenu();
             break;
@@ -736,7 +813,8 @@ void UI::DeleteMenu()
         {
             vector<ComputerScientist> temp = del.GetDeletedCS();
             scientistTable(temp);
-            cout << "\nPress Enter to continue";
+            cout << "---------------------------------------------------";
+            cout << "\nPress ENTER to continue";
             DeleteMenu();
             break;
         }
@@ -744,7 +822,8 @@ void UI::DeleteMenu()
         {
             vector<computersabstract> temp = del.GetDeletedComputers();
             computerTable(temp);
-            cout << "\nPress Enter to continue";
+            cout << "---------------------------------------------------";
+            cout << "\nPress ENTER to continue";
             DeleteMenu();
             break;
         }
@@ -758,9 +837,11 @@ void UI::DeleteMenu()
             }
             else
             {
-                cout << "Something went wrong\n";
+                cout << "---------------------------------------------------";
+                cout << "\nSomething went wrong\n";
             }
-            cout << "\nPress Enter to continue";
+            cout << "---------------------------------------------------";
+            cout << "\nPress ENTER to go back to DELETE MENU.";
             DeleteMenu();
             break;
         }
@@ -769,7 +850,6 @@ void UI::DeleteMenu()
         }
     }
 }
-
 
 bool UI::ValidCSId(vector<ComputerScientist>& tmp, const int& id)
 {
@@ -833,9 +913,12 @@ void UI::LinkMenu()
                 valid = false;
                 if(count > 0)
                 {
-                    cout << "These are not the Row-ID's we are looking for\n";
+                    cout << "---------------------------------------------------";
+                    cout << "\nThese are not the Row-ID's we are looking for\n";
                 }
-                cout << "\nEnter a id of a scientist to delete: ";
+
+                cout << "---------------------------------------------------";
+                cout << "\nEnter a ID of a scientist to delete: ";
                 cin.sync();
                 getline(cin,tmp);
                 if(ValidNumber(tmp))
@@ -853,11 +936,13 @@ void UI::LinkMenu()
             }while(!valid);
             if(inner.DeleteLink(choice))
             {
-                cout << "Delete successful\n";
+                cout << "---------------------------------------------------";
+                cout << "\nDelete successful\n";
             }
             else
             {
-                cout << "Something happened here I'm not sure what.\n";
+                cout << "---------------------------------------------------";
+                cout << "\nSomething happened here I'm not sure what.\n";
             }
             LinkMenu();
             break;
@@ -872,7 +957,8 @@ void UI::LinkMenu()
             scientistTable(temp);
             do
             {
-                cout << "Enter an id to LINK: ";
+                cout << "---------------------------------------------------";
+                cout << "\nEnter an ID to LINK: ";
                 cin.sync();
                 getline(cin,str);
                 if(ValidNumber(str))
@@ -880,7 +966,8 @@ void UI::LinkMenu()
                     cs = stoi(str);
                     if(!ValidCSId(temp,cs))
                     {
-                        cout << "No computer matching that ID.\n";
+                        cout << "---------------------------------------------------";
+                        cout << "\nNo computer matching that ID.\n";
                     }
                     else
                     {
@@ -889,7 +976,8 @@ void UI::LinkMenu()
                 }
                 else
                 {
-                    cout << "Error: Unexpect input in baggage area\n";
+                    cout << "---------------------------------------------------";
+                    cout << "\nError: Unexpect input in baggage area\n";
                     cs = 0;
                 }
             }while(!valid);
@@ -898,7 +986,8 @@ void UI::LinkMenu()
             computerTable(tmp);
             do
             {
-                cout << "Enter an id to LINK: ";
+                cout << "---------------------------------------------------";
+                cout << "\nEnter an ID to LINK: ";
                 cin.sync();
                 getline(cin,str);
                 if(ValidNumber(str))
@@ -906,7 +995,8 @@ void UI::LinkMenu()
                     comp = stoi(str);
                     if(!ValidComputerId(tmp,comp))
                     {
-                        cout << "No computer matching that ID.\n";
+                        cout << "---------------------------------------------------";
+                        cout << "\nNo computer matching that ID.\n";
                     }
                     else
                     {
@@ -915,16 +1005,19 @@ void UI::LinkMenu()
                 }
                 else
                 {
-                    cout << "Error: Unexpect input in baggage area\n";
+                    cout << "---------------------------------------------------";
+                    cout << "\Error: Unexpect input in baggage area\n";
                     comp = 0;
                 }
             }while(!valid);
             if(inner.AddLink(cs,comp))
             {
+                cout << "---------------------------------------------------";
                 cout << "\n\nSuccessfully linked ComputerScientist & Computer.\n";
             }
             else
             {
+                cout << "---------------------------------------------------";
                 cout << "\n\nSomething Bad happened, probably!";
             }
             LinkMenu();
@@ -935,7 +1028,6 @@ void UI::LinkMenu()
         }
     }
 }
-
 
 void UI::SearchMenu()
 {
@@ -963,13 +1055,15 @@ void UI::SearchMenu()
             string str;
             bool valid = false;
             do{
+                cout << "---------------------------------------------------";
                 cout << "\nEnter any info you have on your beloved Scientist: ";
                 cin.sync();
                 getline(cin, str);
                 if(str.empty())
                 {
                     scientistTable(list);
-                    cout << "Write out any info you have to find it in the list.\n";
+                    cout << "---------------------------------------------------";
+                    cout << "\nWrite out any info you have to find it in the list.\n";
                 }
 
                 else
@@ -982,7 +1076,8 @@ void UI::SearchMenu()
             QString newstr = QString::fromUtf8(str.c_str());
             vector<ComputerScientist> tmp = search.SearchCS(newstr);
             scientistTable(tmp);
-            cout << "\nPress ENTER to continue.\n";
+            cout << "---------------------------------------------------";
+            cout << "\nPress ENTER to go back to SEARCH MENU.";
 
             SearchMenu();
             break;
@@ -994,20 +1089,23 @@ void UI::SearchMenu()
             string str;
             bool valid = false;
             do{
+                cout << "---------------------------------------------------";
                 cout << "\nEnter Scientist ID: ";
                 cin.sync();
                 getline(cin, str);
                 if(str.empty())
                 {
                     scientistTable(list);
-                    cout << "Choose an ID from the list.\n";
+                    cout << "---------------------------------------------------";
+                    cout << "\nChoose an ID from the list.\n";
                 }
                 else if(ValidNumber(str))
                 {
                     stoitemp = stoi(str);
                     if(!ValidCSId(list,stoitemp))
                     {
-                        cout << "No scientist with that ID.\n";
+                        cout << "---------------------------------------------------";
+                        cout << "\nNo scientist with that ID.\n";
                     }
                     else
                     {
@@ -1016,7 +1114,8 @@ void UI::SearchMenu()
                 }
                 else
                 {
-                    cout << "Error: Unexpected input.\n";
+                    cout << "---------------------------------------------------";
+                    cout << "\nError: Unexpected input.\n";
                     stoitemp = 0;
                 }
 
@@ -1025,7 +1124,8 @@ void UI::SearchMenu()
 
             vector<ComputerScientist> tmp = search.SearchCSID(stoitemp);
             scientistTable(tmp);
-            cout << "\nPress ENTER to continue.\n";
+            cout << "---------------------------------------------------";
+            cout << "\nPress ENTER to go back to SEARCH MENU.";
 
             SearchMenu();
             break;
@@ -1036,13 +1136,15 @@ void UI::SearchMenu()
             string str;
             bool valid = false;
             do{
+                cout << "---------------------------------------------------";
                 cout << "\nEnter any info you have on a Computer: ";
                 cin.sync();
                 getline(cin, str);
                 if(str.empty())
                 {
                     computerTable(list);
-                    cout << "Write out any info you have to find it in the list.\n";
+                    cout << "---------------------------------------------------";
+                    cout << "\nWrite out any info you have to find it in the list.\n";
                 }
 
                 else
@@ -1055,7 +1157,8 @@ void UI::SearchMenu()
             QString newstr = QString::fromUtf8(str.c_str());
             vector<computersabstract> tmp = search.SearchComputer(newstr);
             computerTable(tmp);
-            cout << "\nPress ENTER to continue.\n";
+            cout << "---------------------------------------------------";
+            cout << "\nPress ENTER to go back to SEARCH MENU.";
 
             SearchMenu();
             break;
@@ -1067,20 +1170,23 @@ void UI::SearchMenu()
             string str;
             bool valid = false;
             do{
+                cout << "---------------------------------------------------";
                 cout << "\nEnter Computer ID: ";
                 cin.sync();
                 getline(cin, str);
                 if(str.empty())
                 {
                     computerTable(list);
-                    cout << "Choose an ID from the list.\n";
+                    cout << "---------------------------------------------------";
+                    cout << "\nChoose an ID from the list.\n";
                 }
                 else if(ValidNumber(str))
                 {
                     stoitemp = stoi(str);
                     if(!ValidComputerId(list,stoitemp))
                     {
-                        cout << "No computer with that ID.\n";
+                        cout << "---------------------------------------------------";
+                        cout << "\nNo computer with that ID.\n";
                     }
                     else
                     {
@@ -1089,7 +1195,8 @@ void UI::SearchMenu()
                 }
                 else
                 {
-                    cout << "Error: Unexpected input.\n";
+                    cout << "---------------------------------------------------";
+                    cout << "\nError: Unexpected input.\n";
                     stoitemp = 0;
                 }
 
@@ -1100,13 +1207,14 @@ void UI::SearchMenu()
 
             computerTable(tmp);
 
-            cout << "\nPress ENTER to continue.\n";
+            cout << "---------------------------------------------------";
+            cout << "\nPress ENTER to go back to SEARCH MENU.";
 
             SearchMenu();
             break;
         }
         case '0': {MainMenu(); break;}
-        default: {cout << "Invalid choice\nPress ENTER for Search Menu!"; SearchMenu(); break;}
+        default: {cout << "Invalid choice\n---------------------------------------------------\nPress ENTER for Search Menu!"; SearchMenu(); break;}
         }
     }
 }
