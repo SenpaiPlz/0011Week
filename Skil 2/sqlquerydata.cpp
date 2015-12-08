@@ -480,7 +480,7 @@ bool SQLQueryData::UpdateCS(const QString& tempfirst, const QString& tempmid, co
     return false;
 }
 
-bool SQLQueryData::UpdateComputer(const QString& tempname,const int& year, const QString& type, const bool& built, const int& id)
+bool SQLQueryData::UpdateComputer(const QString& tempname,const int& year, const QString& type,const bool& built , const int& id)
 {
     SQLConnect database;
     database.ConnectToDB();

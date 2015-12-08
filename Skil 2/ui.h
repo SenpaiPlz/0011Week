@@ -12,6 +12,7 @@
 
 class UI
 {
+    domain d;
     void linkTable(vector<ComputerScientist>& temp, vector<computersabstract>& tmp, vector<int> &rowid);
     void Tolower(string &temp);
     void SortScientistSwitches(const QString& tmp);

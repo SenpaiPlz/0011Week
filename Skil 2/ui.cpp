@@ -124,9 +124,9 @@ void UI::MainMenu()
         case '1': {SortScientistMenu(); break;}
         case '2': {SortComputerMenu(); break;}
         case '3': {AddComputerScientist(); break;}
-        case '4': {break;}
+        case '4': {EditCS(); break;}
         case '5': {AddComputer(); break;}
-        case '6': {break;}
+        case '6': {EditComputer(); break;}
         case '7': {LinkMenu(); break;}
         case '8': {SearchMenu(); break;}
         case '9': {DeleteMenu(); break;}
@@ -667,18 +667,15 @@ void UI::EditCS()
 
 void UI::EditComputer()
 {
-    computersabstract ca;
     string temp;
     string type;
     int yeartemp = -1;
     bool built = true;
-    domain edit;
     int id = 0;
 
-    int stoitemp = 0;
     string tmp;
     bool valid = false;
-    vector<computersabstract> list = edit.GetComputers("id",0);
+    vector<computersabstract> list = d.GetComputers("id",0);
     computerTable(list);
     do
     {
@@ -704,10 +701,6 @@ void UI::EditComputer()
         }
     }while(!valid);
 
-    edit.MarkDeleted("id",stoitemp);
-    edit.GetDeletedComputers();
-    computerTable(list);
-
     do{
         cout << "---------------------------------------------------";
         cout << "\nEnter name: ";
@@ -720,7 +713,6 @@ void UI::EditComputer()
     }while(!CheckValidtyOfStringPunct(temp));
 
     temp[0] = toupper(temp[0]);
-    temp = "";
 
     cout << "---------------------------------------------------";
     cout << "\nEnter year of discovery: ";
@@ -738,17 +730,15 @@ void UI::EditComputer()
         cout << "---------------------------------------------------";
         cout << "\nEnter type(example: Electronic): ";
         cin.sync();
-        getline(cin,temp);
-        if(!CheckValidtyOfString(temp))
+        getline(cin,type);
+        if(!CheckValidtyOfString(type))
         {
             cout << "---------------------------------------------------";
             cout << "\nFound an error in your string\n";
         }
-    }while(!CheckValidtyOfString(temp));
+    }while(!CheckValidtyOfString(type));
 
-    temp[0] = toupper(temp[0]);
-    ca.setType(temp);
-    temp = "";
+    type[0] = toupper(type[0]);
 
     cout << "---------------------------------------------------";
     cout << "\nHas it been built yet(write 1 for yes, 0 for no): ";
@@ -763,9 +753,8 @@ void UI::EditComputer()
         cout << "\nHas it been built yet(write 1 for yes, 0 for no): ";
     }
 
-    QString name = QString::fromUtf8(temp.c_str());
-    QString str = QString::fromUtf8(type.c_str());
-    if(edit.UpdateComputer(name, yeartemp, type, built, id))
+
+    if(d.UpdateComputer(QString::fromStdString(temp), yeartemp, QString::fromStdString(type), built, id))
     {
         cout << "---------------------------------------------------";
         cout << "\nComputer has been edited!\n";
