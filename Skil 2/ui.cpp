@@ -824,28 +824,31 @@ void UI::SearchMenu()
         {
         case '1':
         {
-            vector<ComputerScientist> list;
-            vector<string> temp;
-            string input;
+
+            vector<ComputerScientist> list = search.GetComputerScientist("id",0);
+            string str;
             bool valid = false;
             do{
                 cout << "\nEnter any info you have on your beloved Scientist: ";
-                getline(cin, input);
-                temp.push_back(input);
-                if(temp.empty())
+                cin.sync();
+                getline(cin, str);
+                if(str.empty())
                 {
-                    list = search.GetComputerScientist("id",0);
                     scientistTable(list);
+                    cout << "Write out any info you have to find it in the list.\n";
                 }
+
                 else
                 {
-                    //list = search.SearchCS("first_name");
-                    //scientistTable(temp);
                     valid = true;
                 }
 
             }while(!valid);
 
+            QString newstr = QString::fromUtf8(str.c_str());
+            vector<ComputerScientist> tmp = search.SearchCS(newstr);
+            scientistTable(tmp);
+            cout << "\nPress ENTER to continue.\n";
 
             SearchMenu();
             break;
@@ -887,9 +890,7 @@ void UI::SearchMenu()
             //Need to be able to show only nr. 1, not all with 1 in them...
 
             vector<ComputerScientist> tmp = search.SearchCSID(stoitemp);
-
             scientistTable(tmp);
-
             cout << "\nPress ENTER to continue.\n";
 
             SearchMenu();
@@ -902,11 +903,14 @@ void UI::SearchMenu()
             bool valid = false;
             do{
                 cout << "\nEnter any info you have on a Computer: ";
+                cin.sync();
                 getline(cin, str);
                 if(str.empty())
                 {
                     computerTable(list);
+                    cout << "Write out any info you have to find it in the list.\n";
                 }
+
                 else
                 {
                     valid = true;
@@ -914,7 +918,10 @@ void UI::SearchMenu()
 
             }while(!valid);
 
-
+            QString newstr = QString::fromUtf8(str.c_str());
+            vector<computersabstract> tmp = search.SearchComputer(newstr);
+            computerTable(tmp);
+            cout << "\nPress ENTER to continue.\n";
 
             SearchMenu();
             break;
