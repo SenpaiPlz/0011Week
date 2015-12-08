@@ -121,3 +121,9 @@ bool domain::AddLink(const int& scientists_id, const int& computers_id)
     SQLQueryData data;
     return data.AddLink(scientists_id,computers_id);
 }
+
+bool domain::UpdateCS(const QString& tempfirst, const QString& tempmid, const QString& templast, const QString& tempgender, const int& bday, const int& dday, const int& id)
+{
+    SQLQueryData data;
+    return data.UpdateCS(tempfirst,tempmid,templast,tempgender,bday,dday,id);
+}

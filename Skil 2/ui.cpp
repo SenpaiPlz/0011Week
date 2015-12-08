@@ -124,7 +124,7 @@ void UI::MainMenu()
         case '1': {SortScientistMenu(); break;}
         case '2': {SortComputerMenu(); break;}
         case '3': {AddComputerScientist(); break;}
-        case '4': {break;}
+        case '4': {EditCS(); break;}
         case '5': {AddComputer(); break;}
         case '6': {break;}
         case '7': {LinkMenu(); break;}
@@ -138,7 +138,7 @@ void UI::MainMenu()
 
 void UI::SortScientistMenu()
 {
-    cin.ignore(numeric_limits<streamsize>::max(),'\n');
+    cin.sync();
     vector<ComputerScientist> temp;
     cout << "\n#######-----------      Sort Scientist     -----------#######\n";
     cout << "1.\t\tSort by First Name\n";
@@ -152,7 +152,7 @@ void UI::SortScientistMenu()
     while(true)
     {
         char choice = cin.get();
-        cin.ignore(numeric_limits<streamsize>::max(),'\n');
+        cin.sync();
         switch(choice)
         {
         case '1':
@@ -193,7 +193,6 @@ void UI::SortScientistMenu()
 
 void UI::SortScientistSwitches(const QString& tmp)
 {
-    domain sort;
     string test;
     vector<ComputerScientist> temp;
     cout << "---------------------------------------------------";
@@ -207,7 +206,7 @@ void UI::SortScientistSwitches(const QString& tmp)
     }
     else if(in == 'y')
     {
-        temp = sort.GetComputerScientist(tmp,1);
+        temp = d.GetComputerScientist(tmp,1);
         cout << "\n";
         scientistTable(temp);
         cout << "---------------------------------------------------";
@@ -217,7 +216,7 @@ void UI::SortScientistSwitches(const QString& tmp)
     }
     else
     {
-        temp = sort.GetComputerScientist(tmp,0);
+        temp = d.GetComputerScientist(tmp,0);
         cout << "\n";
         scientistTable(temp);
         cout << "---------------------------------------------------";
@@ -229,7 +228,7 @@ void UI::SortScientistSwitches(const QString& tmp)
 
 void UI::SortComputerMenu()
 {
-    cin.ignore(numeric_limits<streamsize>::max(),'\n');
+    cin.sync();
     vector<ComputerScientist> temp;
     cout << "\n#######-----------      Sort Scientist     -----------#######\n";
     cout << "1.\t\tSort by Name\n";
@@ -240,7 +239,7 @@ void UI::SortComputerMenu()
     while(true)
     {
         char choice = cin.get();
-        cin.ignore(numeric_limits<streamsize>::max(),'\n');
+        cin.sync();
         switch(choice)
         {
         case '1':
@@ -266,7 +265,6 @@ void UI::SortComputerMenu()
 
 void UI::SortComputerSwitches(const QString& tmp)
 {
-    domain sort;
     string test;
     vector<computersabstract> temp;
     cout << "---------------------------------------------------";
@@ -281,7 +279,7 @@ void UI::SortComputerSwitches(const QString& tmp)
     }
     else if(in == 'y')
     {
-        temp = sort.GetComputers(tmp,1);
+        temp = d.GetComputers(tmp,1);
         cout << "\n";
         computerTable(temp);
         cout << "---------------------------------------------------";
@@ -291,7 +289,7 @@ void UI::SortComputerSwitches(const QString& tmp)
     }
     else
     {
-        temp = sort.GetComputers(tmp,0);
+        temp = d.GetComputers(tmp,0);
         cout << "\n";
         computerTable(temp);
         cout << "---------------------------------------------------";
@@ -418,8 +416,7 @@ void UI::AddComputerScientist()
     }
         cs.setdday(dday);
 
-    domain add;
-    if(add.AddComputerScientist(cs))
+    if(d.AddComputerScientist(cs))
     {
         cout << "---------------------------------------------------";
         cout << "\nComputerScientist has been added to the database!\n";
@@ -501,8 +498,7 @@ void UI::AddComputer()
     }
     ca.setBuilt(built);
 
-    domain add;
-    if(add.AddComputer(ca))
+    if(d.AddComputer(ca))
     {
         cout << "---------------------------------------------------";
         cout << "\nComputer has been added to the database!\n";
@@ -592,8 +588,7 @@ bool UI::ValidNumber(string &temp)
 
 void UI::DeleteMenu()
 {
-    domain del;
-    cin.ignore(numeric_limits<streamsize>::max(),'\n');
+    cin.sync();
     cout << "\n#######-----------      Delete Menu     -----------#######\n";
     cout << "1.\t\tMark Scientist for Deletion\n";
     cout << "2.\t\tUn-Mark Scientist for Deletion\n";
@@ -615,7 +610,7 @@ void UI::DeleteMenu()
             int stoitemp = 0;
             string tmp;
             bool valid = false;
-            vector<ComputerScientist> temp = del.GetComputerScientist("id",0);
+            vector<ComputerScientist> temp = d.GetComputerScientist("id",0);
             scientistTable(temp);
             do
             {
@@ -644,7 +639,7 @@ void UI::DeleteMenu()
                 }
             }while(!valid);
 
-            if(del.MarkDeleted("scientists",stoitemp))
+            if(d.MarkDeleted("scientists",stoitemp))
             {
                 cout << "---------------------------------------------------";
                 cout << "\nMarked ID: " << stoitemp << " for deletion\n";
@@ -666,7 +661,7 @@ void UI::DeleteMenu()
             int stoitemp;
             string tmp;
             bool valid = false;
-            vector<ComputerScientist> temp = del.GetDeletedCS();
+            vector<ComputerScientist> temp = d.GetDeletedCS();
             scientistTable(temp);
             do
             {
@@ -695,7 +690,7 @@ void UI::DeleteMenu()
                 }
             }while(!valid);
 
-            if(del.UnmarkDeleted("scientists",stoitemp))
+            if(d.UnmarkDeleted("scientists",stoitemp))
             {
                 cout << "---------------------------------------------------";
                 cout << "\nUn-Marked ID: " << stoitemp << " for deletion\n";
@@ -717,7 +712,7 @@ void UI::DeleteMenu()
             int stoitemp;
             string tmp;
             bool valid = false;
-            vector<computersabstract> temp = del.GetComputers("id",0);
+            vector<computersabstract> temp = d.GetComputers("id",0);
             computerTable(temp);
             do
             {
@@ -746,7 +741,7 @@ void UI::DeleteMenu()
                 }
             }while(!valid);
 
-            if(del.MarkDeleted("computers",stoitemp))
+            if(d.MarkDeleted("computers",stoitemp))
             {
                 cout << "---------------------------------------------------";
                 cout << "\nMarked ID: " << stoitemp << " for deletion\n";
@@ -768,7 +763,7 @@ void UI::DeleteMenu()
             int stoitemp;
             string tmp;
             bool valid = false;
-            vector<computersabstract> temp = del.GetDeletedComputers();
+            vector<computersabstract> temp = d.GetDeletedComputers();
             computerTable(temp);
             do
             {
@@ -797,7 +792,7 @@ void UI::DeleteMenu()
                 }
             }while(!valid);
 
-            if(del.UnmarkDeleted("computers",stoitemp))
+            if(d.UnmarkDeleted("computers",stoitemp))
             {
                 cout << "---------------------------------------------------";
                 cout << "\nUn-Marked ID: " << stoitemp << " for deletion\n";
@@ -816,7 +811,7 @@ void UI::DeleteMenu()
         }
         case '5':
         {
-            vector<ComputerScientist> temp = del.GetDeletedCS();
+            vector<ComputerScientist> temp = d.GetDeletedCS();
             scientistTable(temp);
             cout << "---------------------------------------------------";
             cout << "\nPress ENTER to continue";
@@ -825,7 +820,7 @@ void UI::DeleteMenu()
         }
         case '6':
         {
-            vector<computersabstract> temp = del.GetDeletedComputers();
+            vector<computersabstract> temp = d.GetDeletedComputers();
             computerTable(temp);
             cout << "---------------------------------------------------";
             cout << "\nPress ENTER to continue";
@@ -834,9 +829,7 @@ void UI::DeleteMenu()
         }
         case '7':
         {
-            domain del;
-
-            if(del.DeleteAllMarked())
+            if(d.DeleteAllMarked())
             {
                 cout << "\n######  DELETING ALL MARKED  ######\n";
             }
@@ -883,10 +876,9 @@ bool UI::ValidComputerId(vector<computersabstract>& tmp, const int& id)
 void UI::LinkMenu()
 {
     cin.sync();
-    domain inner;
-    vector<ComputerScientist> cstemp = inner.GetCSInnerJoin();
-    vector<computersabstract> computertemp = inner.GetComputerInnerJoin();
-    vector<int> rowid = inner.GetRowID();
+    vector<ComputerScientist> cstemp = d.GetCSInnerJoin();
+    vector<computersabstract> computertemp = d.GetComputerInnerJoin();
+    vector<int> rowid = d.GetRowID();
 
     cout << "\n#######-----------      Linking Menu     -----------#######\n";
     cout << "1.\tView Linked ComputerScientists & computers.\n";
@@ -939,7 +931,7 @@ void UI::LinkMenu()
                 }
                 count++;
             }while(!valid);
-            if(inner.DeleteLink(choice))
+            if(d.DeleteLink(choice))
             {
                 cout << "---------------------------------------------------";
                 cout << "\nDelete successful\n";
@@ -957,7 +949,7 @@ void UI::LinkMenu()
             string str;
             int cs;
             int comp;
-            vector<ComputerScientist> temp = inner.GetComputerScientist("id",0);
+            vector<ComputerScientist> temp = d.GetComputerScientist("id",0);
             bool valid = false;
             scientistTable(temp);
             do
@@ -986,7 +978,7 @@ void UI::LinkMenu()
                     cs = 0;
                 }
             }while(!valid);
-            vector<computersabstract> tmp = inner.GetComputers("id",0);
+            vector<computersabstract> tmp = d.GetComputers("id",0);
             valid = false;
             computerTable(tmp);
             do
@@ -1015,7 +1007,7 @@ void UI::LinkMenu()
                     comp = 0;
                 }
             }while(!valid);
-            if(inner.AddLink(cs,comp))
+            if(d.AddLink(cs,comp))
             {
                 cout << "---------------------------------------------------";
                 cout << "\n\nSuccessfully linked ComputerScientist & Computer.\n";
@@ -1036,8 +1028,7 @@ void UI::LinkMenu()
 
 void UI::SearchMenu()
 {
-    domain search;
-    cin.ignore(numeric_limits<streamsize>::max(),'\n');
+    cin.sync();
     cout << "\n#######-----------      Search Menu     -----------#######\n";
     cout << "1.\t\tSearch for a Scientist\n";
     cout << "2.\t\tSearch for a Scientist *ID* only\n";
@@ -1046,7 +1037,7 @@ void UI::SearchMenu()
     cout << "0.\t\tMAIN MENU\n";
     cout << "choice: ";
     char choice = cin.get();
-    cin.ignore(numeric_limits<streamsize>::max(),'\n');
+    cin.sync();
 
 
     while(true)
@@ -1056,7 +1047,7 @@ void UI::SearchMenu()
         case '1':
         {
 
-            vector<ComputerScientist> list = search.GetComputerScientist("id",0);
+            vector<ComputerScientist> list = d.GetComputerScientist("id",0);
             string str;
             bool valid = false;
             do{
@@ -1079,7 +1070,7 @@ void UI::SearchMenu()
             }while(!valid);
 
             QString newstr = QString::fromUtf8(str.c_str());
-            vector<ComputerScientist> tmp = search.SearchCS(newstr);
+            vector<ComputerScientist> tmp = d.SearchCS(newstr);
             scientistTable(tmp);
             cout << "---------------------------------------------------";
             cout << "\nPress ENTER to go back to SEARCH MENU.";
@@ -1090,7 +1081,7 @@ void UI::SearchMenu()
         case '2':
         {
             int stoitemp = 0;
-            vector<ComputerScientist> list = search.GetComputerScientist("id",0);
+            vector<ComputerScientist> list = d.GetComputerScientist("id",0);
             string str;
             bool valid = false;
             do{
@@ -1127,7 +1118,7 @@ void UI::SearchMenu()
             }while(!valid);
             //Need to be able to show only nr. 1, not all with 1 in them...
 
-            vector<ComputerScientist> tmp = search.SearchCSID(stoitemp);
+            vector<ComputerScientist> tmp = d.SearchCSID(stoitemp);
             scientistTable(tmp);
             cout << "---------------------------------------------------";
             cout << "\nPress ENTER to go back to SEARCH MENU.";
@@ -1137,7 +1128,7 @@ void UI::SearchMenu()
         }
         case '3':
         {
-            vector<computersabstract> list = search.GetComputers("id",0);
+            vector<computersabstract> list = d.GetComputers("id",0);
             string str;
             bool valid = false;
             do{
@@ -1160,7 +1151,7 @@ void UI::SearchMenu()
             }while(!valid);
 
             QString newstr = QString::fromUtf8(str.c_str());
-            vector<computersabstract> tmp = search.SearchComputer(newstr);
+            vector<computersabstract> tmp = d.SearchComputer(newstr);
             computerTable(tmp);
             cout << "---------------------------------------------------";
             cout << "\nPress ENTER to go back to SEARCH MENU.";
@@ -1171,7 +1162,7 @@ void UI::SearchMenu()
         case '4':
         {
             int stoitemp = 0;
-            vector<computersabstract> list = search.GetComputers("id",0);
+            vector<computersabstract> list = d.GetComputers("id",0);
             string str;
             bool valid = false;
             do{
@@ -1208,7 +1199,7 @@ void UI::SearchMenu()
             }while(!valid);
             //Need to be able to show only nr. 1, not all with 1 in them...
 
-            vector<computersabstract> tmp = search.SearchComputerID(stoitemp);
+            vector<computersabstract> tmp = d.SearchComputerID(stoitemp);
 
             computerTable(tmp);
 
@@ -1222,4 +1213,152 @@ void UI::SearchMenu()
         default: {cout << "Invalid choice\n---------------------------------------------------\nPress ENTER for Search Menu!"; SearchMenu(); break;}
         }
     }
+}
+
+void UI::EditCS()
+{
+    string str;
+    int id = 0;
+    bool valid = false;
+    vector<ComputerScientist> allcs = d.GetComputerScientist("id",0);
+    scientistTable(allcs);
+    do
+    {
+        cin.sync();
+        cout << "Enter the an ID to overwrite: ";
+        getline(cin,str);
+        if(ValidNumber(str))
+        {
+            id = stoi(str);
+            if(ValidCSId(allcs,id))
+            {
+                valid = true;
+            }
+            else
+            {
+                cout << "Error: not really an valid ID input is it?\n";
+            }
+        }
+        else
+        {
+            cout << "Error: not really an valid ID input is it?\n";
+        }
+    }while(!valid);
+
+    string tempfirst = "";
+    int bdaytemp = -1, dday = -1;
+    cout << "---------------------------------------------------";
+    cout << "\nTo edit the scientist please fill in \nall the fields.\n";
+
+    do{
+        cout << "---------------------------------------------------";
+        cout << "\nEnter First Name: ";
+        cin.sync();
+        getline(cin,tempfirst);
+        if(!CheckValidtyOfString(tempfirst))
+        {
+            cout << "---------------------------------------------------";
+            cout << "\nFound an error in your string\n";
+        }
+    }while(!CheckValidtyOfString(tempfirst));
+
+    tempfirst[0] = toupper(tempfirst[0]);
+    string  tempmid;
+
+    do{
+        cout << "---------------------------------------------------";
+        cout << "\nEnter Middle Name (Type NULL if it's empty): ";
+        cin.sync();
+        getline(cin,tempmid);
+        if(!CheckValidtyOfString(tempmid))
+        {
+            cout << "---------------------------------------------------";
+            cout << "\nFound an error in your string\n";
+        }
+    }while(!CheckValidtyOfString(tempmid));
+
+    Tolower(tempmid);
+    if(tempmid == "null")
+    {
+        tempmid.clear();
+    }
+    else
+    {
+        tempmid[0] = toupper(tempmid[0]);
+    }
+    string tmplast;
+
+    do{
+        cout << "---------------------------------------------------";
+        cout << "\n(You can enter a single space i.e von Neuman)\n";
+        cout << "---------------------------------------------------";
+        cout << "\nEnter Last Name: ";
+        cin.sync();
+        getline(cin,tmplast);
+        if(!CheckValidtyOfStringWithASingleSpace(tmplast))
+        {
+            cout << "---------------------------------------------------";
+            cout << "\nFound an error in your string\n";
+        }
+    }while(!CheckValidtyOfStringWithASingleSpace(tmplast));
+
+    tmplast[0] = toupper(tmplast[0]);
+    string tempgender;
+
+    do{
+        cout << "---------------------------------------------------";
+        cout << "\nEnter the Gender: ";
+        cin.sync();
+        getline(cin,tempgender);
+        Tolower(tempgender);
+        if(!CheckValidtyOfString(tempgender) || (tempgender != "male" && tempgender != "female"))
+        {
+            cout << "---------------------------------------------------";
+            cout << "\nFound an error in your string\n";
+        }
+    }while(!CheckValidtyOfString(tempgender) || (tempgender != "male" && tempgender != "female"));
+
+    cout << "---------------------------------------------------";
+    cout << "\nEnter the birth year of the Computerscientist: ";
+
+    cin.sync();
+    while(!(cin >> bdaytemp) || (bdaytemp < 0 || bdaytemp > 2015))
+    {
+        cin.clear();
+        cin.ignore(1);
+        cout << "---------------------------------------------------";
+        cout << "\nError: Expected integer OR value is below 0\n";
+        cout << "---------------------------------------------------";
+        cout << "\nEnter the birth year of the Computerscientist: ";
+    }
+
+    cout << "---------------------------------------------------";
+    cout << "\nEnter the death year of the Computerscientist (0 for null): ";
+    cin.sync();
+    while(!(cin >> dday) || (bdaytemp > dday || dday > 2015))
+    {
+        if(dday == 0)
+        {
+            break;
+        }
+        cin.clear();
+        cin.ignore(1);
+        cout << "---------------------------------------------------";
+        cout << "\nError Expected integer OR less than birth year\n";
+        cout << "---------------------------------------------------";
+        cout << "\nEnter the death year of the Computerscientist: ";
+    }
+
+    if(d.UpdateCS(QString::fromStdString(tempfirst),QString::fromStdString(tempmid),
+                  QString::fromStdString(tmplast),QString::fromStdString(tempgender),bdaytemp,dday,id))
+    {
+        cout << "---------------------------------------------------";
+        cout << "\nComputerScientist id: " << id << " has been edited!";
+    }
+    else
+    {
+        cout << "---------------------------------------------------";
+        cout << "\nAn unexpected error occurred Data has not been added";
+    }
+    MainMenu();
 }

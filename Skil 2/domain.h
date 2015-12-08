@@ -31,8 +31,8 @@ public:
     bool DeleteLink(const int& rowid);
     vector<int> GetRowID();
     bool AddLink(const int& scientists_id, const int& computers_id);
-   /* bool UpdateCS(const QString& tempfirst, const QString& tempmid, const QString& templast, const QString& tempgender, const int& bday, const int& dday, const int& id);
-    bool UpdateComputer(const QString &tempname, const int &year, const QString &type, const int &id);*/
+    bool UpdateCS(const QString& tempfirst, const QString& tempmid, const QString& templast, const QString& tempgender, const int& bday, const int& dday, const int& id);
+   /* bool UpdateComputer(const QString &tempname, const int &year, const QString &type, const int &id);*/
 };
 
 #endif // DOMAIN_H
