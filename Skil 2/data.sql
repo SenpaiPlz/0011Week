@@ -46,7 +46,7 @@ INSERT INTO "scientists" VALUES(9,'Mark','Elliot','Zuckerberg','male',1984,'',0)
 INSERT INTO "scientists" VALUES(10,'Alan',NULL,'Turing','male',1912,1954,0);
 INSERT INTO "scientists" VALUES(11,'Donald',NULL,'Knuth','male',1938,'',0);
 INSERT INTO "scientists" VALUES(12,'Tim',NULL,'Berners-Lee','male',1955,'',0);
-INSERT INTO "scientists" VALUES(13,'john',NULL,'von Neumann','male',1903,1957,0);
+INSERT INTO "scientists" VALUES(13,'John',NULL,'von Neumann','male',1903,1957,0);
 INSERT INTO "scientists" VALUES(14,'Larry',NULL,'Page','male',1973,'',0);
 INSERT INTO "scientists" VALUES(15,'Edsger','W.','Dijkstra','male',1930,2002,0);
 INSERT INTO "scientists" VALUES(16,'John',NULL,'Backus','male',1924,2007,0);
