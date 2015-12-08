@@ -9,11 +9,10 @@
 #include "domain.h"
 #include <cstdlib>
 #include <cctype>
-#include <algorithm>
-#include "sqlquerydata.h"
 
 class UI
 {
+    void linkTable(vector<ComputerScientist>& temp, vector<computersabstract>& tmp, vector<int> &rowid);
     void Tolower(string &temp);
     void SortScientistSwitches(const QString& tmp);
     void SortComputerSwitches(const QString& tmp);
@@ -25,6 +24,8 @@ class UI
     bool ValidComputerId(vector<computersabstract>& tmp, const int& id);
     void scientistTable(vector<ComputerScientist>& tmp);
     void computerTable(vector<computersabstract>& tmp);
+    vector<ComputerScientist> createCSLink();
+    vector<computersabstract> createComputerLink();
 public:
     UI();
     void InitialMenu();
@@ -32,9 +33,9 @@ public:
     void SortScientistMenu();
     void SortComputerMenu();
     void DeleteMenu();
+    void LinkMenu();
     void AddComputerScientist();
     void AddComputer();
-    void linkTable();
     void SearchMenu();
 
 };

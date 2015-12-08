@@ -92,3 +92,32 @@ vector<computersabstract> domain::SearchComputer(const QString& search)
     SQLQueryData seek;
     return seek.SearchComputer(search);
 }
+
+vector<ComputerScientist> domain::GetCSInnerJoin()
+{
+    SQLQueryData join;
+    return join.GetCSInnerJoin();
+}
+vector<computersabstract> domain::GetComputerInnerJoin()
+{
+    SQLQueryData join;
+    return join.GetComputerInnerJoin();
+}
+
+bool domain::DeleteLink(const int& rowid)
+{
+    SQLQueryData join;
+    return join.DeleteLink(rowid);
+}
+
+vector<int> domain::GetRowID()
+{
+    SQLQueryData data;
+    return data.GetRowID();
+}
+
+bool domain::AddLink(const int& scientists_id, const int& computers_id)
+{
+    SQLQueryData data;
+    return data.AddLink(scientists_id,computers_id);
+}

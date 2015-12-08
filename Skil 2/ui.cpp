@@ -23,14 +23,7 @@ void UI::scientistTable(vector<ComputerScientist>& tmp)
     {
         cout << left << "| " << setw(3) << tmp[i].getID() << "| " << setw(13)
              << tmp[i].getFirst() << "| " ;
-        if(tmp[i].getMid() != "NULL")
-        {
         cout << setw(12) << tmp[i].getMid();
-        }
-        else
-        {
-            cout << "            ";
-        }
         cout << "| " << setw(14) << tmp[i].getLast() << "| " << setw(7)
              << tmp[i].getGender() << "| " << setw(6) << tmp[i].getBday()
              << "| ";
@@ -53,7 +46,7 @@ void UI::computerTable(vector<computersabstract>& tmp)
                  << "Year" << "| " << setw(11) << "Type" << "| "
                  << setw(7) << "Built?" << "|"
                  << endl;
-        cout << "--------------------------------------------------------" << endl;
+        cout << "------------------------------------------------------------" << endl;
     //Input into table
     for(size_t i = 0; i < tmp.size(); i++)
     {
@@ -71,22 +64,20 @@ void UI::computerTable(vector<computersabstract>& tmp)
     }
 }
 
-void UI::linkTable()
+void UI::linkTable(vector<ComputerScientist>& temp, vector<computersabstract>& tmp, vector<int>& rowid)
 {
-    //Add in vector or whatever you want to make it your own
-    string tmp;
     //Header for table
     cout << left << "| " << setw(30) << "Computer Scientist" << "| "
          << setw(4) << "ID" << "| " << setw(4)
-         << "ID" << "| " << setw(20) << "Computer" << "|"
+         << "ID" << "| " << setw(20) << "Computer" << "| RowID"
          << endl;
-    cout << "-------------------------------------------------------------------" << endl;
+    cout << "-----------------------------------------------------------------------" << endl;
     //Input into table
     for(size_t i = 0; i < tmp.size(); i++)
     {
-        cout << left << "| " << setw(30) << i << "| "
-             << setw(4) << i << "| " << setw(4) << i
-             << "| " << setw(20) << i << "|"
+        cout << left << "| "  << setw(30) <<  (temp[i].getFirst() + " " + temp[i].getMid() + " " + temp[i].getLast()) << "| "
+             << setw(4) << temp[i].getID() << "| " << setw(4) << tmp[i].getID()
+             << "| " << setw(20) << tmp[i].getName() << "| " << rowid[i]
              << endl;
     }
 }
@@ -131,8 +122,8 @@ void UI::MainMenu()
         case '4': {break;}
         case '5': {AddComputer(); break;}
         case '6': {break;}
-        case '7': {break;}
-        case '8': {SearchMenu(); break;}
+        case '7': {LinkMenu(); break;}
+        case '8': {break;}
         case '9': {DeleteMenu(); break;}
         case '0': {exit(0); break;}
         default: break;
@@ -327,7 +318,6 @@ void UI::AddComputerScientist()
     Tolower(temp);
     if(temp == "null")
     {
-        temp = "NULL";
         temp.clear();
     }
     else
@@ -368,7 +358,7 @@ void UI::AddComputerScientist()
     cout << "Enter the birth year of the Computerscientist: ";
 
     cin.sync();
-    while(!(cin >> bdaytemp) || bdaytemp < 0)
+    while(!(cin >> bdaytemp) || (bdaytemp < 0 || bdaytemp > 2015))
     {
         cin.clear();
         cin.ignore(1);
@@ -381,7 +371,7 @@ void UI::AddComputerScientist()
 
     cout << "Enter the death year of the Computerscientist (0 for null): ";
     cin.sync();
-    while(!(cin >> dday) || bdaytemp > dday)
+    while(!(cin >> dday) || (bdaytemp > dday || dday > 2015))
     {
         if(dday == 0)
         {
@@ -519,7 +509,7 @@ bool UI::CheckValidtyOfStringPunct(string& tmp)
 {
     int count = 0;
     for(size_t i = 0; i < tmp.size(); i++)
-    {
+    {        
         if(tmp[i] == ' ')
         {
             count++;
@@ -557,6 +547,7 @@ void UI::DeleteMenu()
 {
     domain del;
     cin.ignore(numeric_limits<streamsize>::max(),'\n');
+    vector<ComputerScientist> temp;
     cout << "\n#######-----------      Delete Menu     -----------#######\n";
     cout << "1.\t\tMark Scientist for Deletion\n";
     cout << "2.\t\tUn-Mark Scientist for Deletion\n";
@@ -779,6 +770,7 @@ void UI::DeleteMenu()
     }
 }
 
+
 bool UI::ValidCSId(vector<ComputerScientist>& tmp, const int& id)
 {
     for(size_t i = 0; i < tmp.size(); i++)
@@ -802,6 +794,148 @@ bool UI::ValidComputerId(vector<computersabstract>& tmp, const int& id)
     }
     return false;
 }
+
+void UI::LinkMenu()
+{
+    cin.sync();
+    domain inner;
+    vector<ComputerScientist> cstemp = inner.GetCSInnerJoin();
+    vector<computersabstract> computertemp = inner.GetComputerInnerJoin();
+    vector<int> rowid = inner.GetRowID();
+
+    cout << "\n#######-----------      Linking Menu     -----------#######\n";
+    cout << "1.\tView Linked ComputerScientists & computers.\n";
+    cout << "2.\tDelete A link between Computerscientist & computer.\n";
+    cout << "3.\tAdd A Link between computerscientist & computer\n";
+    cout << "0.\tMAIN MENU\n\n";
+    cout << "choice: ";
+    while(true)
+    {
+        cin.sync();
+        char choice = cin.get();
+        switch(choice)
+        {
+        case '1':
+        {
+            linkTable(cstemp,computertemp,rowid);
+            LinkMenu();
+            break;
+        }
+        case '2':
+        {
+            string tmp;
+            int choice;
+            bool valid = false;
+            int count = 0;
+            linkTable(cstemp,computertemp,rowid);
+            do
+            {
+                valid = false;
+                if(count > 0)
+                {
+                    cout << "These are not the Row-ID's we are looking for\n";
+                }
+                cout << "\nEnter a id of a scientist to delete: ";
+                cin.sync();
+                getline(cin,tmp);
+                if(ValidNumber(tmp))
+                {
+                    choice = stoi(tmp);
+                    for(unsigned int i = 0; i < rowid.size(); i++)
+                    {
+                        if(choice == rowid[i])
+                        {
+                            valid = true;
+                        }
+                    }
+                }
+                count++;
+            }while(!valid);
+            if(inner.DeleteLink(choice))
+            {
+                cout << "Delete successful\n";
+            }
+            else
+            {
+                cout << "Something happened here I'm not sure what.\n";
+            }
+            LinkMenu();
+            break;
+        }
+        case '3':
+        {
+            string str;
+            int cs;
+            int comp;
+            vector<ComputerScientist> temp = inner.GetComputerScientist("id",0);
+            bool valid = false;
+            scientistTable(temp);
+            do
+            {
+                cout << "Enter an id to LINK: ";
+                cin.sync();
+                getline(cin,str);
+                if(ValidNumber(str))
+                {
+                    cs = stoi(str);
+                    if(!ValidCSId(temp,cs))
+                    {
+                        cout << "No computer matching that ID.\n";
+                    }
+                    else
+                    {
+                        valid = true;
+                    }
+                }
+                else
+                {
+                    cout << "Error: Unexpect input in baggage area\n";
+                    cs = 0;
+                }
+            }while(!valid);
+            vector<computersabstract> tmp = inner.GetComputers("id",0);
+            valid = false;
+            computerTable(tmp);
+            do
+            {
+                cout << "Enter an id to LINK: ";
+                cin.sync();
+                getline(cin,str);
+                if(ValidNumber(str))
+                {
+                    comp = stoi(str);
+                    if(!ValidComputerId(tmp,comp))
+                    {
+                        cout << "No computer matching that ID.\n";
+                    }
+                    else
+                    {
+                        valid = true;
+                    }
+                }
+                else
+                {
+                    cout << "Error: Unexpect input in baggage area\n";
+                    comp = 0;
+                }
+            }while(!valid);
+            if(inner.AddLink(cs,comp))
+            {
+                cout << "\n\nSuccessfully linked ComputerScientist & Computer.\n";
+            }
+            else
+            {
+                cout << "\n\nSomething Bad happened, probably!";
+            }
+            LinkMenu();
+            break;
+        }
+        case '0': {MainMenu(); break;}
+        default: {cout << "Invalid choice\n"; break;}
+        }
+    }
+}
+
 
 void UI::SearchMenu()
 {

@@ -320,32 +320,6 @@ vector<computersabstract> SQLQueryData::GetDeletedComputers()
     return returnvec;
 }
 
-vector<int> SQLQueryData::GetLinkID()
-{
-    //---Returns a vector where i = scientists_id and i+1 = computers_id ordered by rowid---//
-
-    SQLConnect database;
-    vector<int> returnvec;
-    database.ConnectToDB();
-    QSqlQuery query = database.GetQuery();
-
-    query.prepare("SELECT * FROM computers_scientists ORDER BY rowid");
-    query.exec();
-
-    while(query.next())
-    {
-        auto temp = query.value("scientists_id").toInt();
-        returnvec.push_back(temp);
-        temp = query.value("computers_id").toInt();
-        returnvec.push_back(temp);
-    }
-    returnvec.shrink_to_fit();
-
-    database.Disconnect();
-    query.clear();
-    return returnvec;
-}
-
 
 bool SQLQueryData::DeleteLink(const int& rowid)
 {
@@ -527,4 +501,64 @@ bool SQLQueryData::UpdateComputer(const QString& tempname,const int& year, const
     database.Disconnect();
     query.clear();
     return false;
+}
+
+
+vector<ComputerScientist> SQLQueryData::GetCSInnerJoin()
+{
+    SQLConnect database;
+    vector<ComputerScientist> science;
+    database.ConnectToDB();
+    QSqlQuery query = database.GetQuery();
+
+    query.prepare("SELECT * FROM scientists INNER JOIN computers_scientists ON scientists.id = computers_scientists.scientists_id");
+    query.exec();
+
+    FillcsVector(query,science);
+
+    database.Disconnect();
+    query.clear();
+
+    return science;
+}
+
+vector<computersabstract> SQLQueryData::GetComputerInnerJoin()
+{
+    SQLConnect database;
+    vector<computersabstract> comp;
+    database.ConnectToDB();
+    QSqlQuery query = database.GetQuery();
+
+    query.prepare("SELECT * FROM computers INNER JOIN computers_scientists ON computers.id = computers_scientists.computers_id");
+    query.exec();
+
+    FillcomputerVector(query,comp);
+
+    database.Disconnect();
+    query.clear();
+
+    return comp;
+}
+
+vector<int> SQLQueryData::GetRowID()
+{
+    SQLConnect database;
+    vector<int> temp;
+    database.ConnectToDB();
+    QSqlQuery query = database.GetQuery();
+
+    query.prepare("SELECT rowid FROM computers_scientists");
+    query.exec();
+
+    while(query.next())
+    {
+        int i = query.value("rowid").toInt();
+        temp.push_back(i);
+    }
+    temp.shrink_to_fit();
+
+    database.Disconnect();
+    query.clear();
+
+    return temp;
 }
