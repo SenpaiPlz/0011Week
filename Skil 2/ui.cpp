@@ -918,7 +918,7 @@ void UI::LinkMenu()
                 }
 
                 cout << "---------------------------------------------------";
-                cout << "\nEnter a ID of a scientist to delete: ";
+                cout << "\nEnter a ID of a row to delete: ";
                 cin.sync();
                 getline(cin,tmp);
                 if(ValidNumber(tmp))
