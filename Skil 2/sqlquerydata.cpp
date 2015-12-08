@@ -480,17 +480,18 @@ bool SQLQueryData::UpdateCS(const QString& tempfirst, const QString& tempmid, co
     return false;
 }
 
-bool SQLQueryData::UpdateComputer(const QString& tempname,const int& year, const QString& type, const int& id)
+bool SQLQueryData::UpdateComputer(const QString& tempname,const int& year, const QString& type, const bool& built, const int& id)
 {
     SQLConnect database;
     database.ConnectToDB();
     QSqlQuery query = database.GetQuery();
 
-    query.prepare("UPDATE computers SET name =?, year=?, type=? WHERE id=?");
+    query.prepare("UPDATE computers SET name =?, year=?, type=?, built=? WHERE id=?");
     query.bindValue(0,tempname);
     query.bindValue(1,year);
     query.bindValue(2,type);
-    query.bindValue(3,id);
+    query.bindValue(3,built);
+    query.bindValue(4,id);
 
     if(query.exec())
     {

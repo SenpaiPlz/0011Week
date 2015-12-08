@@ -12,7 +12,6 @@
 
 class UI
 {
-    domain d;
     void linkTable(vector<ComputerScientist>& temp, vector<computersabstract>& tmp, vector<int> &rowid);
     void Tolower(string &temp);
     void SortScientistSwitches(const QString& tmp);
@@ -38,6 +37,7 @@ public:
     void AddComputerScientist();
     void AddComputer();
     void SearchMenu();
+    void EditComputer();
     void EditCS();
 
 };

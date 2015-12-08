@@ -127,3 +127,9 @@ bool domain::UpdateCS(const QString& tempfirst, const QString& tempmid, const QS
     SQLQueryData data;
     return data.UpdateCS(tempfirst,tempmid,templast,tempgender,bday,dday,id);
 }
+
+bool domain::UpdateComputer(const QString &tempname, const int &year, const QString &type, const bool& built, const int &id)
+{
+    SQLQueryData update;
+    return update.UpdateComputer(tempname,year,type,built,id);
+}
