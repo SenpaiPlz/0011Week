@@ -293,7 +293,7 @@ vector<ComputerScientist> SQLQueryData::GetDeletedCS()
     database.ConnectToDB();
     QSqlQuery query = database.GetQuery();
 
-    query.prepare("SELECT * FROM scientists WHERE deleted = 1 ORDER BY first_name");
+    query.prepare("SELECT * FROM scientists WHERE deleted = 1 ORDER BY id");
     query.exec();
 
     FillcsVector(query,returnvec);
@@ -310,7 +310,7 @@ vector<computersabstract> SQLQueryData::GetDeletedComputers()
     database.ConnectToDB();
     QSqlQuery query = database.GetQuery();
 
-    query.prepare("SELECT * FROM computers WHERE deleted = 1 ORDER BY name");
+    query.prepare("SELECT * FROM computers WHERE deleted = 1 ORDER BY id");
     query.exec();
 
     FillcomputerVector(query,returnvec);

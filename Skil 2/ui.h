@@ -20,16 +20,21 @@ class UI
     bool CheckValidtyOfString(string& tmp);
     bool CheckValidtyOfStringPunct(string& tmp);
     bool CheckValidtyOfStringWithASingleSpace(string& tmp);
+    bool ValidNumber(string &temp);
+    bool ValidCSId(vector<ComputerScientist>& tmp, const int& id);
+    bool ValidComputerId(vector<computersabstract>& tmp, const int& id);
+    void scientistTable(vector<ComputerScientist>& tmp);
+    void computerTable(vector<computersabstract>& tmp);
 public:
     UI();
     void InitialMenu();
     void MainMenu();
     void SortScientistMenu();
     void SortComputerMenu();
+    void DeleteMenu();
     void AddComputerScientist();
     void AddComputer();
-    void scientistTable(vector<ComputerScientist>& tmp);
-    void computerTable(vector<computersabstract>& tmp);
+
 };
 
 #endif // SCIENTISTUI_H

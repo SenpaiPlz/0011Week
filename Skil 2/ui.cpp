@@ -113,7 +113,7 @@ void UI::MainMenu()
         case '6': {break;}
         case '7': {break;}
         case '8': {break;}
-        case '9': {break;}
+        case '9': {DeleteMenu(); break;}
         case '0': {exit(0); break;}
         default: break;
         }
@@ -352,7 +352,7 @@ void UI::AddComputerScientist()
     {
         cin.clear();
         cin.ignore(1);
-        cout << "Error Expected integer OR below 0\n";
+        cout << "Error: Expected integer OR value is below 0\n";
         cout << "Enter the birth year of the Computerscientist: ";
     }
 
@@ -414,7 +414,7 @@ void UI::AddComputer()
     while(!(cin >> yeartemp) || yeartemp < 0){
         cin.clear();
         cin.ignore(1);
-        cout << "Error Expected integer OR below 0\n";
+        cout << "Error Expected integer OR value is below 0\n";
         cout << "Enter year of discovery: ";
     }
     ca.setYear(yeartemp);
@@ -519,4 +519,267 @@ void UI::Tolower(string &temp)
     {
         temp[i] = tolower(temp[i]);
     }
+}
+
+bool UI::ValidNumber(string &temp)
+{
+    for(unsigned int i = 0; i < temp.size(); i++)
+    {
+        if(!isdigit(temp[i]))
+        {
+            return false;
+        }
+    }
+    return !temp.empty();
+}
+
+void UI::DeleteMenu()
+{
+    domain del;
+    cin.ignore(numeric_limits<streamsize>::max(),'\n');
+    vector<ComputerScientist> temp;
+    cout << "\n#######-----------      Delete Menu     -----------#######\n";
+    cout << "1.\t\tMark Scientist for Deletion\n";
+    cout << "2.\t\tUn-Mark Scientist for Deletion\n";
+    cout << "3.\t\tMark Computer for Deletion\n";
+    cout << "4.\t\tUn-Mark Computer for Deletion\n";
+    cout << "5.\t\tView Scientists Marked for Deletion\n";
+    cout << "6.\t\tView Computers Marked for Deletion\n";
+    cout << "7.\t\tDelete all marked items! #WARNING#\n";
+    cout << "0.\t\tMAIN MENU\n\n";
+    cout << "choice: ";
+    while(true)
+    {
+        char choice = cin.get();
+        cin.ignore(numeric_limits<streamsize>::max(),'\n');
+        switch(choice)
+        {
+        case '1':
+        {
+            int stoitemp = 0;
+            string tmp;
+            bool valid = false;
+            vector<ComputerScientist> temp = del.GetComputerScientist("id",0);
+            scientistTable(temp);
+            do
+            {
+                cout << "Enter an id to Mark: ";
+                cin.sync();
+                getline(cin,tmp);
+                if(ValidNumber(tmp))
+                {
+                    stoitemp = stoi(tmp);
+                    if(!ValidCSId(temp,stoitemp))
+                    {
+                        cout << "No scientist matching that ID.\n";
+                    }
+                    else
+                    {
+                        valid = true;
+                    }
+                }
+                else
+                {
+                    cout << "Error: Unexpect input in baggage area\n";
+                    stoitemp = 0;
+                }
+            }while(!valid);
+
+            if(del.MarkDeleted("scientists",stoitemp))
+            {
+                cout << "\nMarked ID: " << stoitemp << " for deletion";
+            }
+            else
+            {
+                cout << "\nERROR: something went wrong here.";
+            }
+            DeleteMenu();
+            break;
+        }
+        case '2':
+        {
+            int stoitemp;
+            string tmp;
+            bool valid = false;
+            vector<ComputerScientist> temp = del.GetDeletedCS();
+            scientistTable(temp);
+            do
+            {
+                cout << "Enter an id to Un-Mark: ";
+                cin.sync();
+                getline(cin,tmp);
+                if(ValidNumber(tmp))
+                {
+                    stoitemp = stoi(tmp);
+                    if(!ValidCSId(temp,stoitemp))
+                    {
+                        cout << "No scientist matching that ID.\n";
+                    }
+                    else
+                    {
+                        valid = true;
+                    }
+                }
+                else
+                {
+                    cout << "Error: Unexpect input in baggage area\n";
+                    stoitemp = 0;
+                }
+            }while(!valid);
+
+            if(del.UnmarkDeleted("scientists",stoitemp))
+            {
+                cout << "\nUn-Marked ID: " << stoitemp << " for deletion";
+            }
+            else
+            {
+                cout << "\nERROR: something went wrong here.";
+            }
+            DeleteMenu();
+            break;
+        }
+        case '3':
+        {
+            int stoitemp;
+            string tmp;
+            bool valid = false;
+            vector<computersabstract> temp = del.GetComputers("id",0);
+            computerTable(temp);
+            do
+            {
+                cout << "Enter an id to Mark: ";
+                cin.sync();
+                getline(cin,tmp);
+                if(ValidNumber(tmp))
+                {
+                    stoitemp = stoi(tmp);
+                    if(!ValidComputerId(temp,stoitemp))
+                    {
+                        cout << "No computer matching that ID.\n";
+                    }
+                    else
+                    {
+                        valid = true;
+                    }
+                }
+                else
+                {
+                    cout << "Error: Unexpect input in baggage area\n";
+                    stoitemp = 0;
+                }
+            }while(!valid);
+
+            if(del.MarkDeleted("computers",stoitemp))
+            {
+                cout << "\nMarked ID: " << stoitemp << " for deletion";
+            }
+            else
+            {
+                cout << "\nERROR: something went wrong here.";
+            }
+            DeleteMenu();
+            break;
+        }
+        case '4':
+        {
+            int stoitemp;
+            string tmp;
+            bool valid = false;
+            vector<computersabstract> temp = del.GetDeletedComputers();
+            computerTable(temp);
+            do
+            {
+                cout << "Enter an id to Un-Mark: ";
+                cin.sync();
+                getline(cin,tmp);
+                if(ValidNumber(tmp))
+                {
+                    stoitemp = stoi(tmp);
+                    if(!ValidComputerId(temp,stoitemp))
+                    {
+                        cout << "No computer matching that ID.\n";
+                    }
+                    else
+                    {
+                        valid = true;
+                    }
+                }
+                else
+                {
+                    cout << "Error: Unexpect input in baggage area\n";
+                    stoitemp = 0;
+                }
+            }while(!valid);
+
+            if(del.UnmarkDeleted("computers",stoitemp))
+            {
+                cout << "\nUn-Marked ID: " << stoitemp << " for deletion";
+            }
+            else
+            {
+                cout << "\nERROR: something went wrong here.";
+            }
+            DeleteMenu();
+            break;
+        }
+        case '5':
+        {
+            vector<ComputerScientist> temp = del.GetDeletedCS();
+            scientistTable(temp);
+            cout << "\nPress Enter to continue";
+            DeleteMenu();
+            break;
+        }
+        case '6':
+        {
+            vector<computersabstract> temp = del.GetDeletedComputers();
+            computerTable(temp);
+            cout << "\nPress Enter to continue";
+            DeleteMenu();
+            break;
+        }
+        case '7':
+        {
+            domain del;
+
+            if(del.DeleteAllMarked())
+            {
+                cout << "\n######  DELETING ALL MARKED  ######\n";
+            }
+            else
+            {
+                cout << "Something went wrong\n";
+            }
+            cout << "\nPress Enter to continue";
+            DeleteMenu();
+            break;
+        }
+        case '0': {MainMenu(); break;}
+        default: {cout << "Invalid choice\n"; cin.sync(); break;}
+        }
+    }
+}
+
+bool UI::ValidCSId(vector<ComputerScientist>& tmp, const int& id)
+{
+    for(size_t i = 0; i < tmp.size(); i++)
+    {
+        if(tmp[i].getID() == id)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool UI::ValidComputerId(vector<computersabstract>& tmp, const int& id)
+{
+    for(size_t i = 0; i < tmp.size(); i++)
+    {
+        if(tmp[i].getID() == id)
+        {
+            return true;
+        }
+    }
+    return false;
 }

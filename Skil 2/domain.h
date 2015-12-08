@@ -17,12 +17,12 @@ public:
     vector<ComputerScientist> GetComputerScientist(const QString &str, bool desc);
     bool AddComputerScientist(ComputerScientist& input);
     bool AddComputer(computersabstract& input);
-    /*bool MarkDeleted(const QString &tab, const int& id);
+    bool MarkDeleted(const QString &tab, const int& id);
     bool UnmarkDeleted(const QString& tab, const int& id);
     bool DeleteAllMarked();
     vector<ComputerScientist> GetDeletedCS();
     vector<computersabstract> GetDeletedComputers();
-    vector<int> GetLinkID();
+    /*vector<int> GetLinkID();
     bool DeleteLink(const int& rowid);
     bool AddLink(const int& scientists_id, const int& computers_id);
     vector<ComputerScientist> SearchCS(const QString& search);
