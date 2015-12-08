@@ -71,6 +71,26 @@ void UI::computerTable(vector<computersabstract>& tmp)
     }
 }
 
+void UI::linkTable()
+{
+    //Add in vector or whatever you want to make it your own
+    string tmp;
+    //Header for table
+    cout << left << "| " << setw(30) << "Computer Scientist" << "| "
+         << setw(4) << "ID" << "| " << setw(4)
+         << "ID" << "| " << setw(20) << "Computer" << "|"
+         << endl;
+    cout << "-----------------------------------------------------------------------------" << endl;
+    //Input into table
+    for(size_t i = 0; i < tmp.size(); i++)
+    {
+        cout << left << "| " << setw(30) << i << "| "
+             << setw(4) << i << "| " << setw(4) << i
+             << "| " << setw(20) << i << "|"
+             << endl;
+    }
+}
+
 void UI::InitialMenu()
 {
     cout << "\t  Y88b   d88P       888b     d888        d8888  .d8888b.  \n";
@@ -499,7 +519,7 @@ bool UI::CheckValidtyOfStringPunct(string& tmp)
 {
     int count = 0;
     for(size_t i = 0; i < tmp.size(); i++)
-    {        
+    {
         if(tmp[i] == ' ')
         {
             count++;
@@ -782,4 +802,10 @@ bool UI::ValidComputerId(vector<computersabstract>& tmp, const int& id)
         }
     }
     return false;
+}
+
+void UI::SearchComputerScientist()
+{
+    cout << "\n#######-----------      Search Menu     -----------#######\n";
+    cout << "1. ";
 }

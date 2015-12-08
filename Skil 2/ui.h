@@ -34,6 +34,8 @@ public:
     void DeleteMenu();
     void AddComputerScientist();
     void AddComputer();
+    void linkTable();
+    void SearchComputerScientist();
 
 };
 
