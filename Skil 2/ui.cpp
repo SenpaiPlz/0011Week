@@ -94,7 +94,7 @@ void UI::InitialMenu()
     cout << "\t  d88P   Y88b       888       888 d88P     888  \"Y8888P\n\n";
     cout << "\t    ~~The super cool Scientist&Computer SQL Program~~\n\n";
     cout << "\t    << This program helps you learn more about the >>\n"
-            "\t    <<    amazing Computer Scientist and the       >>\n"
+            "\t    <<    amazing Computer Scientists and the       >>\n"
             "\t    <<  Computers they built that have changed the >>\n"
             "\t    <<  world as we know it with their inventions. >>\n";
 
