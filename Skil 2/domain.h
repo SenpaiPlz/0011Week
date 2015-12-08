@@ -22,13 +22,13 @@ public:
     bool DeleteAllMarked();
     vector<ComputerScientist> GetDeletedCS();
     vector<computersabstract> GetDeletedComputers();
-    /*vector<int> GetLinkID();
-    bool DeleteLink(const int& rowid);
-    bool AddLink(const int& scientists_id, const int& computers_id);
     vector<ComputerScientist> SearchCS(const QString& search);
     vector<ComputerScientist> SearchCSID(const int& search);
     vector<computersabstract> SearchComputerID(const int& search);
     vector<computersabstract> SearchComputer(const QString& search);
+    /*vector<int> GetLinkID();
+    bool DeleteLink(const int& rowid);
+    bool AddLink(const int& scientists_id, const int& computers_id);
     bool UpdateCS(const QString& tempfirst, const QString& tempmid, const QString& templast, const QString& tempgender, const int& bday, const int& dday, const int& id);
     bool UpdateComputer(const QString &tempname, const int &year, const QString &type, const int &id);*/
 };

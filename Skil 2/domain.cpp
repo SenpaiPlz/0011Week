@@ -68,3 +68,27 @@ vector<computersabstract> domain::GetDeletedComputers()
     SQLQueryData tmp;
     return tmp.GetDeletedComputers();
 }
+
+vector<ComputerScientist> domain::SearchCS(const QString& search)
+{
+    SQLQueryData seek;
+    return seek.SearchCS(search);
+}
+
+vector<ComputerScientist> domain::SearchCSID(const int& search)
+{
+    SQLQueryData seek;
+    return seek.SearchCSID(search);
+}
+
+vector<computersabstract> domain::SearchComputerID(const int& search)
+{
+    SQLQueryData seek;
+    return seek.SearchComputerID(search);
+}
+
+vector<computersabstract> domain::SearchComputer(const QString& search)
+{
+    SQLQueryData seek;
+    return seek.SearchComputer(search);
+}

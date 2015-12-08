@@ -53,7 +53,7 @@ void UI::computerTable(vector<computersabstract>& tmp)
                  << "Year" << "| " << setw(11) << "Type" << "| "
                  << setw(7) << "Built?" << "|"
                  << endl;
-        cout << "------------------------------------------------------------" << endl;
+        cout << "--------------------------------------------------------" << endl;
     //Input into table
     for(size_t i = 0; i < tmp.size(); i++)
     {
@@ -132,7 +132,7 @@ void UI::MainMenu()
         case '5': {AddComputer(); break;}
         case '6': {break;}
         case '7': {break;}
-        case '8': {break;}
+        case '8': {SearchMenu(); break;}
         case '9': {DeleteMenu(); break;}
         case '0': {exit(0); break;}
         default: break;
@@ -557,7 +557,6 @@ void UI::DeleteMenu()
 {
     domain del;
     cin.ignore(numeric_limits<streamsize>::max(),'\n');
-    vector<ComputerScientist> temp;
     cout << "\n#######-----------      Delete Menu     -----------#######\n";
     cout << "1.\t\tMark Scientist for Deletion\n";
     cout << "2.\t\tUn-Mark Scientist for Deletion\n";
@@ -804,8 +803,121 @@ bool UI::ValidComputerId(vector<computersabstract>& tmp, const int& id)
     return false;
 }
 
-void UI::SearchComputerScientist()
+void UI::SearchMenu()
 {
+    domain search;
+    cin.ignore(numeric_limits<streamsize>::max(),'\n');
     cout << "\n#######-----------      Search Menu     -----------#######\n";
-    cout << "1. ";
+    cout << "1.\t\tSearch for a Scientist\n";
+    cout << "2.\t\tSearch for a Scientist *ID* only\n";
+    cout << "3.\t\tSearch for a Computer\n";
+    cout << "4.\t\tSearch for a Computer *ID* only\n";
+    cout << "0.\t\tMAIN MENU\n";
+    cout << "choice: ";
+    char choice = cin.get();
+    cin.ignore(numeric_limits<streamsize>::max(),'\n');
+
+
+    while(true)
+    {
+        switch(choice)
+        {
+        case '1':
+        {
+            vector<ComputerScientist> list = search.GetComputerScientist("id",0);
+            string str;
+            bool valid = false;
+            do{
+                cout << "\nEnter any info you have on your beloved Scientist: ";
+                getline(cin, str);
+                if(str.empty())
+                {
+                    scientistTable(list);
+                }
+                else
+                {
+                    valid = true;
+                }
+
+            }while(!valid);
+
+            cout << "\nEnter any info you have on your beloved Scientist: ";
+
+            SearchMenu();
+            break;
+        }
+        case '2':
+        {
+            vector<ComputerScientist> list = search.GetComputerScientist("id",0);
+            string str;
+            bool valid = false;
+            do{
+                cout << "\nEnter Scientist ID: ";
+                getline(cin, str);
+                if(str.empty())
+                {
+                    scientistTable(list);
+                }
+                else
+                {
+                    valid = true;
+                }
+
+            }while(!valid);
+
+            SearchMenu();
+            break;
+        }
+        case '3':
+        {
+            vector<computersabstract> list = search.GetComputers("id",0);
+            string str;
+            bool valid = false;
+            do{
+                cout << "\nEnter any info you have on a Computer: ";
+                getline(cin, str);
+                if(str.empty())
+                {
+                    computerTable(list);
+                }
+                else
+                {
+                    valid = true;
+                }
+
+            }while(!valid);
+
+
+
+            SearchMenu();
+            break;
+        }
+        case '4':
+        {
+            vector<computersabstract> list = search.GetComputers("id",0);
+            string str;
+            bool valid = false;
+            do{
+                cout << "\nEnter Computer ID: ";
+                getline(cin, str);
+                if(str.empty())
+                {
+                    computerTable(list);
+                }
+                else
+                {
+                    valid = true;
+                }
+
+            }while(!valid);
+
+
+
+            SearchMenu();
+            break;
+        }
+        case '0': {MainMenu(); break;}
+        default: {cout << "Invalid choice\nPress ENTER for Search Menu!"; SearchMenu(); break;}
+        }
+    }
 }

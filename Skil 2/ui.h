@@ -35,7 +35,7 @@ public:
     void AddComputerScientist();
     void AddComputer();
     void linkTable();
-    void SearchComputerScientist();
+    void SearchMenu();
 
 };
 
