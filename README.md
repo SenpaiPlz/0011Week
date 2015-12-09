@@ -5,7 +5,7 @@ Skil fyrir verklegt námskeið í HR vetur 2015;
 Bugfixes for Skil 1.
 -Search currently implemented with >> operator, should be getline. Fix will come after code is graded.
 
-Skil 3
+**Skil 3**
 
 Í þessari útgáfu á að skrifa gluggaforrit í Qt.
 
