@@ -8,6 +8,7 @@ computersabstract::computersabstract()
 //---------------  Do we get Set bonuses?  ---------------//
 void computersabstract::setID(const int &tmp)
 {
+    //allows us to set id once, and only once;
     if(id == -42)
         id = tmp;
 }

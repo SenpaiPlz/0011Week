@@ -5,6 +5,7 @@
 #include <string>
 #include "computerscientist.h"
 #include "computersabstract.h"
+#include "helper.h"
 #include <iomanip>
 #include "domain.h"
 #include <cstdlib>
@@ -12,22 +13,20 @@
 
 class UI
 {
+    //helper + domain class
+    domain d;
+    helper h;
+
+    //tables
     void linkTable(vector<ComputerScientist>& temp, vector<computersabstract>& tmp, vector<int> &rowid);
-    void Tolower(string &temp);
-    void SortScientistSwitches(const QString& tmp);
-    void SortComputerSwitches(const QString& tmp);
-    bool CheckValidtyOfString(string& tmp);
-    bool CheckValidtyOfStringPunct(string& tmp);
-    bool CheckValidtyOfStringWithASingleSpace(string& tmp);
-    bool ValidNumber(string &temp);
-    bool ValidCSId(vector<ComputerScientist>& tmp, const int& id);
-    bool ValidComputerId(vector<computersabstract>& tmp, const int& id);
     void scientistTable(vector<ComputerScientist>& tmp);
     void computerTable(vector<computersabstract>& tmp);
-    vector<ComputerScientist> createCSLink();
-    vector<computersabstract> createComputerLink();
-public:
-    UI();
+
+    //switch cases for sort
+    void SortScientistSwitches(const QString& tmp);
+    void SortComputerSwitches(const QString& tmp);
+
+    //All UI menus
     void InitialMenu();
     void MainMenu();
     void SortScientistMenu();
@@ -39,6 +38,9 @@ public:
     void SearchMenu();
     void EditComputer();
     void EditCS();
+public:
+    UI();
+
 
 };
 

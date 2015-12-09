@@ -54,7 +54,7 @@ public:
 
     //        EDIT FUNCTIONS        //
     bool UpdateCS(const QString& tempfirst, const QString& tempmid, const QString& templast, const QString& tempgender, const int& bday, const int& dday, const int& id);
-    bool UpdateComputer(const QString &tempname, const int &year, const QString &type, const bool& built, const int &id);
+    bool UpdateComputer(const QString &tempname, const int &year, const QString &type, const bool &built, const int &id);
 };
 
 #endif // SQLQUERYDATA_H
