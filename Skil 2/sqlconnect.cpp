@@ -7,10 +7,15 @@ SQLConnect::SQLConnect()
 
 }
 
+//Use this to connect after initial connection to avoid
+//connection name duplicate errors.
+
 void SQLConnect::ConnectToDB()
 {
     db = QSqlDatabase::database();
 }
+
+//Establishes initial connection
 
 void SQLConnect::Connect()
 {
@@ -73,6 +78,8 @@ void SQLConnect::TranslateSQLFile()
     }
 }
 
+//returns a query object
+
 QSqlQuery SQLConnect::GetQuery()
 {
     if(!db.isOpen())
@@ -82,9 +89,3 @@ QSqlQuery SQLConnect::GetQuery()
     QSqlQuery query(db);
     return query;
 }
-/*
-QString SQLConnect::GetConnectionName()
-{
-    return db.connectionName();
-}
-*/

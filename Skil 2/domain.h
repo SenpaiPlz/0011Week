@@ -11,6 +11,7 @@
 class domain
 {
 public:
+    //all this class does is pass data to the UI.
     domain();
     void connect();
     vector<computersabstract> GetComputers(const QString &str, bool desc);

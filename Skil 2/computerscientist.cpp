@@ -11,6 +11,7 @@ ComputerScientist::ComputerScientist()
 //---------------  Do we get Set bonuses?  ---------------//
 void ComputerScientist::setID(const int &tmp)
 {
+    //allows us to set id once, and only once;
     if(id == -1337)
     {
         id = tmp;

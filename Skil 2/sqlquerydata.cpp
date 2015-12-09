@@ -12,6 +12,8 @@ void SQLQueryData::InitConnect()
     db.Connect();
 }
 
+//--------    SORTING FUNCTIONS    --------//
+
 vector<ComputerScientist> SQLQueryData::GetComputerScientist(const QString& str,bool desc)
 {
     //Create objects
@@ -114,6 +116,10 @@ vector<computersabstract> SQLQueryData::GetComputers(const QString& str, bool de
     return returnvec;
 }
 
+
+
+//--------    Helper Functions    --------//
+
 void SQLQueryData::FillcsVector(QSqlQuery& query, vector<ComputerScientist> &temp)
 {
     //Loop through and fill vector with ComputerScientists.
@@ -152,6 +158,10 @@ void SQLQueryData::FillcomputerVector(QSqlQuery& query, vector<computersabstract
     }
     temp.shrink_to_fit();
 }
+
+
+
+//--------    Adding functions    --------//
 
 bool SQLQueryData::AddComputerScientist(ComputerScientist& input)
 {
@@ -214,6 +224,10 @@ bool SQLQueryData::AddComputer(computersabstract& input)
     database.Disconnect();
     return false;
 }
+
+
+
+//--------    Deletion functions    --------//
 
 bool SQLQueryData::MarkDeleted(const QString& tab, const int& id)
 {
@@ -321,6 +335,10 @@ vector<computersabstract> SQLQueryData::GetDeletedComputers()
 }
 
 
+
+
+//--------    Linking functions    --------//
+
 bool SQLQueryData::DeleteLink(const int& rowid)
 {
     SQLConnect database;
@@ -339,6 +357,67 @@ bool SQLQueryData::DeleteLink(const int& rowid)
     query.clear();
     return false;
 }
+
+
+vector<ComputerScientist> SQLQueryData::GetCSInnerJoin()
+{
+    SQLConnect database;
+    vector<ComputerScientist> science;
+    database.ConnectToDB();
+    QSqlQuery query = database.GetQuery();
+
+    query.prepare("SELECT * FROM scientists INNER JOIN computers_scientists ON scientists.id = computers_scientists.scientists_id");
+    query.exec();
+
+    FillcsVector(query,science);
+
+    database.Disconnect();
+    query.clear();
+
+    return science;
+}
+
+vector<computersabstract> SQLQueryData::GetComputerInnerJoin()
+{
+    SQLConnect database;
+    vector<computersabstract> comp;
+    database.ConnectToDB();
+    QSqlQuery query = database.GetQuery();
+
+    query.prepare("SELECT * FROM computers INNER JOIN computers_scientists ON computers.id = computers_scientists.computers_id");
+    query.exec();
+
+    FillcomputerVector(query,comp);
+
+    database.Disconnect();
+    query.clear();
+
+    return comp;
+}
+
+vector<int> SQLQueryData::GetRowID()
+{
+    SQLConnect database;
+    vector<int> temp;
+    database.ConnectToDB();
+    QSqlQuery query = database.GetQuery();
+
+    query.prepare("SELECT rowid FROM computers_scientists");
+    query.exec();
+
+    while(query.next())
+    {
+        int i = query.value("rowid").toInt();
+        temp.push_back(i);
+    }
+    temp.shrink_to_fit();
+
+    database.Disconnect();
+    query.clear();
+
+    return temp;
+}
+
 
 bool SQLQueryData::AddLink(const int& scientists_id, const int& computers_id)
 {
@@ -359,6 +438,9 @@ bool SQLQueryData::AddLink(const int& scientists_id, const int& computers_id)
     query.clear();
     return false;
 }
+
+
+//--------    Searching functions    --------//
 
 vector<ComputerScientist> SQLQueryData::SearchCS(const QString& search)
 {
@@ -446,6 +528,10 @@ vector<computersabstract> SQLQueryData::SearchComputer(const QString& search)
     return returnvec;
 }
 
+
+
+//--------    Editing functions    --------//
+
 bool SQLQueryData::UpdateCS(const QString& tempfirst, const QString& tempmid, const QString& templast, const QString& tempgender, const int& bday, const int& dday, const int& id)
 {
 
@@ -504,62 +590,3 @@ bool SQLQueryData::UpdateComputer(const QString& tempname,const int& year, const
     return false;
 }
 
-
-vector<ComputerScientist> SQLQueryData::GetCSInnerJoin()
-{
-    SQLConnect database;
-    vector<ComputerScientist> science;
-    database.ConnectToDB();
-    QSqlQuery query = database.GetQuery();
-
-    query.prepare("SELECT * FROM scientists INNER JOIN computers_scientists ON scientists.id = computers_scientists.scientists_id");
-    query.exec();
-
-    FillcsVector(query,science);
-
-    database.Disconnect();
-    query.clear();
-
-    return science;
-}
-
-vector<computersabstract> SQLQueryData::GetComputerInnerJoin()
-{
-    SQLConnect database;
-    vector<computersabstract> comp;
-    database.ConnectToDB();
-    QSqlQuery query = database.GetQuery();
-
-    query.prepare("SELECT * FROM computers INNER JOIN computers_scientists ON computers.id = computers_scientists.computers_id");
-    query.exec();
-
-    FillcomputerVector(query,comp);
-
-    database.Disconnect();
-    query.clear();
-
-    return comp;
-}
-
-vector<int> SQLQueryData::GetRowID()
-{
-    SQLConnect database;
-    vector<int> temp;
-    database.ConnectToDB();
-    QSqlQuery query = database.GetQuery();
-
-    query.prepare("SELECT rowid FROM computers_scientists");
-    query.exec();
-
-    while(query.next())
-    {
-        int i = query.value("rowid").toInt();
-        temp.push_back(i);
-    }
-    temp.shrink_to_fit();
-
-    database.Disconnect();
-    query.clear();
-
-    return temp;
-}

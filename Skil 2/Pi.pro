@@ -9,11 +9,17 @@ SOURCES += \
     sqlconnect.cpp \
     computersabstract.cpp \
     computerscientist.cpp \
-    sqlquerydata.cpp
+    sqlquerydata.cpp \
+    ui.cpp \
+    domain.cpp \
+    helper.cpp
 
 HEADERS += \
     sqlconnect.h \
     computersabstract.h \
     computerscientist.h \
-    sqlquerydata.h
+    sqlquerydata.h \
+    ui.h \
+    domain.h \
+    helper.h
 
