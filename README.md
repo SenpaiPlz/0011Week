@@ -5,6 +5,23 @@ Skil fyrir verklegt námskeið í HR vetur 2015;
 Bugfixes for Skil 1.
 -Search currently implemented with >> operator, should be getline. Fix will come after code is graded.
 
+**Skil 3**
+
+Í þessari útgáfu á að skrifa gluggaforrit í Qt.
+
+**Virkni þess á að vera sú sama og í viku 2, þ.e. með SQL bakenda, kerfi sem getur skráð vísindamenn í tölvunarfræði, frægar tölvur, og tengingar þar á milli, birta lista, leita, raða etc. Sömu kröfur gilda varðandi viðhaldanleika kóða, notkun á Git og Qt.**
+
+Einkunn verður gefin samkvæmt eftirfarandi skiptingu:
+
+* (20%) Þekktir tölvunarfræðingar: geta skráð og breytt upplýsingum um þá, birt lista
+* (20%) Þekktar tölvur: geta skráð og breytt upplýsingum um þær, birt lista
+* (20%) Tengingar milli tölvunarfræðinga og tölva
+* (15%) Gæði kóða (lagskipting, nafnagiftir/inndráttur/o.s.frv.)
+* (15%) Hópasamstarf
+* (10%) Aukavirkni
+
+Ath. að við mat á einstökum liðum verður bæði horft til gæða útfærslunnar, horft á hversu notendavæn útfærslan er, hvernig og hvort gögn séu villuprófuð áður en þau eru skráð, o.fl.
+
 **Eftirfarandi kröfur eru gerðar til kerfisins í þessari útgáfu:**
 
 *Forkröfur (ath. verður að uppfylla til að fá einkunn!):
