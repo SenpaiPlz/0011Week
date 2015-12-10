@@ -150,7 +150,7 @@ void UI::MainMenu()
         case '8': {SearchMenu(); break;}
         case '9': {DeleteMenu(); break;}
         case '0': {exit(0); break;}
-        default: break;
+        default: {cout << "Not One of the menus: 0 to quit\n\n"; break;}
         }
     }
 }
@@ -553,8 +553,7 @@ void UI::EditCS()
     do
     {
         cin.sync();
-        cout << "---------------------------------------------------";
-        cout << "\nEnter an ID to overwrite: ";
+        cout << "Enter an ID to overwrite: ";
         getline(cin,str);
         if(h.ValidNumber(str))
         {
@@ -565,14 +564,12 @@ void UI::EditCS()
             }
             else
             {
-                cout << "---------------------------------------------------";
-                cout << "\nError: not really an valid ID input is it?\n";
+                cout << "Error: not really an valid ID input is it?\n";
             }
         }
         else
         {
-            cout << "---------------------------------------------------";
-            cout << "\nError: not really an valid ID input is it?\n";
+            cout << "Error: not really an valid ID input is it?\n";
         }
     }while(!valid);
 
@@ -706,13 +703,8 @@ void UI::EditComputer()
     computerTable(list);
     do
     {
-<<<<<<< HEAD
-        cout << "---------------------------------------------------";
-        cout << "\nEnter an ID to overwrite: ";
-=======
         cout << "------------------------------------------------------------";
         cout << "Enter an ID to overwrite: ";
->>>>>>> origin/master
         cin.sync();
         getline(cin,tmp);
         if(h.ValidNumber(tmp))
@@ -724,14 +716,12 @@ void UI::EditComputer()
             }
             else
             {
-                cout << "---------------------------------------------------";
-                cout << "\nError: not really an valid ID input is it?\n";
+                cout << "Error: not really an valid ID input is it?\n";
             }
         }
         else
         {
-            cout << "---------------------------------------------------";
-            cout << "\nError: not really an valid ID input is it?\n";
+            cout << "Error: not really an valid ID input is it?\n";
         }
     }while(!valid);
 
@@ -765,20 +755,12 @@ void UI::EditComputer()
         cout << "\nEnter type(example: Electronic): ";
         cin.sync();
         getline(cin,type);
-<<<<<<< HEAD
-        if(!CheckValidtyOfString(type))
-=======
         if(!h.CheckValidtyOfString(type))
->>>>>>> origin/master
         {
             cout << "------------------------------------------------------------";
             cout << "\nFound an error in your string\n";
         }
-<<<<<<< HEAD
-    }while(!CheckValidtyOfString(type));
-=======
     }while(!h.CheckValidtyOfString(type));
->>>>>>> origin/master
 
     type[0] = toupper(type[0]);
 
