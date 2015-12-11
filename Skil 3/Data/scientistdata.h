@@ -7,8 +7,8 @@
 #include <vector>
 #include <string>
 #include "sqlconnect.h"
-#include "computerscientist.h"
-#include "computer.h"
+#include "The_Children/computerscientist.h"
+#include "The_Children/computer.h"
 
 using namespace std;
 

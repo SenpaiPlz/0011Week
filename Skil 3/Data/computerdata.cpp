@@ -190,7 +190,6 @@ vector<Computer> ComputerData::SearchComputer(const QString& search)
 }
 
 
-
 //--------    Editing functions    --------//
 
 bool ComputerData::UpdateComputer(const QString& tempname,const int& year, const QString& type,const bool& built , const int& id)

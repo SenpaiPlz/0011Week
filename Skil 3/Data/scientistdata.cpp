@@ -391,3 +391,4 @@ bool ScientistData::UpdateCS(const QString& tempfirst, const QString& tempmid, c
     query.clear();
     return false;
 }
+

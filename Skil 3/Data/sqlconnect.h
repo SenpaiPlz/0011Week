@@ -1,7 +1,7 @@
 #ifndef SQLCONNECT_H
 #define SQLCONNECT_H
 #include <iostream>
-#include <QSqlDatabase>
+#include <QsqlDatabase>
 #include <QSqlQuery>
 #include <QFile>
 #include <QVariant>

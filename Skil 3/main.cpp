@@ -1,12 +1,11 @@
-#include <QCoreApplication>
-#include<ui.h>
+#include "mainwindow.h"
+#include <QApplication>
 
-int main(/*int argc, char *argv[]*/)
+int main(int argc, char *argv[])
 {
-    //QCoreApplication a(argc, argv);
-    UI init;
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.show();
 
-    //return a.exec();
-    return 0;
+    return a.exec();
 }
-

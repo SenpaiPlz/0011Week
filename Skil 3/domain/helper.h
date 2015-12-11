@@ -1,7 +1,7 @@
 #ifndef HELPER_H
 #define HELPER_H
-#include "computer.h"
-#include "computerscientist.h"
+#include "The_Children/computer.h"
+#include "The_Children/computerscientist.h"
 #include <vector>
 #include <cctype>
 #include <string>
