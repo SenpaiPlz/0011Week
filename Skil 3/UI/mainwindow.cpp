@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+#include "ui/mainwindow.h"
 #include "ui_mainwindow.h"
 
 using namespace std;
@@ -13,6 +13,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->SELECT_TABLE->addItem("Computer Scientists");
     ui->SELECT_TABLE->addItem("Computers");
     ui->SELECT_TABLE->addItem("Link between computers and scientists");
+
+    ui->MainTable->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(ui->MainTable, SIGNAL(customContextMenuRequested(const QPoint&)),
+            this, SLOT(on_MainTable_ShowContextMenu(const QPoint&)));
 
     displayAll(GetCurrentTable());
 }
@@ -179,4 +183,15 @@ void MainWindow::on_actionDelete_Options_triggered()
     DeleteOptions deleteOptions;
     deleteOptions.exec();
 
+}
+
+void MainWindow::on_MainTable_ShowContextMenu(const QPoint& pos)
+{
+    QPoint globpos = ui->MainTable->mapToGlobal(pos);
+
+    QMenu menu;
+
+    menu.addAction("Menu item 1");
+
+    QAction* selectedItem = menu.exec(globpos);
 }

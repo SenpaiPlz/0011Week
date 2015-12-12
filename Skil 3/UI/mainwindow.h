@@ -9,7 +9,7 @@
 #include "domain/helper.h"
 #include "The_Children/computer.h"
 #include "The_Children/computerscientist.h"
-#include "deleteoptions.h"
+#include "ui/deleteoptions.h"
 
 namespace Ui {
 class MainWindow;
@@ -29,6 +29,8 @@ private slots:
     void on_Filter_textChanged(const QString &arg1);
 
     void on_actionDelete_Options_triggered();
+
+    void on_MainTable_ShowContextMenu(const QPoint& pos);
 
 private:
     Domain d;

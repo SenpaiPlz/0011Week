@@ -22,7 +22,8 @@ SOURCES += main.cpp\
     Data/computerdata.cpp \
     Data/scientistdata.cpp \
     Data/sqlconnect.cpp \
-    domain/domain.cpp
+    domain/domain.cpp \
+    UI/deleteoptions.cpp
 
 HEADERS  += UI/mainwindow.h \
     The_Children/computer.h \
@@ -31,6 +32,8 @@ HEADERS  += UI/mainwindow.h \
     Data/computerdata.h \
     Data/scientistdata.h \
     Data/sqlconnect.h \
-    domain/domain.h
+    domain/domain.h \
+    UI/deleteoptions.h
 
-FORMS    += UI/mainwindow.ui
+FORMS    += UI/mainwindow.ui \
+    UI/deleteoptions.ui
