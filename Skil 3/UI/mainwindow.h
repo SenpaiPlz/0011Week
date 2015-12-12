@@ -9,6 +9,7 @@
 #include "domain/helper.h"
 #include "The_Children/computer.h"
 #include "The_Children/computerscientist.h"
+#include "deleteoptions.h"
 
 namespace Ui {
 class MainWindow;
@@ -26,6 +27,8 @@ private slots:
     void on_SELECT_TABLE_currentIndexChanged(int index);
 
     void on_Filter_textChanged(const QString &arg1);
+
+    void on_actionDelete_Options_triggered();
 
 private:
     Domain d;

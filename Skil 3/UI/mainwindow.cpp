@@ -10,9 +10,9 @@ MainWindow::MainWindow(QWidget *parent) :
     d.connect();
     ui->setupUi(this);
 
-    ui->SELECT_TABLE->addItem("CS");
-    ui->SELECT_TABLE->addItem("Computer");
-    ui->SELECT_TABLE->addItem("Link");
+    ui->SELECT_TABLE->addItem("Computer Scientists");
+    ui->SELECT_TABLE->addItem("Computers");
+    ui->SELECT_TABLE->addItem("Link between computers and scientists");
 
     displayAll(GetCurrentTable());
 }
@@ -144,15 +144,15 @@ int MainWindow::GetCurrentTable()
 {
     string temp = ui->SELECT_TABLE->currentText().toStdString();
 
-    if(temp == "CS")
+    if(temp == "Computer Scientists")
     {
         return 1;
     }
-    else if(temp == "Computer")
+    else if(temp == "Computers")
     {
         return 2;
     }
-    else if(temp == "Link")
+    else if(temp == "Link between computers and scientists")
     {
         return 3;
     }
@@ -172,4 +172,11 @@ void MainWindow::on_Filter_textChanged(const QString &arg1)
         vector<Computer> computer = d.SearchComputer(userinput);
         displayComputer(computer);
     }
+}
+
+void MainWindow::on_actionDelete_Options_triggered()
+{
+    DeleteOptions deleteOptions;
+    deleteOptions.exec();
+
 }

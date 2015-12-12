@@ -42,7 +42,7 @@
      <x>0</x>
      <y>0</y>
      <width>677</width>
-     <height>25</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuAdd">
@@ -57,13 +57,7 @@
     <property name="title">
      <string>Remove</string>
     </property>
-    <addaction name="actionMark_CS_for_Deletion"/>
-    <addaction name="actionMark_Computer_for_Deletion"/>
-    <addaction name="actionUn_Mark_CS_for_Deletion"/>
-    <addaction name="actionUn_Mark_Computer_for_Deletion"/>
-    <addaction name="actionDelete_All_Marked"/>
-    <addaction name="separator"/>
-    <addaction name="actionDelete_All_Marked_2"/>
+    <addaction name="actionDelete_Options"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
@@ -120,9 +114,13 @@
     <string>Un-Mark Computer for Deletion</string>
    </property>
   </action>
-  <action name="actionDelete_All_Marked">
+  <action name="actionDelete_Options">
+   <property name="icon">
+    <iconset>
+     <normaloff>../trash-128.png</normaloff>../trash-128.png</iconset>
+   </property>
    <property name="text">
-    <string>Delete CS&amp;Computer Link</string>
+    <string>Delete Options</string>
    </property>
   </action>
   <action name="actionDelete_All_Marked_2">
