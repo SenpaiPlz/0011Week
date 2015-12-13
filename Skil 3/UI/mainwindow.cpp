@@ -52,26 +52,35 @@ void MainWindow::displayCS(vector<ComputerScientist>& css)
     ui->MainTable->setSortingEnabled(false);
 
     ui->MainTable->clearContents();
-    ui->MainTable->setColumnCount(6);
+    ui->MainTable->setColumnCount(7);
     ui->MainTable->setRowCount(css.size());
 
-    ui->MainTable->setHorizontalHeaderItem(0,new QTableWidgetItem(QString("First Name")));
-    ui->MainTable->setHorizontalHeaderItem(1,new QTableWidgetItem(QString("Middle Name")));
-    ui->MainTable->setHorizontalHeaderItem(2,new QTableWidgetItem(QString("Last Name")));
-    ui->MainTable->setHorizontalHeaderItem(3,new QTableWidgetItem(QString("Gender")));
-    ui->MainTable->setHorizontalHeaderItem(4,new QTableWidgetItem(QString("Birth Year")));
-    ui->MainTable->setHorizontalHeaderItem(5,new QTableWidgetItem(QString("Death Year")));
+    ui->MainTable->setHorizontalHeaderItem(0,new QTableWidgetItem(QString("Id")));
+    ui->MainTable->setHorizontalHeaderItem(1,new QTableWidgetItem(QString("First Name")));
+    ui->MainTable->setHorizontalHeaderItem(2,new QTableWidgetItem(QString("Middle Name")));
+    ui->MainTable->setHorizontalHeaderItem(3,new QTableWidgetItem(QString("Last Name")));
+    ui->MainTable->setHorizontalHeaderItem(4,new QTableWidgetItem(QString("Gender")));
+    ui->MainTable->setHorizontalHeaderItem(5,new QTableWidgetItem(QString("Birth Year")));
+    ui->MainTable->setHorizontalHeaderItem(6,new QTableWidgetItem(QString("Death Year")));
 
     for(size_t i = 0; i < css.size(); i++)
     {
         ComputerScientist temp = css[i];
 
-        ui->MainTable->setItem(i,0, new QTableWidgetItem(QString::fromStdString(temp.getFirst())));
-        ui->MainTable->setItem(i,1, new QTableWidgetItem(QString::fromStdString(temp.getMid())));
-        ui->MainTable->setItem(i,2, new QTableWidgetItem(QString::fromStdString(temp.getLast())));
-        ui->MainTable->setItem(i,3, new QTableWidgetItem(QString::fromStdString(temp.getGender())));
-        ui->MainTable->setItem(i,4, new QTableWidgetItem(QString::number(temp.getBday())));
-        ui->MainTable->setItem(i,5, new QTableWidgetItem(QString::number(temp.getDday())));
+        QTableWidgetItem* id = new QTableWidgetItem;
+        QTableWidgetItem* yearborn = new QTableWidgetItem;
+        QTableWidgetItem* yeardied = new QTableWidgetItem;
+        id->setData(Qt::DisplayRole,temp.getID());
+        yearborn->setData(Qt::DisplayRole,temp.getBday());
+        yeardied->setData(Qt::DisplayRole,temp.getDday());
+
+        ui->MainTable->setItem(i,0, id);
+        ui->MainTable->setItem(i,1, new QTableWidgetItem(QString::fromStdString(temp.getFirst())));
+        ui->MainTable->setItem(i,2, new QTableWidgetItem(QString::fromStdString(temp.getMid())));
+        ui->MainTable->setItem(i,3, new QTableWidgetItem(QString::fromStdString(temp.getLast())));
+        ui->MainTable->setItem(i,4, new QTableWidgetItem(QString::fromStdString(temp.getGender())));
+        ui->MainTable->setItem(i,5, yearborn);
+        ui->MainTable->setItem(i,6, yeardied);
     }
 
     ui->MainTable->setSortingEnabled(true);
@@ -82,22 +91,27 @@ void MainWindow::displayComputer(vector<Computer>& computer)
     ui->MainTable->setSortingEnabled(false);
 
     ui->MainTable->clearContents();
-    ui->MainTable->setColumnCount(4);
+    ui->MainTable->setColumnCount(5);
     ui->MainTable->setRowCount(computer.size());
 
-    ui->MainTable->setHorizontalHeaderItem(0,new QTableWidgetItem(QString("Name")));
-    ui->MainTable->setHorizontalHeaderItem(1,new QTableWidgetItem(QString("Year")));
-    ui->MainTable->setHorizontalHeaderItem(2,new QTableWidgetItem(QString("Type")));
-    ui->MainTable->setHorizontalHeaderItem(3,new QTableWidgetItem(QString("Built")));
+    ui->MainTable->setHorizontalHeaderItem(0,new QTableWidgetItem(QString("id")));
+    ui->MainTable->setHorizontalHeaderItem(1,new QTableWidgetItem(QString("Name")));
+    ui->MainTable->setHorizontalHeaderItem(2,new QTableWidgetItem(QString("Year")));
+    ui->MainTable->setHorizontalHeaderItem(3,new QTableWidgetItem(QString("Type")));
+    ui->MainTable->setHorizontalHeaderItem(4,new QTableWidgetItem(QString("Built")));
 
     for(size_t i = 0; i < computer.size(); i++)
     {
         Computer temp = computer[i];
 
-        ui->MainTable->setItem(i,0, new QTableWidgetItem(QString::fromStdString(temp.getName())));
-        ui->MainTable->setItem(i,1, new QTableWidgetItem(QString::number(temp.getYear())));
-        ui->MainTable->setItem(i,2, new QTableWidgetItem(QString::fromStdString(temp.getType())));
-        ui->MainTable->setItem(i,3, new QTableWidgetItem(QString::number(temp.getBuilt())));
+        QTableWidgetItem* id = new QTableWidgetItem;
+        id->setData(Qt::DisplayRole,temp.getID());
+
+        ui->MainTable->setItem(i,0, id);
+        ui->MainTable->setItem(i,1, new QTableWidgetItem(QString::fromStdString(temp.getName())));
+        ui->MainTable->setItem(i,2, new QTableWidgetItem(QString::number(temp.getYear())));
+        ui->MainTable->setItem(i,3, new QTableWidgetItem(QString::fromStdString(temp.getType())));
+        ui->MainTable->setItem(i,4, new QTableWidgetItem(QString::number(temp.getBuilt())));
     }
 
     ui->MainTable->setSortingEnabled(true);
@@ -123,11 +137,18 @@ void MainWindow::displayLink(vector<ComputerScientist>& cssinner, vector<Compute
                 + QString::fromStdString(cssinner[i].getMid()) + " "
                 + QString::fromStdString(cssinner[i].getLast());
 
+        QTableWidgetItem* roid = new QTableWidgetItem;
+        QTableWidgetItem* csid = new QTableWidgetItem;
+        QTableWidgetItem* compid = new QTableWidgetItem;
+        roid->setData(Qt::DisplayRole, rowid[i]);
+        csid->setData(Qt::DisplayRole, cssinner[i].getID());
+        compid->setData(Qt::DisplayRole, compinner[i].getID());
+
         ui->MainTable->setItem(i,0, new QTableWidgetItem(csname));
-        ui->MainTable->setItem(i,1, new QTableWidgetItem(QString::number(cssinner[i].getID())));
-        ui->MainTable->setItem(i,2, new QTableWidgetItem(QString::number(compinner[i].getID())));
+        ui->MainTable->setItem(i,1, csid);
+        ui->MainTable->setItem(i,2, compid);
         ui->MainTable->setItem(i,3, new QTableWidgetItem(QString::fromStdString(compinner[i].getName())));
-        ui->MainTable->setItem(i,4, new QTableWidgetItem(QString::number(rowid[i])));
+        ui->MainTable->setItem(i,4, roid);
     }
 
     ui->MainTable->setSortingEnabled(true);
