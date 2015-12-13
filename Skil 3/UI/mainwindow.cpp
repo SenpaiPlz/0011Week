@@ -201,3 +201,9 @@ void MainWindow::on_actionAdd_Computer_Scientist_triggered()
     Add_Scientist add;
     add.exec();
 }
+
+void MainWindow::on_actionAdd_Computer_triggered()
+{
+    add_computer add;
+    add.exec();
+}

@@ -11,6 +11,7 @@
 #include "The_Children/computerscientist.h"
 #include "UI/deleteoptions.h"
 #include "UI/add_scientist.h"
+#include "UI/add_computer.h"
 
 namespace Ui {
 class MainWindow;
@@ -34,6 +35,8 @@ private slots:
     void on_MainTable_ShowContextMenu(const QPoint& pos);
 
     void on_actionAdd_Computer_Scientist_triggered();
+
+    void on_actionAdd_Computer_triggered();
 
 private:
     Domain d;
