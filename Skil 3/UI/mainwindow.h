@@ -9,9 +9,11 @@
 #include "domain/helper.h"
 #include "The_Children/computer.h"
 #include "The_Children/computerscientist.h"
-#include "UI/deleteoptions.h"
 #include "UI/add_scientist.h"
 #include "UI/add_computer.h"
+#include "UI/deletecomputer.h"
+#include "UI/deletelink.h"
+#include "UI/deletescientist.h"
 
 namespace Ui {
 class MainWindow;
@@ -30,7 +32,11 @@ private slots:
 
     void on_Filter_textChanged(const QString &arg1);
 
-    void on_actionDelete_Options_triggered();
+    void on_actionDelete_Scientists_triggered();
+
+    void on_actionDelete_Computers_triggered();
+
+    void on_actionDelete_Link_triggered();
 
     void on_MainTable_ShowContextMenu(const QPoint& pos);
 
