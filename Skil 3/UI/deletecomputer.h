@@ -18,10 +18,14 @@ public:
     explicit DeleteComputer(QWidget *parent = 0);
     ~DeleteComputer();
 
+private slots:
+    void on_button_mark_clicked();
+
 private:
     Ui::DeleteComputer *ui;
     Domain d;
     void showComputer(vector<Computer> &computer);
+    void showMarkedComputer(vector<Computer>& computer);
 };
 
 #endif // DELETECOMPUTER_H
