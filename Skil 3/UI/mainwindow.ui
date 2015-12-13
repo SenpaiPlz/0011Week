@@ -19,7 +19,6 @@
      <widget class="QComboBox" name="SELECT_TABLE"/>
     </item>
     <item>
-<<<<<<< HEAD
      <widget class="QTableWidget" name="MainTable">
       <property name="editTriggers">
        <set>QAbstractItemView::NoEditTriggers</set>
@@ -37,9 +36,6 @@
        <bool>false</bool>
       </attribute>
      </widget>
-=======
-     <widget class="QTableWidget" name="MainTable"/>
->>>>>>> 9dff3e2607c388b849aba1bd2886889869c65029
     </item>
     <item>
      <widget class="QLineEdit" name="Filter">
@@ -62,7 +58,7 @@
      <x>0</x>
      <y>0</y>
      <width>677</width>
-     <height>26</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuAdd">
@@ -77,9 +73,7 @@
     <property name="title">
      <string>Remove</string>
     </property>
-    <addaction name="actionDelete_Scientists"/>
-    <addaction name="actionDelete_Computers"/>
-    <addaction name="actionDelete_Link"/>
+    <addaction name="actionDelete_Options"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
@@ -91,14 +85,6 @@
    <addaction name="menuAdd"/>
    <addaction name="menuRemove"/>
    <addaction name="menuEdit"/>
-  </widget>
-  <widget class="QToolBar" name="mainToolBar">
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionAdd_Computer_Scientist">
@@ -136,13 +122,13 @@
     <string>Un-Mark Computer for Deletion</string>
    </property>
   </action>
-  <action name="actionDelete_Scientists">
+  <action name="actionDelete_Options">
    <property name="icon">
     <iconset>
      <normaloff>../trash-128.png</normaloff>../trash-128.png</iconset>
    </property>
    <property name="text">
-    <string>Delete Scientists</string>
+    <string>Delete Options</string>
    </property>
   </action>
   <action name="actionDelete_All_Marked_2">
@@ -160,18 +146,13 @@
     <string>Edit Computer</string>
    </property>
   </action>
-  <action name="actionDelete_Computers">
-   <property name="text">
-    <string>Delete Computers</string>
-   </property>
-  </action>
-  <action name="actionDelete_Link">
-   <property name="text">
-    <string>Delete Link</string>
-   </property>
-  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>SELECT_TABLE</tabstop>
+  <tabstop>MainTable</tabstop>
+  <tabstop>Filter</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
