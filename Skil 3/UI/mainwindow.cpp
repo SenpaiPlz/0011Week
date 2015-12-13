@@ -199,10 +199,22 @@ void MainWindow::on_Filter_textChanged(const QString &arg1)
     }
 }
 
-void MainWindow::on_actionDelete_Options_triggered()
+void MainWindow::on_actionDelete_Scientists_triggered()
 {
-    DeleteOptions deleteOptions;
-    deleteOptions.exec();
+    DeleteScientist deleteScientist;
+    deleteScientist.exec();
+}
+
+void MainWindow::on_actionDelete_Computers_triggered()
+{
+    DeleteComputer deleteComputer;
+    deleteComputer.exec();
+}
+
+void MainWindow::on_actionDelete_Link_triggered()
+{
+    DeleteLink deleteLink;
+    deleteLink.exec();
 }
 
 
