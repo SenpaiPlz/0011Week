@@ -1,6 +1,6 @@
 #ifndef DELETEOPTIONS_H
 #define DELETEOPTIONS_H
-#include "ui/mainwindow.h"
+#include "UI/mainwindow.h"
 #include "domain/domain.h"
 #include "domain/helper.h"
 #include "The_Children/computer.h"
@@ -20,6 +20,8 @@ class DeleteOptions : public QDialog
 public:
     explicit DeleteOptions(QWidget *parent = 0);
     ~DeleteOptions();
+
+private slots:
 
 private:
     Ui::DeleteOptions *ui;

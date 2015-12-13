@@ -12,10 +12,10 @@ class helper
 {
 public:
     void Tolower(string &temp);
-    bool ValidNumber(string &temp);
+    bool ValidNumber(string temp);
     bool ValidCSId(vector<ComputerScientist>& tmp, const int& id);
     bool ValidComputerId(vector<Computer>& tmp, const int& id);
-    bool CheckValidtyOfString(string& tmp);
+    bool CheckValidtyOfString(string tmp);
     helper();
 };
 

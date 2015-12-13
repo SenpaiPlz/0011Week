@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     Data/scientistdata.cpp \
     Data/sqlconnect.cpp \
     domain/domain.cpp \
-    UI/deleteoptions.cpp
+    UI/deleteoptions.cpp \
+    UI/add_scientist.cpp
 
 HEADERS  += UI/mainwindow.h \
     The_Children/computer.h \
@@ -33,7 +34,9 @@ HEADERS  += UI/mainwindow.h \
     Data/scientistdata.h \
     Data/sqlconnect.h \
     domain/domain.h \
-    UI/deleteoptions.h
+    UI/deleteoptions.h \
+    UI/add_scientist.h
 
 FORMS    += UI/mainwindow.ui \
-    UI/deleteoptions.ui
+    UI/deleteoptions.ui \
+    UI/add_scientist.ui

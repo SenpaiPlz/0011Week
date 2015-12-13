@@ -1,4 +1,4 @@
-#include "ui/mainwindow.h"
+#include "UI/mainwindow.h"
 #include "ui_mainwindow.h"
 
 using namespace std;
@@ -182,8 +182,8 @@ void MainWindow::on_actionDelete_Options_triggered()
 {
     DeleteOptions deleteOptions;
     deleteOptions.exec();
-
 }
+
 
 void MainWindow::on_MainTable_ShowContextMenu(const QPoint& pos)
 {
@@ -194,4 +194,10 @@ void MainWindow::on_MainTable_ShowContextMenu(const QPoint& pos)
     menu.addAction("Menu item 1");
 
     QAction* selectedItem = menu.exec(globpos);
+}
+
+void MainWindow::on_actionAdd_Computer_Scientist_triggered()
+{
+    Add_Scientist add;
+    add.exec();
 }

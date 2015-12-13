@@ -1,4 +1,4 @@
-#include "deleteoptions.h"
+#include "UI/deleteoptions.h"
 #include "ui_deleteoptions.h"
 
 DeleteOptions::DeleteOptions(QWidget *parent) :

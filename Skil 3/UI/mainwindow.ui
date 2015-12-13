@@ -19,7 +19,11 @@
      <widget class="QComboBox" name="SELECT_TABLE"/>
     </item>
     <item>
-     <widget class="QTableWidget" name="MainTable"/>
+     <widget class="QTableWidget" name="MainTable">
+      <property name="alternatingRowColors">
+       <bool>true</bool>
+      </property>
+     </widget>
     </item>
     <item>
      <widget class="QLineEdit" name="Filter">
@@ -42,7 +46,7 @@
      <x>0</x>
      <y>0</y>
      <width>677</width>
-     <height>26</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuAdd">
@@ -69,14 +73,6 @@
    <addaction name="menuAdd"/>
    <addaction name="menuRemove"/>
    <addaction name="menuEdit"/>
-  </widget>
-  <widget class="QToolBar" name="mainToolBar">
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionAdd_Computer_Scientist">
@@ -140,6 +136,11 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>SELECT_TABLE</tabstop>
+  <tabstop>MainTable</tabstop>
+  <tabstop>Filter</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

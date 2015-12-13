@@ -7,7 +7,7 @@ helper::helper()
 }
 
 
-bool helper::CheckValidtyOfString(string& tmp)
+bool helper::CheckValidtyOfString(string tmp)
 {
     for(size_t i = 0; i < tmp.size(); i++)
     {
@@ -28,7 +28,7 @@ void helper::Tolower(string &temp)
     }
 }
 
-bool helper::ValidNumber(string &temp)
+bool helper::ValidNumber(string temp)
 {
     for(unsigned int i = 0; i < temp.size(); i++)
     {
