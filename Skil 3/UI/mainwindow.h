@@ -58,10 +58,11 @@ private slots:
 
     void Add_Triggered();
 
-
     void on_MainTable_doubleClicked(const QModelIndex &index);
 
     void on_actionAdd_Link_triggered();
+
+    void quit();
 
 private:
     Domain d;

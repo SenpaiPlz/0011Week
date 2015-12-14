@@ -291,23 +291,26 @@ void MainWindow::Edit_Triggered()
 
 void MainWindow::Delete_Triggered()
 {
-    int rowidx = ui->MainTable->selectionModel()->currentIndex().row();
-    if(GetCurrentTable() == 1)
+    if(ui->MainTable->selectionModel()->currentIndex().isValid())
     {
-        int id = ui->MainTable->item(rowidx,0)->text().toInt();
-        d.MarkDeleted("scientists",id);
+        int rowidx = ui->MainTable->selectionModel()->currentIndex().row();
+        if(GetCurrentTable() == 1)
+        {
+            int id = ui->MainTable->item(rowidx,0)->text().toInt();
+            d.MarkDeleted("scientists",id);
+        }
+        else if(GetCurrentTable() == 2)
+        {
+            int id = ui->MainTable->item(rowidx,0)->text().toInt();
+            d.MarkDeleted("computers",id);
+        }
+        else if(GetCurrentTable() == 3)
+        {
+            int id = ui->MainTable->item(rowidx,4)->text().toInt();
+            d.DeleteLink(id);
+        }
+        displayAll(GetCurrentTable());
     }
-    else if(GetCurrentTable() == 2)
-    {
-        int id = ui->MainTable->item(rowidx,0)->text().toInt();
-        d.MarkDeleted("computers",id);
-    }
-    else if(GetCurrentTable() == 3)
-    {
-        int id = ui->MainTable->item(rowidx,4)->text().toInt();
-        d.DeleteLink(id);
-    }
-    displayAll(GetCurrentTable());
 }
 
 void MainWindow::Add_Triggered()
@@ -322,7 +325,7 @@ void MainWindow::Add_Triggered()
     }
     else if(GetCurrentTable() == 3)
     {
-
+        on_actionAdd_Link_triggered();
     }
 }
 
@@ -351,6 +354,16 @@ void MainWindow::Keybinds()
 {
     QShortcut* shortcut = new QShortcut(QKeySequence("ctrl+E"), this);
     connect(shortcut, SIGNAL(activated()), this, SLOT(Edit_Triggered()));
+    shortcut = new QShortcut(QKeySequence("ctrl+Q"),this);
+    connect(shortcut, SIGNAL(activated()), this, SLOT(quit()));
+    shortcut = new QShortcut(QKeySequence("ctrl+A"),this);
+    connect(shortcut, SIGNAL(activated()), this, SLOT(Add_Triggered()));
+    shortcut = new QShortcut(QKeySequence("ctrl+D"), this);
+    connect(shortcut, SIGNAL(activated()), this, SLOT(Delete_Triggered()));
+    shortcut = new QShortcut(QKeySequence("alt+ctrl+D"),this);
+    connect(shortcut, SIGNAL(activated()), this, SLOT(on_actionDelete_Computers_triggered()));
+    shortcut = new QShortcut(QKeySequence("alt+shift+D"),this);
+    connect(shortcut, SIGNAL(activated()), this, SLOT(on_actionDelete_Scientists_triggered()));
 }
 
 void MainWindow::on_actionAdd_Link_triggered()
@@ -358,4 +371,9 @@ void MainWindow::on_actionAdd_Link_triggered()
     AddLink add;
     add.exec();
     displayAll(GetCurrentTable());
+}
+
+void MainWindow::quit()
+{
+    close();
 }
