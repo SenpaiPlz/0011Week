@@ -113,7 +113,7 @@ void DeleteComputer::on_button_mark_clicked()
 
 void DeleteComputer::on_button_unmark_clicked()
 {
-    if(ui->table_original->selectionModel()->currentIndex().isValid())
+    if(ui->table_delete->selectionModel()->currentIndex().isValid())
     {
         int rowindex = ui->table_delete->selectionModel()->currentIndex().row();
         int id = ui->table_delete->item(rowindex,0)->text().toInt();
