@@ -101,20 +101,26 @@ void DeleteComputer::on_table_delete_clicked(const QModelIndex &index)
 
 void DeleteComputer::on_button_mark_clicked()
 {
-    int rowindex = ui->table_original->selectionModel()->currentIndex().row();
-    int id = ui->table_original->item(rowindex,0)->text().toInt();
+    if(ui->table_original->selectionModel()->currentIndex().isValid())
+    {
+        int rowindex = ui->table_original->selectionModel()->currentIndex().row();
+        int id = ui->table_original->item(rowindex,0)->text().toInt();
 
-    d.MarkDeleted("computers", id);
-    Refresh();
+        d.MarkDeleted("computers", id);
+        Refresh();
+    }
 }
 
 void DeleteComputer::on_button_unmark_clicked()
 {
-    int rowindex = ui->table_delete->selectionModel()->currentIndex().row();
-    int id = ui->table_delete->item(rowindex,0)->text().toInt();
+    if(ui->table_original->selectionModel()->currentIndex().isValid())
+    {
+        int rowindex = ui->table_delete->selectionModel()->currentIndex().row();
+        int id = ui->table_delete->item(rowindex,0)->text().toInt();
 
-    d.UnmarkDeleted("computers", id);
-    Refresh();
+        d.UnmarkDeleted("computers", id);
+        Refresh();
+    }
 }
 
 void DeleteComputer::on_button_delete_all_clicked()

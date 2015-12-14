@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     d.connect();
     ui->setupUi(this);
+    //Initial Setup
     QMainWindow::showMaximized();
     Keybinds();
 
@@ -16,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->SELECT_TABLE->addItem("Computers");
     ui->SELECT_TABLE->addItem("Link between computers and scientists");
 
+    //Create a custom context menu
     ui->MainTable->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(ui->MainTable, SIGNAL(customContextMenuRequested(const QPoint&)),
             this, SLOT(on_MainTable_ShowContextMenu(const QPoint&)));
@@ -205,6 +207,7 @@ void MainWindow::on_actionDelete_Scientists_triggered()
 {
     DeleteScientist deleteScientist;
     deleteScientist.exec();
+    ui->Filter->clear();
     displayAll(GetCurrentTable());
 }
 
@@ -212,6 +215,7 @@ void MainWindow::on_actionDelete_Computers_triggered()
 {
     DeleteComputer deleteComputer;
     deleteComputer.exec();
+    ui->Filter->clear();
     displayAll(GetCurrentTable());
 }
 
@@ -219,6 +223,7 @@ void MainWindow::on_actionDelete_Link_triggered()
 {
     DeleteLink deleteLink;
     deleteLink.exec();
+    ui->Filter->clear();
     displayAll(GetCurrentTable());
 }
 
@@ -244,6 +249,7 @@ void MainWindow::on_actionAdd_Computer_Scientist_triggered()
 {
     Add_Scientist add;
     add.exec();
+    ui->Filter->clear();
     displayAll(GetCurrentTable());
 }
 
@@ -251,6 +257,7 @@ void MainWindow::on_actionAdd_Computer_triggered()
 {
     add_computer add;
     add.exec();
+    ui->Filter->clear();
     displayAll(GetCurrentTable());
 }
 
@@ -286,6 +293,7 @@ void MainWindow::Edit_Triggered()
             edit.exec();
         }
     }
+    ui->Filter->clear();
     displayAll(GetCurrentTable());
 }
 
@@ -309,6 +317,7 @@ void MainWindow::Delete_Triggered()
             int id = ui->MainTable->item(rowidx,4)->text().toInt();
             d.DeleteLink(id);
         }
+        ui->Filter->clear();
         displayAll(GetCurrentTable());
     }
 }
@@ -333,6 +342,7 @@ void MainWindow::on_actionEdit_ComputerScientist_triggered()
 {
     EditScientist edit;
     edit.exec();
+    ui->Filter->clear();
     displayAll(GetCurrentTable());
 }
 
@@ -340,6 +350,7 @@ void MainWindow::on_actionEdit_Computer_triggered()
 {
     EditComputers edit;
     edit.exec();
+    ui->Filter->clear();
     displayAll(GetCurrentTable());
 }
 
@@ -370,6 +381,7 @@ void MainWindow::on_actionAdd_Link_triggered()
 {
     AddLink add;
     add.exec();
+    ui->Filter->clear();
     displayAll(GetCurrentTable());
 }
 

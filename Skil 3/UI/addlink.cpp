@@ -99,18 +99,36 @@ void AddLink::on_table_linking_clicked(const QModelIndex &index)
 
 void AddLink::on_button_select_clicked()
 {
-    ui->button_select->setDisabled(true);
-    int rowidx = ui->table_linking->selectionModel()->currentIndex().row();
-    CSID = ui->table_linking->item(rowidx,0)->text().toInt();
-    TableCount++;
-    vector<Computer> comp = d.GetComputers("name",false);
-    displayComp(comp);
+    if(ui->table_linking->selectionModel()->currentIndex().isValid())
+    {
+        ui->button_select->setDisabled(true);
+        int rowidx = ui->table_linking->selectionModel()->currentIndex().row();
+        CSID = ui->table_linking->item(rowidx,0)->text().toInt();
+        TableCount++;
+        vector<Computer> comp = d.GetComputers("name",false);
+        displayComp(comp);
+    }
 }
 
 void AddLink::on_button_Link_clicked()
 {
-    int rowidx = ui->table_linking->selectionModel()->currentIndex().row();
-    int id = ui->table_linking->item(rowidx,0)->text().toInt();
-    d.AddLink(CSID,id);
-    this->done(1);
+    if(ui->table_linking->selectionModel()->currentIndex().isValid())
+    {
+        int rowidx = ui->table_linking->selectionModel()->currentIndex().row();
+        int id = ui->table_linking->item(rowidx,0)->text().toInt();
+        d.AddLink(CSID,id);
+        this->done(1);
+    }
+}
+
+void AddLink::on_table_linking_doubleClicked(const QModelIndex &index)
+{
+    if(TableCount == 1)
+    {
+        on_button_select_clicked();
+    }
+    else
+    {
+        on_button_Link_clicked();
+    }
 }

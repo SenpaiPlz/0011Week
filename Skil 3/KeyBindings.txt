@@ -1,0 +1,16 @@
+Current Keybindings for MainWindow:
+
+CTRL + Q = Quit;
+
+CTRL + E = Edit Currently selected item;
+
+CTRL + A = Add Item of currently selected table;
+
+CTRL + D = Mark for deletion/Delete currently selected item;
+
+CTRL + ALT + D = Delete Menu for Computers;
+
+SHIFT + ALT + D = Delete Menu for ComputerScientists;
+
+
+//You can customize your own keybindings under the KeyBindings() functions in MainWindow.cpp

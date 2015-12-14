@@ -27,6 +27,8 @@ private slots:
 
     void on_button_Link_clicked();
 
+    void on_table_linking_doubleClicked(const QModelIndex &index);
+
 private:
     int CSID;
     int TableCount = 1;
