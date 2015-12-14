@@ -14,6 +14,8 @@
 #include "UI/deletecomputer.h"
 #include "UI/deletelink.h"
 #include "UI/deletescientist.h"
+#include "UI/editscientist.h"
+#include "UI/editcomputers.h"
 
 namespace Ui {
 class MainWindow;
@@ -44,6 +46,10 @@ private slots:
 
     void on_actionAdd_Computer_triggered();
 
+    void on_actionEdit_ComputerScientist_triggered();
+
+    void on_actionEdit_Computer_triggered();
+
 private:
     Domain d;
     Ui::MainWindow *ui;
@@ -52,6 +58,7 @@ private:
     void displayCS(vector<ComputerScientist> &css);
     void displayComputer(vector<Computer> &computer);
     void displayLink(vector<ComputerScientist>& cssinner, vector<Computer>& compinner, vector<int>& rowid);
+    void editAll(int index);
 };
 
 #endif // MAINWINDOW_H

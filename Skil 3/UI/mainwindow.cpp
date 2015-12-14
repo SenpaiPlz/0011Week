@@ -47,6 +47,22 @@ void MainWindow::displayAll(int index)
     }
 }
 
+void MainWindow::editAll(int index)
+{
+    /*if(index == 1)
+    {
+        if(d.UpdateCS("first_name", "middle_name", "last_name", "gender", "birth_year", "death_year", "id"))
+        {
+            vector<ComputerScientist> css = d.UpdateCS("first_name", "middle_name", "last_name", "gender", "birth_year", "death_year", "id");
+            displayCS(css);
+        }
+    }
+    if(index == 2)
+    {
+
+    }*/
+}
+
 void MainWindow::displayCS(vector<ComputerScientist>& css)
 {
     ui->MainTable->setSortingEnabled(false);
@@ -240,3 +256,18 @@ void MainWindow::on_actionAdd_Computer_triggered()
     add_computer add;
     add.exec();
 }
+
+void MainWindow::on_actionEdit_ComputerScientist_triggered()
+{
+    EditScientist edit;
+    edit.exec();
+    displayAll(GetCurrentTable());
+}
+
+void MainWindow::on_actionEdit_Computer_triggered()
+{
+    EditComputers edit;
+    edit.exec();
+    displayAll(GetCurrentTable());
+}
+
