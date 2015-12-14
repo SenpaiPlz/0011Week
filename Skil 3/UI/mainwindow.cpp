@@ -47,22 +47,6 @@ void MainWindow::displayAll(int index)
     }
 }
 
-void MainWindow::editAll(int index)
-{
-    /*if(index == 1)
-    {
-        if(d.UpdateCS("first_name", "middle_name", "last_name", "gender", "birth_year", "death_year", "id"))
-        {
-            vector<ComputerScientist> css = d.UpdateCS("first_name", "middle_name", "last_name", "gender", "birth_year", "death_year", "id");
-            displayCS(css);
-        }
-    }
-    if(index == 2)
-    {
-
-    }*/
-}
-
 void MainWindow::displayCS(vector<ComputerScientist>& css)
 {
     ui->MainTable->setSortingEnabled(false);
@@ -219,12 +203,14 @@ void MainWindow::on_actionDelete_Scientists_triggered()
 {
     DeleteScientist deleteScientist;
     deleteScientist.exec();
+    displayAll(GetCurrentTable());
 }
 
 void MainWindow::on_actionDelete_Computers_triggered()
 {
     DeleteComputer deleteComputer;
     deleteComputer.exec();
+    displayAll(GetCurrentTable());
 }
 
 void MainWindow::on_actionDelete_Link_triggered()
@@ -240,21 +226,42 @@ void MainWindow::on_MainTable_ShowContextMenu(const QPoint& pos)
 
     QMenu menu;
 
-    menu.addAction("Menu item 1");
-
-    QAction* selectedItem = menu.exec(globpos);
+    menu.addAction("Edit",this,SLOT(Edit_Triggered()));
+    menu.addAction("Delete");
+    menu.addAction("Add");
+    if(GetCurrentTable() == 3)
+    {
+        menu.actions().at(0)->setEnabled(false);
+    }
+    menu.exec(globpos);
 }
 
 void MainWindow::on_actionAdd_Computer_Scientist_triggered()
 {
     Add_Scientist add;
     add.exec();
+    displayAll(GetCurrentTable());
 }
 
 void MainWindow::on_actionAdd_Computer_triggered()
 {
     add_computer add;
     add.exec();
+    displayAll(GetCurrentTable());
+}
+
+void MainWindow::Edit_Triggered()
+{
+    if(GetCurrentTable() == 1)
+    {
+        EditScientist edit;
+        edit.exec();
+    }
+    else if(GetCurrentTable() == 2)
+    {
+        EditComputers edit;
+        edit.exec();
+    }
 }
 
 void MainWindow::on_actionEdit_ComputerScientist_triggered()
@@ -270,4 +277,3 @@ void MainWindow::on_actionEdit_Computer_triggered()
     edit.exec();
     displayAll(GetCurrentTable());
 }
-

@@ -11,7 +11,7 @@ bool helper::CheckValidtyOfString(string tmp)
 {
     for(size_t i = 0; i < tmp.size(); i++)
     {
-        if(!isalpha(tmp[i]) && tmp[i] != ' ' && tmp[i] != '.')
+        if(!isalnum(tmp[i]) && tmp[i] != ' ' && tmp[i] != '.')
         {
             return false;
         }

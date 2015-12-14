@@ -14,6 +14,7 @@
 #include "UI/deletecomputer.h"
 #include "UI/deletelink.h"
 #include "UI/deletescientist.h"
+#include "UI/editfromrightclick.h"
 #include "UI/editscientist.h"
 #include "UI/editcomputers.h"
 
@@ -46,6 +47,8 @@ private slots:
 
     void on_actionAdd_Computer_triggered();
 
+    void Edit_Triggered();
+
     void on_actionEdit_ComputerScientist_triggered();
 
     void on_actionEdit_Computer_triggered();
@@ -58,7 +61,6 @@ private:
     void displayCS(vector<ComputerScientist> &css);
     void displayComputer(vector<Computer> &computer);
     void displayLink(vector<ComputerScientist>& cssinner, vector<Computer>& compinner, vector<int>& rowid);
-    void editAll(int index);
 };
 
 #endif // MAINWINDOW_H
