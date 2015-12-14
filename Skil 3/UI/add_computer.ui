@@ -13,10 +13,6 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <property name="windowIcon">
-   <iconset resource="../themelogo.qrc">
-    <normaloff>:/liltree.png</normaloff>:/liltree.png</iconset>
-  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QLabel" name="label_5">
@@ -35,21 +31,21 @@
    <item>
     <layout class="QFormLayout" name="formLayout">
      <item row="0" column="0">
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="name_label">
        <property name="text">
         <string>Name</string>
        </property>
       </widget>
      </item>
      <item row="2" column="0">
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="year_label">
        <property name="text">
         <string>Year Built</string>
        </property>
       </widget>
      </item>
      <item row="4" column="0">
-      <widget class="QLabel" name="label_3">
+      <widget class="QLabel" name="type_label">
        <property name="text">
         <string>Type</string>
        </property>
@@ -72,14 +68,22 @@
      <item row="7" column="0">
       <layout class="QHBoxLayout" name="horizontalLayout_2"/>
      </item>
-     <item row="0" column="1">
-      <widget class="QLineEdit" name="Name"/>
-     </item>
      <item row="2" column="1">
-      <widget class="QLineEdit" name="Year"/>
+      <widget class="QLineEdit" name="Year">
+       <property name="placeholderText">
+        <string>0 &lt; valid year &lt; 2016</string>
+       </property>
+      </widget>
      </item>
      <item row="4" column="1">
-      <widget class="QLineEdit" name="Type"/>
+      <widget class="QLineEdit" name="Type">
+       <property name="placeholderText">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="Name"/>
      </item>
     </layout>
    </item>
@@ -116,8 +120,6 @@
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="../themelogo.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

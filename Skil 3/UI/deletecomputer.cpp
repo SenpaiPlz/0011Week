@@ -9,6 +9,7 @@ DeleteComputer::DeleteComputer(QWidget *parent) :
 
     ui->button_mark->setEnabled(false);
     ui->button_unmark->setEnabled(false);
+    ui->button_delete_all->setEnabled(false);
     Refresh();
 }
 
@@ -97,6 +98,7 @@ void DeleteComputer::on_table_delete_clicked(const QModelIndex &index)
 {
     ui->button_mark->setEnabled(false);
     ui->button_unmark->setEnabled(true);
+    ui->button_delete_all->setEnabled(true);
 }
 
 void DeleteComputer::on_button_mark_clicked()
@@ -125,8 +127,13 @@ void DeleteComputer::on_button_unmark_clicked()
 
 void DeleteComputer::on_button_delete_all_clicked()
 {
-    d.DeleteAllMarked();
-    Refresh();
+    QMessageBox::StandardButton reply;
+    QMessageBox::question(this,"Warning", "You are about to delete\n all marked Computers\n and Scientists.\n Do you want to continue?", QMessageBox::Yes|QMessageBox::No);
+    if(reply == QMessageBox::Yes)
+    {
+        d.DeleteAllMarked();
+        Refresh();
+    }
 }
 
 void DeleteComputer::on_table_original_doubleClicked(const QModelIndex &index)
