@@ -28,6 +28,7 @@ private:
     helper help;
     Domain d;
     Ui::add_computer *ui;
+    void Refresh();
 };
 
 #endif // ADD_COMPUTER_H
