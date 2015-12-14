@@ -28,7 +28,6 @@ SOURCES += main.cpp\
     UI/deletecomputer.cpp \
     UI/deletelink.cpp \
     UI/deletescientist.cpp \
-    UI/editfromrightclick.cpp \
     UI/editcomputers.cpp \
     UI/editscientist.cpp
 
@@ -45,7 +44,6 @@ HEADERS  += UI/mainwindow.h \
     UI/deletecomputer.h \
     UI/deletelink.h \
     UI/deletescientist.h \
-    UI/editfromrightclick.h \
     UI/editcomputers.h \
     UI/editscientist.h
 
@@ -55,6 +53,5 @@ FORMS    += UI/mainwindow.ui \
     UI/deletecomputer.ui \
     UI/deletelink.ui \
     UI/deletescientist.ui \
-    UI/editfromrightclick.ui \
     UI/editcomputers.ui \
     UI/editscientist.ui

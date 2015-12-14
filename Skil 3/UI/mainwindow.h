@@ -14,7 +14,6 @@
 #include "UI/deletecomputer.h"
 #include "UI/deletelink.h"
 #include "UI/deletescientist.h"
-#include "UI/editfromrightclick.h"
 #include "UI/editscientist.h"
 #include "UI/editcomputers.h"
 

@@ -226,12 +226,13 @@ void MainWindow::on_MainTable_ShowContextMenu(const QPoint& pos)
 
     QMenu menu;
 
+    menu.addAction("Add");
     menu.addAction("Edit",this,SLOT(Edit_Triggered()));
     menu.addAction("Delete");
-    menu.addAction("Add");
+
     if(GetCurrentTable() == 3)
     {
-        menu.actions().at(0)->setEnabled(false);
+        menu.actions().at(1)->setEnabled(false);
     }
     menu.exec(globpos);
 }
