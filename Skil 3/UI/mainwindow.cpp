@@ -302,7 +302,7 @@ void MainWindow::Delete_Triggered()
         int id = ui->MainTable->item(rowidx,0)->text().toInt();
         d.MarkDeleted("computers",id);
     }
-    else if(GetCurrentTable() == 1)
+    else if(GetCurrentTable() == 3)
     {
         int id = ui->MainTable->item(rowidx,4)->text().toInt();
         d.DeleteLink(id);
@@ -351,4 +351,11 @@ void MainWindow::Keybinds()
 {
     QShortcut* shortcut = new QShortcut(QKeySequence("ctrl+E"), this);
     connect(shortcut, SIGNAL(activated()), this, SLOT(Edit_Triggered()));
+}
+
+void MainWindow::on_actionAdd_Link_triggered()
+{
+    AddLink add;
+    add.exec();
+    displayAll(GetCurrentTable());
 }

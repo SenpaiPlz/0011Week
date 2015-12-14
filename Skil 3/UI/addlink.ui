@@ -35,11 +35,22 @@
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="button_select">
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="button_select">
+       <property name="text">
+        <string>Select A ComputerScientist</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="button_Link">
+       <property name="text">
+        <string>Link</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>

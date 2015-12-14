@@ -17,6 +17,7 @@
 #include "UI/deletescientist.h"
 #include "UI/editscientist.h"
 #include "UI/editcomputers.h"
+#include "UI/addlink.h"
 
 namespace Ui {
 class MainWindow;
@@ -59,6 +60,8 @@ private slots:
 
 
     void on_MainTable_doubleClicked(const QModelIndex &index);
+
+    void on_actionAdd_Link_triggered();
 
 private:
     Domain d;

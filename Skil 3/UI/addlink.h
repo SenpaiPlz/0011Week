@@ -20,17 +20,21 @@ public:
     ~AddLink();
 
 private slots:
-    bool on_button_select_clicked();
 
-    void on_table_linking_itemSelectionChanged();
+    void on_table_linking_clicked(const QModelIndex &index);
+
+    void on_button_select_clicked();
+
+    void on_button_Link_clicked();
 
 private:
+    int CSID;
+    int TableCount = 1;
     Ui::AddLink *ui;
     Domain d;
     helper help;
-    void displayCS(vector<ComputerScientist>& css);
-    void displayComputer(vector<Computer>& computer);
-    void ControlLinking();
+    void displayCSS(vector<ComputerScientist>& css);
+    void displayComp(vector<Computer>& computer);
 };
 
 #endif // ADDLINK_H

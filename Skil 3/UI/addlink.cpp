@@ -6,7 +6,10 @@ AddLink::AddLink(QWidget *parent) :
     ui(new Ui::AddLink)
 {
     ui->setupUi(this);
-    ControlLinking();
+    ui->button_select->setDisabled(true);
+    ui->button_Link->setDisabled(true);
+    vector<ComputerScientist> css = d.GetComputerScientist("first_name",false);
+    displayCSS(css);
 }
 
 AddLink::~AddLink()
@@ -14,28 +17,7 @@ AddLink::~AddLink()
     delete ui;
 }
 
-void AddLink::ControlLinking()
-{
-    ui->button_select->setEnabled(false);
-    ui->button_select->setText("Select Scientist");
-    vector<ComputerScientist> css = d.GetComputerScientist("first_name",false);
-    displayCS(css);
-
-    if(on_button_select_clicked())
-    {
-        ui->button_select->setEnabled(false);
-        ui->button_select->setText("Select Computer");
-        vector<Computer> cmp = d.GetComputers("name",false);
-        displayComputer(cmp);
-        /*if(on_button_select_clicked())
-        {
-            this->done(1);
-        }*/
-
-    }
-}
-
-void AddLink::displayCS(vector<ComputerScientist>& css)
+void AddLink::displayCSS(vector<ComputerScientist>& css)
 {
     ui->table_linking->setSortingEnabled(false);
 
@@ -74,7 +56,7 @@ void AddLink::displayCS(vector<ComputerScientist>& css)
     ui->table_linking->setSortingEnabled(true);
 }
 
-void AddLink::displayComputer(vector<Computer>& computer)
+void AddLink::displayComp(vector<Computer>& computer)
 {
     ui->table_linking->setSortingEnabled(false);
 
@@ -104,24 +86,31 @@ void AddLink::displayComputer(vector<Computer>& computer)
 
     ui->table_linking->setSortingEnabled(true);
 }
-bool AddLink::on_button_select_clicked()
-{
-    string temp = ui->button_select->text().toStdString();
 
-    if(temp == "Select Scientist")
-    {
-        return true;
-    }
-    else if(temp == "Select Computer")
-    {
-        return 2;
-    }
-    return 1;
-    //int rowindex = ui->table_linking->selectionModel()->currentIndex().row();
-    //int rowid = ui->table_linking->item(rowindex,4)->text().toInt();
-}
-
-void AddLink::on_table_linking_itemSelectionChanged()
+void AddLink::on_table_linking_clicked(const QModelIndex &index)
 {
     ui->button_select->setEnabled(true);
+    if(TableCount > 1)
+    {
+        ui->button_select->setDisabled(true);
+        ui->button_Link->setEnabled(true);
+    }
+}
+
+void AddLink::on_button_select_clicked()
+{
+    ui->button_select->setDisabled(true);
+    int rowidx = ui->table_linking->selectionModel()->currentIndex().row();
+    CSID = ui->table_linking->item(rowidx,0)->text().toInt();
+    TableCount++;
+    vector<Computer> comp = d.GetComputers("name",false);
+    displayComp(comp);
+}
+
+void AddLink::on_button_Link_clicked()
+{
+    int rowidx = ui->table_linking->selectionModel()->currentIndex().row();
+    int id = ui->table_linking->item(rowidx,0)->text().toInt();
+    d.AddLink(CSID,id);
+    this->done(1);
 }

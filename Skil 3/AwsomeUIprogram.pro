@@ -29,7 +29,8 @@ SOURCES += main.cpp\
     UI/deletelink.cpp \
     UI/deletescientist.cpp \
     UI/editcomputers.cpp \
-    UI/editscientist.cpp
+    UI/editscientist.cpp \
+    UI/addlink.cpp
 
 HEADERS  += UI/mainwindow.h \
     The_Children/computer.h \
@@ -45,7 +46,8 @@ HEADERS  += UI/mainwindow.h \
     UI/deletelink.h \
     UI/deletescientist.h \
     UI/editcomputers.h \
-    UI/editscientist.h
+    UI/editscientist.h \
+    UI/addlink.h
 
 FORMS    += UI/mainwindow.ui \
     UI/add_scientist.ui \
@@ -54,4 +56,5 @@ FORMS    += UI/mainwindow.ui \
     UI/deletelink.ui \
     UI/deletescientist.ui \
     UI/editcomputers.ui \
-    UI/editscientist.ui
+    UI/editscientist.ui \
+    UI/addlink.ui
