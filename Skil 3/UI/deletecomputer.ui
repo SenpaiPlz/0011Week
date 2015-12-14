@@ -21,6 +21,9 @@
        <property name="editTriggers">
         <set>QAbstractItemView::NoEditTriggers</set>
        </property>
+       <property name="tabKeyNavigation">
+        <bool>false</bool>
+       </property>
        <property name="selectionMode">
         <enum>QAbstractItemView::SingleSelection</enum>
        </property>
@@ -55,6 +58,9 @@
        <property name="editTriggers">
         <set>QAbstractItemView::NoEditTriggers</set>
        </property>
+       <property name="tabKeyNavigation">
+        <bool>false</bool>
+       </property>
        <property name="selectionMode">
         <enum>QAbstractItemView::SingleSelection</enum>
        </property>
@@ -77,6 +83,13 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>table_original</tabstop>
+  <tabstop>table_delete</tabstop>
+  <tabstop>button_mark</tabstop>
+  <tabstop>button_unmark</tabstop>
+  <tabstop>button_delete_all</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

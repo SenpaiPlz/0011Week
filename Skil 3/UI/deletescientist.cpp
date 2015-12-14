@@ -117,18 +117,24 @@ void DeleteScientist::on_table_delete_clicked(const QModelIndex &index)
 
 void DeleteScientist::on_button_mark_clicked()
 {
-    int rowidx = ui->table_original->selectionModel()->currentIndex().row();
-    int id = ui->table_original->item(rowidx,0)->text().toInt();
-    d.MarkDeleted("scientists",id);
-    Refresh();
+    if(ui->table_original->selectionModel()->currentIndex().isValid())
+    {
+        int rowidx = ui->table_original->selectionModel()->currentIndex().row();
+        int id = ui->table_original->item(rowidx,0)->text().toInt();
+        d.MarkDeleted("scientists",id);
+        Refresh();
+    }
 }
 
 void DeleteScientist::on_button_unmark_clicked()
 {
-    int rowidx = ui->table_delete->selectionModel()->currentIndex().row();
-    int id = ui->table_delete->item(rowidx,0)->text().toInt();
-    d.UnmarkDeleted("scientists",id);
-    Refresh();
+    if(ui->table_original->selectionModel()->currentIndex().isValid())
+    {
+        int rowidx = ui->table_delete->selectionModel()->currentIndex().row();
+        int id = ui->table_delete->item(rowidx,0)->text().toInt();
+        d.UnmarkDeleted("scientists",id);
+        Refresh();
+    }
 }
 
 void DeleteScientist::on_button_delete_all_clicked()
