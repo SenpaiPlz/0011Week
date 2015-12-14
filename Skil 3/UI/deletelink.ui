@@ -17,41 +17,28 @@
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QTableWidget" name="table_original">
+      <widget class="QTableWidget" name="table_link">
        <property name="editTriggers">
         <set>QAbstractItemView::NoEditTriggers</set>
        </property>
-      </widget>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
-        <widget class="QPushButton" name="button_mark">
-         <property name="text">
-          <string>Mark for deletion</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="button_unmark">
-         <property name="text">
-          <string>Un-mark from deletion</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <widget class="QTableWidget" name="table_delete">
-       <property name="editTriggers">
-        <set>QAbstractItemView::NoEditTriggers</set>
+       <property name="selectionMode">
+        <enum>QAbstractItemView::SingleSelection</enum>
        </property>
+       <property name="selectionBehavior">
+        <enum>QAbstractItemView::SelectRows</enum>
+       </property>
+       <attribute name="verticalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="button_delete_all">
+      <layout class="QHBoxLayout" name="horizontalLayout"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="button_delete">
        <property name="text">
-        <string>Delete all marked</string>
+        <string>Delete marked</string>
        </property>
       </widget>
      </item>

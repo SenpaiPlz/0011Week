@@ -19,10 +19,16 @@ public:
     explicit DeleteLink(QWidget *parent = 0);
     ~DeleteLink();
 
+private slots:
+    void on_button_delete_clicked();
+
+    void on_table_link_itemSelectionChanged();
+
 private:
     Ui::DeleteLink *ui;
     Domain d;
     void showLink(vector<ComputerScientist>& cssinner, vector<Computer>& compinner, vector<int>& rowid);
+    void Refresh();
 };
 
 #endif // DELETELINK_H
