@@ -29,6 +29,9 @@
    <property name="text">
     <string/>
    </property>
+   <property name="pixmap">
+    <pixmap resource="../themelogo.qrc">:/logopic.png</pixmap>
+   </property>
   </widget>
   <widget class="QPushButton" name="start_button">
    <property name="geometry">

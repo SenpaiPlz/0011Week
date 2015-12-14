@@ -6,9 +6,6 @@ LogoBox::LogoBox(QWidget *parent) :
     ui(new Ui::LogoBox)
 {
     ui->setupUi(this);
-
-    QPixmap pix("C:/Users/SigrúnTinna/Documents/AwesomeUIprogram/logopic.png");
-    ui->image->setPixmap(pix);
 }
 
 LogoBox::~LogoBox()
