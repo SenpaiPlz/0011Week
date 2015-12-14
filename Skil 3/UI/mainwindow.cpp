@@ -217,6 +217,7 @@ void MainWindow::on_actionDelete_Link_triggered()
 {
     DeleteLink deleteLink;
     deleteLink.exec();
+    displayAll(GetCurrentTable());
 }
 
 
@@ -228,7 +229,7 @@ void MainWindow::on_MainTable_ShowContextMenu(const QPoint& pos)
 
     menu.addAction("Add");
     menu.addAction("Edit",this,SLOT(Edit_Triggered()));
-    menu.addAction("Delete");
+    menu.addAction("Delete",this,SLOT(Delete_Triggered()));
 
     if(GetCurrentTable() == 3)
     {
@@ -265,7 +266,6 @@ void MainWindow::Edit_Triggered()
         edit.SetBday(ui->MainTable->item(rowidx,5)->text());
         edit.SetDday(ui->MainTable->item(rowidx,6)->text());
         edit.exec();
-        displayAll(GetCurrentTable());
     }
     else if(GetCurrentTable() == 2)
     {
@@ -277,8 +277,29 @@ void MainWindow::Edit_Triggered()
         edit.SetType(ui->MainTable->item(rowidx,3)->text());
         edit.SetBuilt(ui->MainTable->item(rowidx,4)->text().toInt());
         edit.exec();
-        displayAll(GetCurrentTable());
     }
+    displayAll(GetCurrentTable());
+}
+
+void MainWindow::Delete_Triggered()
+{
+    int rowidx = ui->MainTable->selectionModel()->currentIndex().row();
+    if(GetCurrentTable() == 1)
+    {
+        int id = ui->MainTable->item(rowidx,0)->text().toInt();
+        d.MarkDeleted("scientists",id);
+    }
+    else if(GetCurrentTable() == 2)
+    {
+        int id = ui->MainTable->item(rowidx,0)->text().toInt();
+        d.MarkDeleted("computers",id);
+    }
+    else if(GetCurrentTable() == 1)
+    {
+        int id = ui->MainTable->item(rowidx,4)->text().toInt();
+        d.DeleteLink(id);
+    }
+    displayAll(GetCurrentTable());
 }
 
 void MainWindow::on_actionEdit_ComputerScientist_triggered()

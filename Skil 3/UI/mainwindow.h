@@ -52,6 +52,8 @@ private slots:
 
     void on_actionEdit_Computer_triggered();
 
+    void Delete_Triggered();
+
 private:
     Domain d;
     Ui::MainWindow *ui;
