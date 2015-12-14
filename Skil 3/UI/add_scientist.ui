@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>659</width>
-    <height>528</height>
+    <width>517</width>
+    <height>267</height>
    </rect>
   </property>
   <property name="font">
@@ -19,27 +19,18 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <layout class="QFormLayout" name="formLayout">
-   <item row="1" column="1">
-    <spacer name="verticalSpacer_2">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="3" column="1">
+  <property name="windowIcon">
+   <iconset resource="../themelogo.qrc">
+    <normaloff>:/liltree.png</normaloff>:/liltree.png</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
     <widget class="QLabel" name="label_9">
      <property name="font">
       <font>
-       <pointsize>8</pointsize>
-       <weight>50</weight>
-       <bold>false</bold>
+       <pointsize>11</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
       </font>
      </property>
      <property name="text">
@@ -47,106 +38,91 @@
      </property>
     </widget>
    </item>
-   <item row="4" column="1">
-    <spacer name="verticalSpacer_3">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="label_7">
+       <property name="text">
+        <string>First Name* </string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="FirstName"/>
+     </item>
+    </layout>
    </item>
-   <item row="5" column="1">
-    <spacer name="verticalSpacer_4">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Middle Name</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="MidName"/>
+     </item>
+    </layout>
    </item>
-   <item row="10" column="0">
-    <widget class="QLabel" name="label_7">
-     <property name="text">
-      <string>First Name*</string>
-     </property>
-    </widget>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_5">
+     <item>
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>Last Name*  </string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="LastName"/>
+     </item>
+    </layout>
    </item>
-   <item row="11" column="1">
-    <widget class="QLineEdit" name="FirstName"/>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_6">
+     <item>
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>Gender*       </string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="Gender"/>
+     </item>
+    </layout>
    </item>
-   <item row="12" column="0">
-    <widget class="QLabel" name="label">
-     <property name="text">
-      <string>Middle Name</string>
-     </property>
-    </widget>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_7">
+     <item>
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>Year Born*    </string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="Yeardied"/>
+     </item>
+    </layout>
    </item>
-   <item row="13" column="1">
-    <widget class="QLineEdit" name="MidName"/>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_8">
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Year Died      </string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="YearBorn"/>
+     </item>
+    </layout>
    </item>
-   <item row="15" column="0">
-    <widget class="QLabel" name="label_5">
-     <property name="text">
-      <string>Last Name*</string>
-     </property>
-    </widget>
-   </item>
-   <item row="16" column="1">
-    <widget class="QLineEdit" name="LastName"/>
-   </item>
-   <item row="18" column="0">
-    <widget class="QLabel" name="label_4">
-     <property name="text">
-      <string>Gender*</string>
-     </property>
-    </widget>
-   </item>
-   <item row="19" column="1">
-    <widget class="QLineEdit" name="Gender"/>
-   </item>
-   <item row="20" column="0">
-    <widget class="QLabel" name="label_3">
-     <property name="text">
-      <string>Year Born*</string>
-     </property>
-    </widget>
-   </item>
-   <item row="21" column="1">
-    <widget class="QLineEdit" name="YearBorn"/>
-   </item>
-   <item row="23" column="0">
-    <widget class="QLabel" name="label_2">
-     <property name="text">
-      <string>Year Died</string>
-     </property>
-    </widget>
-   </item>
-   <item row="24" column="1">
-    <widget class="QLineEdit" name="Yeardied"/>
-   </item>
-   <item row="25" column="1">
-    <spacer name="verticalSpacer_5">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="28" column="1">
+   <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -166,7 +142,11 @@
       </layout>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_2"/>
+      <widget class="QPushButton" name="pushButton">
+       <property name="text">
+        <string>Add</string>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_2">
@@ -175,17 +155,12 @@
        </property>
       </widget>
      </item>
-     <item>
-      <widget class="QPushButton" name="pushButton">
-       <property name="text">
-        <string>Add</string>
-       </property>
-      </widget>
-     </item>
     </layout>
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../themelogo.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../themelogo.qrc">
+    <normaloff>:/liltree.png</normaloff>:/liltree.png</iconset>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QLabel" name="label">
@@ -148,6 +152,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../themelogo.qrc"/>
+ </resources>
  <connections/>
 </ui>

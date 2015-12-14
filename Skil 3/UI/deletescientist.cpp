@@ -128,7 +128,7 @@ void DeleteScientist::on_button_mark_clicked()
 
 void DeleteScientist::on_button_unmark_clicked()
 {
-    if(ui->table_original->selectionModel()->currentIndex().isValid())
+    if(ui->table_delete->selectionModel()->currentIndex().isValid())
     {
         int rowidx = ui->table_delete->selectionModel()->currentIndex().row();
         int id = ui->table_delete->item(rowidx,0)->text().toInt();
