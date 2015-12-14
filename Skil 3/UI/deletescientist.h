@@ -31,6 +31,10 @@ private slots:
 
     void on_button_delete_all_clicked();
 
+    void on_table_original_doubleClicked(const QModelIndex &index);
+
+    void on_table_delete_doubleClicked(const QModelIndex &index);
+
 private:
     Ui::DeleteScientist *ui;
     Domain d;

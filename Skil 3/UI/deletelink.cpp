@@ -74,3 +74,8 @@ void DeleteLink::on_table_link_itemSelectionChanged()
 {
     ui->button_delete->setEnabled(true);
 }
+
+void DeleteLink::on_table_link_doubleClicked(const QModelIndex &index)
+{
+    on_button_delete_clicked();
+}

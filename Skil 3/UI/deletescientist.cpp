@@ -136,3 +136,13 @@ void DeleteScientist::on_button_delete_all_clicked()
     d.DeleteAllMarked();
     Refresh();
 }
+
+void DeleteScientist::on_table_original_doubleClicked(const QModelIndex &index)
+{
+    on_button_mark_clicked();
+}
+
+void DeleteScientist::on_table_delete_doubleClicked(const QModelIndex &index)
+{
+    on_button_unmark_clicked();
+}

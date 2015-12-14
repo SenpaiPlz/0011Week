@@ -54,6 +54,11 @@ private slots:
 
     void Delete_Triggered();
 
+    void Add_Triggered();
+
+
+    void on_MainTable_doubleClicked(const QModelIndex &index);
+
 private:
     Domain d;
     Ui::MainWindow *ui;

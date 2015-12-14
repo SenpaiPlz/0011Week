@@ -36,7 +36,8 @@ void EditScientist::on_pushButton_Edit_clicked()
     }
 
     if(!tmpyearborn.toInt() || (tmpyearborn.toInt() > 2015) || (tmpyearborn.toInt() < 0)
-      || (!tmpyeardied.toInt() && !tmpyeardied.isEmpty()) || (tmpyearborn.toInt() > tmpyeardied.toInt()))
+      || (!tmpyeardied.toInt() && !tmpyeardied.isEmpty())
+      || ((tmpyearborn.toInt() > tmpyeardied.toInt()) && !tmpyeardied.isEmpty()))
     {
         valid = false;
     }

@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     d.connect();
     ui->setupUi(this);
+    QMainWindow::showMaximized();
 
     ui->SELECT_TABLE->addItem("Computer Scientists");
     ui->SELECT_TABLE->addItem("Computers");
@@ -227,7 +228,7 @@ void MainWindow::on_MainTable_ShowContextMenu(const QPoint& pos)
 
     QMenu menu;
 
-    menu.addAction("Add");
+    menu.addAction("Add",this,SLOT(Add_Triggered()));
     menu.addAction("Edit",this,SLOT(Edit_Triggered()));
     menu.addAction("Delete",this,SLOT(Delete_Triggered()));
 
@@ -264,7 +265,10 @@ void MainWindow::Edit_Triggered()
         edit.SetLast(ui->MainTable->item(rowidx,3)->text());
         edit.SetGender(ui->MainTable->item(rowidx,4)->text());
         edit.SetBday(ui->MainTable->item(rowidx,5)->text());
-        edit.SetDday(ui->MainTable->item(rowidx,6)->text());
+        if(ui->MainTable->item(rowidx,6)->text() != "0")
+        {
+            edit.SetDday(ui->MainTable->item(rowidx,6)->text());
+        }
         edit.exec();
     }
     else if(GetCurrentTable() == 2)
@@ -302,6 +306,22 @@ void MainWindow::Delete_Triggered()
     displayAll(GetCurrentTable());
 }
 
+void MainWindow::Add_Triggered()
+{
+    if(GetCurrentTable() == 1)
+    {
+        on_actionAdd_Computer_Scientist_triggered();
+    }
+    else if(GetCurrentTable() == 2)
+    {
+        on_actionAdd_Computer_triggered();
+    }
+    else if(GetCurrentTable() == 3)
+    {
+
+    }
+}
+
 void MainWindow::on_actionEdit_ComputerScientist_triggered()
 {
     EditScientist edit;
@@ -314,4 +334,11 @@ void MainWindow::on_actionEdit_Computer_triggered()
     EditComputers edit;
     edit.exec();
     displayAll(GetCurrentTable());
+}
+
+
+
+void MainWindow::on_MainTable_doubleClicked(const QModelIndex &index)
+{
+    Edit_Triggered();
 }
