@@ -65,3 +65,41 @@ void EditScientist::on_pushButton_Edit_clicked()
     }
 }
 //Just need to set for errors
+
+
+
+void EditScientist::SetID(const QString& str)
+{
+    ui->edit_id->setText(str);
+    ui->edit_id->setDisabled(true);
+}
+
+void EditScientist::SetFirst(const QString &str)
+{
+    ui->edit_first_name->setText(str);
+}
+
+void EditScientist::SetMid(const QString &str)
+{
+    ui->edit_middle_name->setText(str);
+}
+
+void EditScientist::SetLast(const QString &str)
+{
+    ui->edit_last_name->setText(str);
+}
+
+void EditScientist::SetGender(const QString &str)
+{
+    ui->edit_gender->setText(str);
+}
+
+void EditScientist::SetBday(const QString &str)
+{
+    ui->edit_bday->setText(str);
+}
+
+void EditScientist::SetDday(const QString &str)
+{
+    ui->edit_dday->setText(str);
+}

@@ -16,6 +16,13 @@ class EditScientist : public QDialog
 public:
     explicit EditScientist(QWidget *parent = 0);
     ~EditScientist();
+    void SetID(const QString &str);
+    void SetFirst(const QString &str);
+    void SetMid(const QString &str);
+    void SetLast(const QString &str);
+    void SetGender(const QString &str);
+    void SetBday(const QString &str);
+    void SetDday(const QString &str);
 
 private slots:
     void on_pushButton_Cancel_clicked();

@@ -254,13 +254,29 @@ void MainWindow::Edit_Triggered()
 {
     if(GetCurrentTable() == 1)
     {
+        int rowidx = ui->MainTable->selectionModel()->currentIndex().row();
         EditScientist edit;
+        edit.SetID(ui->MainTable->item(rowidx,0)->text());
+        edit.SetFirst(ui->MainTable->item(rowidx,1)->text());
+        edit.SetMid(ui->MainTable->item(rowidx,2)->text());
+        edit.SetLast(ui->MainTable->item(rowidx,3)->text());
+        edit.SetGender(ui->MainTable->item(rowidx,4)->text());
+        edit.SetBday(ui->MainTable->item(rowidx,5)->text());
+        edit.SetDday(ui->MainTable->item(rowidx,6)->text());
         edit.exec();
+        displayAll(GetCurrentTable());
     }
     else if(GetCurrentTable() == 2)
     {
+        int rowidx = ui->MainTable->selectionModel()->currentIndex().row();
         EditComputers edit;
+        edit.SetID(ui->MainTable->item(rowidx,0)->text());
+        edit.SetName(ui->MainTable->item(rowidx,1)->text());
+        edit.SetYear(ui->MainTable->item(rowidx,2)->text());
+        edit.SetType(ui->MainTable->item(rowidx,3)->text());
+        edit.SetBuilt(ui->MainTable->item(rowidx,4)->text().toInt());
         edit.exec();
+        displayAll(GetCurrentTable());
     }
 }
 

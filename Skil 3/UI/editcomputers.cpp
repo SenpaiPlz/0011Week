@@ -51,3 +51,30 @@ void EditComputers::on_pushButton_cancel_clicked()
 {
     this->done(0);
 }
+
+
+void EditComputers::SetID(const QString& str)
+{
+    ui->edit_id->setText(str);
+    ui->edit_id->setDisabled(true);
+}
+
+void EditComputers::SetName(const QString& str)
+{
+    ui->edit_name->setText(str);
+}
+
+void EditComputers::SetYear(const QString& str)
+{
+    ui->edit_year->setText(str);
+}
+
+void EditComputers::SetType(const QString& str)
+{
+    ui->edit_type->setText(str);
+}
+
+void EditComputers::SetBuilt(const bool& built)
+{
+    ui->check_built->setChecked(built);
+}

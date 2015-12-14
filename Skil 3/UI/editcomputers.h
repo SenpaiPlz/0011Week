@@ -16,6 +16,11 @@ class EditComputers : public QDialog
 public:
     explicit EditComputers(QWidget *parent = 0);
     ~EditComputers();
+    void SetID(const QString& str);
+    void SetName(const QString& str);
+    void SetYear(const QString& str);
+    void SetType(const QString& str);
+    void SetBuilt(const bool& built);
 
 private slots:
     void on_pushButton_edit_clicked();
