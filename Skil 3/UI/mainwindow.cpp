@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
     d.connect();
     ui->setupUi(this);
     QMainWindow::showMaximized();
+    Keybinds();
 
     ui->SELECT_TABLE->addItem("Computer Scientists");
     ui->SELECT_TABLE->addItem("Computers");
@@ -255,32 +256,35 @@ void MainWindow::on_actionAdd_Computer_triggered()
 
 void MainWindow::Edit_Triggered()
 {
-    if(GetCurrentTable() == 1)
+    if(ui->MainTable->currentIndex().isValid())
     {
-        int rowidx = ui->MainTable->selectionModel()->currentIndex().row();
-        EditScientist edit;
-        edit.SetID(ui->MainTable->item(rowidx,0)->text());
-        edit.SetFirst(ui->MainTable->item(rowidx,1)->text());
-        edit.SetMid(ui->MainTable->item(rowidx,2)->text());
-        edit.SetLast(ui->MainTable->item(rowidx,3)->text());
-        edit.SetGender(ui->MainTable->item(rowidx,4)->text());
-        edit.SetBday(ui->MainTable->item(rowidx,5)->text());
-        if(ui->MainTable->item(rowidx,6)->text() != "0")
+        if(GetCurrentTable() == 1)
         {
-            edit.SetDday(ui->MainTable->item(rowidx,6)->text());
+            int rowidx = ui->MainTable->selectionModel()->currentIndex().row();
+            EditScientist edit;
+            edit.SetID(ui->MainTable->item(rowidx,0)->text());
+            edit.SetFirst(ui->MainTable->item(rowidx,1)->text());
+            edit.SetMid(ui->MainTable->item(rowidx,2)->text());
+            edit.SetLast(ui->MainTable->item(rowidx,3)->text());
+            edit.SetGender(ui->MainTable->item(rowidx,4)->text());
+            edit.SetBday(ui->MainTable->item(rowidx,5)->text());
+            if(ui->MainTable->item(rowidx,6)->text() != "0")
+            {
+                edit.SetDday(ui->MainTable->item(rowidx,6)->text());
+            }
+            edit.exec();
         }
-        edit.exec();
-    }
-    else if(GetCurrentTable() == 2)
-    {
-        int rowidx = ui->MainTable->selectionModel()->currentIndex().row();
-        EditComputers edit;
-        edit.SetID(ui->MainTable->item(rowidx,0)->text());
-        edit.SetName(ui->MainTable->item(rowidx,1)->text());
-        edit.SetYear(ui->MainTable->item(rowidx,2)->text());
-        edit.SetType(ui->MainTable->item(rowidx,3)->text());
-        edit.SetBuilt(ui->MainTable->item(rowidx,4)->text().toInt());
-        edit.exec();
+        else if(GetCurrentTable() == 2)
+        {
+            int rowidx = ui->MainTable->selectionModel()->currentIndex().row();
+            EditComputers edit;
+            edit.SetID(ui->MainTable->item(rowidx,0)->text());
+            edit.SetName(ui->MainTable->item(rowidx,1)->text());
+            edit.SetYear(ui->MainTable->item(rowidx,2)->text());
+            edit.SetType(ui->MainTable->item(rowidx,3)->text());
+            edit.SetBuilt(ui->MainTable->item(rowidx,4)->text().toInt());
+            edit.exec();
+        }
     }
     displayAll(GetCurrentTable());
 }
@@ -341,4 +345,10 @@ void MainWindow::on_actionEdit_Computer_triggered()
 void MainWindow::on_MainTable_doubleClicked(const QModelIndex &index)
 {
     Edit_Triggered();
+}
+
+void MainWindow::Keybinds()
+{
+    QShortcut* shortcut = new QShortcut(QKeySequence("ctrl+E"), this);
+    connect(shortcut, SIGNAL(activated()), this, SLOT(Edit_Triggered()));
 }

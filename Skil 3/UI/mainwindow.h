@@ -5,6 +5,7 @@
 #include <string>
 #include <QTableView>
 #include <vector>
+#include <QShortcut>
 #include "domain/domain.h"
 #include "domain/helper.h"
 #include "The_Children/computer.h"
@@ -63,6 +64,7 @@ private:
     Domain d;
     Ui::MainWindow *ui;
     int GetCurrentTable();
+    void Keybinds();
     void displayAll(int index);
     void displayCS(vector<ComputerScientist> &css);
     void displayComputer(vector<Computer> &computer);
