@@ -382,6 +382,8 @@ void MainWindow::Keybinds()
     connect(shortcut, SIGNAL(activated()), this, SLOT(on_actionDelete_Computers_triggered()));
     shortcut = new QShortcut(QKeySequence("alt+shift+D"),this);
     connect(shortcut, SIGNAL(activated()), this, SLOT(on_actionDelete_Scientists_triggered()));
+    shortcut = new QShortcut(QKeySequence("ctrl+S"), this);
+    connect(shortcut, SIGNAL(activated()), this, SLOT(on_actionShortcuts_triggered()));
 }
 
 void MainWindow::on_actionAdd_Link_triggered()
@@ -406,5 +408,6 @@ void MainWindow::on_actionShortcuts_triggered()
     "<p><font color ='#1f5f2c'>CTRL + A = Add Item of currently selected table</font></p>\n\n "
     "<p><font color ='#1f5f2c'>CTRL + D = Mark for deletion/Delete currently selected item</font></p>\n\n "
     "<p><font color ='#1f5f2c'>CTRL + ALT + D = Delete Menu for Computers</font></p>\n\n "
-    "<p><font color ='#1f5f2c'>SHIFT + ALT + D = Delete Menu for ComputerScientists</font><p>\n");
+    "<p><font color ='#1f5f2c'>SHIFT + ALT + D = Delete Menu for ComputerScientists</font><p>\n\n"
+    "<p><font color ='#1f5f2c'>CTRL + S = Opens Shortcut Box</font><p>\n");
 }
