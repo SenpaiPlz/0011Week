@@ -65,3 +65,11 @@ bool helper::ValidComputerId(vector<Computer>& tmp, const int& id)
     }
     return false;
 }
+
+int helper::CurrentYear()
+{
+    time_t timi = time(NULL);
+    struct tm *atimi = localtime(&timi);
+
+    return atimi->tm_year+1900;
+}

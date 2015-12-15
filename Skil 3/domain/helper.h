@@ -5,6 +5,7 @@
 #include <vector>
 #include <cctype>
 #include <string>
+#include <ctime>
 
 using namespace std;
 
@@ -16,6 +17,7 @@ public:
     bool ValidCSId(vector<ComputerScientist>& tmp, const int& id);
     bool ValidComputerId(vector<Computer>& tmp, const int& id);
     bool CheckValidtyOfString(string tmp);
+    int CurrentYear();
     helper();
 };
 
