@@ -4,6 +4,7 @@
 #include "domain/helper.h"
 #include "The_Children/computer.h"
 #include "The_Children/computerscientist.h"
+#include <QMessageBox>
 
 #include <QDialog>
 

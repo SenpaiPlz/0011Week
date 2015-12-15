@@ -13,6 +13,17 @@ Add_Scientist::~Add_Scientist()
     delete ui;
 }
 
+void Add_Scientist::Refresh()
+{
+    ui->first_label->setText("First Name*");
+    ui->middle_label->setText("Middle Name");
+    ui->last_lable->setText("Last Name*");
+    ui->gender_lable->setText("Gender*");
+    ui->born_lable->setText("Year Born*");
+    ui->dead_lable->setText("Year Died");
+
+}
+
 void Add_Scientist::on_pushButton_2_clicked()
 {
     this->done(0);
@@ -27,6 +38,7 @@ void Add_Scientist::on_pushButton_clicked()
     string tmpgender = ui->Gender->text().toStdString();
     QString tmpyearborn = ui->YearBorn->text();
     QString tmpyeardied = ui->Yeardied->text();
+    Refresh();
     if(!help.CheckValidtyOfString(tmpname))
     {
         valid = false;
@@ -42,18 +54,12 @@ void Add_Scientist::on_pushButton_clicked()
         valid = false;
         ui->middle_label->setText("<font color='red'>Middle Name</font>");
     }
-    if(!help.CheckValidtyOfString(tmpgender))
-    {
-        valid = false;
-        ui->gender_lable->setText("<font color='red'>Gender*</font>");
-    }
-    if(!tmpyearborn.toInt() || (tmpyearborn.toInt() > 2015) || (tmpyearborn.toInt() < 0)
-      || (tmpyearborn.toInt() > tmpyeardied.toInt()))
+    if(!(tmpyearborn.toInt()) || (tmpyearborn.toInt() > 2015) || (tmpyearborn.toInt() < 0))
     {
         valid = false;
         ui->born_lable->setText("<font color='red'>Year Born*</font>");
     }
-    if((!tmpyeardied.toInt() && !tmpyeardied.isEmpty()) || (tmpyearborn.toInt() > tmpyeardied.toInt()))
+    if((tmpyearborn.toInt() > tmpyeardied.toInt()))
     {
         valid = false;
         ui->dead_lable->setText("<font color='red'>Year Died</font>");

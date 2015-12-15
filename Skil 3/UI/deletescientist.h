@@ -3,6 +3,7 @@
 #include "domain/domain.h"
 #include "domain/helper.h"
 #include "The_Children/computerscientist.h"
+#include "QMessageBox"
 
 #include <QDialog>
 

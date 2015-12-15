@@ -28,6 +28,7 @@ private:
     helper help;
     Domain d;
     Ui::Add_Scientist *ui;
+    void Refresh();
 };
 
 #endif // ADD_SCIENTIST_H

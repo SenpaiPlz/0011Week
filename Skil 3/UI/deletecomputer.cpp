@@ -9,7 +9,6 @@ DeleteComputer::DeleteComputer(QWidget *parent) :
 
     ui->button_mark->setEnabled(false);
     ui->button_unmark->setEnabled(false);
-    ui->button_delete_all->setEnabled(false);
     Refresh();
 }
 
@@ -98,7 +97,6 @@ void DeleteComputer::on_table_delete_clicked(const QModelIndex &index)
 {
     ui->button_mark->setEnabled(false);
     ui->button_unmark->setEnabled(true);
-    ui->button_delete_all->setEnabled(true);
 }
 
 void DeleteComputer::on_button_mark_clicked()
@@ -127,12 +125,18 @@ void DeleteComputer::on_button_unmark_clicked()
 
 void DeleteComputer::on_button_delete_all_clicked()
 {
-    QMessageBox::StandardButton reply;
-    QMessageBox::question(this,"Warning", "You are about to delete\n all marked Computers\n and Scientists.\n Do you want to continue?", QMessageBox::Yes|QMessageBox::No);
-    if(reply == QMessageBox::Yes)
+    if(!(d.GetDeletedComputers().empty()))
     {
-        d.DeleteAllMarked();
-        Refresh();
+        QMessageBox msgBox;
+        msgBox.setWindowTitle("Warning");
+        msgBox.setText("You are about to delete\n all marked Computers\n and Scientists.\n Do you want to continue?");
+        msgBox.addButton(QMessageBox::Yes);
+        msgBox.addButton(QMessageBox::No);
+        if(msgBox.exec() == QMessageBox::Yes)
+        {
+            d.DeleteAllMarked();
+            Refresh();
+        }
     }
 }
 

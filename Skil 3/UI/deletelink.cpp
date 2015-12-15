@@ -66,8 +66,16 @@ void DeleteLink::on_button_delete_clicked()
     int rowindex = ui->table_link->selectionModel()->currentIndex().row();
     int rowid = ui->table_link->item(rowindex,4)->text().toInt();
 
-    d.DeleteLink(rowid);
-    Refresh();
+    QMessageBox msgBox;
+    msgBox.setWindowTitle("Warning");
+    msgBox.setText("You are about to delete\n this Link.\n Do you want to continue?");
+    msgBox.addButton(QMessageBox::Yes);
+    msgBox.addButton(QMessageBox::No);
+    if(msgBox.exec() == QMessageBox::Yes)
+    {
+        d.DeleteLink(rowid);
+        Refresh();
+    }
 }
 
 void DeleteLink::on_table_link_itemSelectionChanged()

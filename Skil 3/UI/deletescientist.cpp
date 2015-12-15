@@ -139,8 +139,19 @@ void DeleteScientist::on_button_unmark_clicked()
 
 void DeleteScientist::on_button_delete_all_clicked()
 {
-    d.DeleteAllMarked();
-    Refresh();
+    if(!(d.GetDeletedCS().empty()))
+    {
+        QMessageBox msgBox;
+        msgBox.setWindowTitle("Warning");
+        msgBox.setText("You are about to delete\n all marked Computers\n and Scientists.\n Do you want to continue?");
+        msgBox.addButton(QMessageBox::Yes);
+        msgBox.addButton(QMessageBox::No);
+        if(msgBox.exec() == QMessageBox::Yes)
+        {
+            d.DeleteAllMarked();
+            Refresh();
+        }
+    }
 }
 
 void DeleteScientist::on_table_original_doubleClicked(const QModelIndex &index)
