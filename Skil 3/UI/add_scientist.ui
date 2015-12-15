@@ -79,7 +79,7 @@
       </widget>
      </item>
      <item row="5" column="1">
-      <widget class="QLineEdit" name="Yeardied">
+      <widget class="QLineEdit" name="YearBorn">
        <property name="placeholderText">
         <string>0 &lt; valid year &lt; 2016</string>
        </property>
@@ -93,7 +93,7 @@
       </widget>
      </item>
      <item row="6" column="1">
-      <widget class="QLineEdit" name="YearBorn">
+      <widget class="QLineEdit" name="Yeardied">
        <property name="placeholderText">
         <string>Year born &lt; Year Died - optional</string>
        </property>

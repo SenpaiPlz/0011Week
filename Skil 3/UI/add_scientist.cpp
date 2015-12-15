@@ -59,7 +59,7 @@ void Add_Scientist::on_pushButton_clicked()
         valid = false;
         ui->born_lable->setText("<font color='red'>Year Born*</font>");
     }
-    if((tmpyearborn.toInt() > tmpyeardied.toInt()))
+    if((tmpyearborn.toInt() > tmpyeardied.toInt()) && !tmpyeardied.isEmpty())
     {
         valid = false;
         ui->dead_lable->setText("<font color='red'>Year Died</font>");
