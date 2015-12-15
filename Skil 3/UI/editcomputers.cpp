@@ -13,6 +13,14 @@ EditComputers::~EditComputers()
     delete ui;
 }
 
+void EditComputers::Refresh()
+{
+    ui->id_lable->setText("ID");
+    ui->name_label->setText("Name");
+    ui->type_label->setText("Type");
+    ui->year_label->setText("Year Built");
+}
+
 
 void EditComputers::on_pushButton_edit_clicked()
 {
@@ -22,13 +30,27 @@ void EditComputers::on_pushButton_edit_clicked()
     string tmptype = ui->edit_type->text().toStdString();
     bool built = ui->check_built->isChecked();
     int tmpyear;
-    if(!help.CheckValidtyOfString(tmpname) || !help.CheckValidtyOfString(tmptype))
+    vector<Computer> css = d.GetComputers("name",false);
+    Refresh();
+    if(!help.ValidComputerId(css,ui->edit_id->text().toInt()))
     {
         valid = false;
+        ui->id_lable->setText("<font color='red'>ID</font>");
     }
-    if(!(ui->edit_year->text().toInt()) || (ui->edit_year->text().toInt() < 0 || ui->edit_year->text().toInt() > help.CurrentYear()))
+    if(!help.CheckValidtyOfString(tmpname))
     {
         valid = false;
+        ui->name_label->setText("<font color='red'>Name</font>");
+    }
+    if(!help.CheckValidtyOfString(tmptype))
+    {
+        valid = false;
+        ui->type_label->setText("<font color='red'>Type</font>");
+    }
+    if(!(ui->edit_year->text().toInt()) || ui->edit_year->text().toInt() < 0 || ui->edit_year->text().toInt() > help.CurrentYear())
+    {
+        valid = false;
+        ui->year_label->setText("<font color='red'>Year Built</font>");
     }
     tmpyear = ui->edit_year->text().toInt();
     tmpid = ui->edit_id->text().toInt();

@@ -33,6 +33,7 @@ private:
     Ui::EditScientist *ui;
     Domain d;
     helper help;
+    void Refresh();
 };
 
 #endif // EDITSCIENTIST_H

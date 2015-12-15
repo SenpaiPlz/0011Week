@@ -31,6 +31,7 @@ private:
     Ui::EditComputers *ui;
     Domain d;
     helper help;
+    void Refresh();
 };
 
 #endif // EDITCOMPUTERS_H

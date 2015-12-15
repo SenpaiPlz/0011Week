@@ -13,6 +13,18 @@ EditScientist::~EditScientist()
     delete ui;
 }
 
+void EditScientist::Refresh()
+{
+    ui->id_label->setText("ID");
+    ui->first_label->setText("First Name");
+    ui->middle_label->setText("Middle Name");
+    ui->last_label->setText("Last Name");
+    ui->gender_label->setText("Gender");
+    ui->born_label->setText("Year Born");
+    ui->dead_label->setText("Year Died");
+
+}
+
 void EditScientist::on_pushButton_Cancel_clicked()
 {
     this->done(0);
@@ -28,25 +40,51 @@ void EditScientist::on_pushButton_Edit_clicked()
     string tmpgender = ui->edit_gender->text().toStdString();
     QString tmpyearborn = ui->edit_bday->text();
     QString tmpyeardied = ui->edit_dday->text();
-    if((!help.CheckValidtyOfString(tmpname)) || (!help.CheckValidtyOfString(tmplast))
-      || ((!help.CheckValidtyOfString(tmpmid)) && (!tmpmid.empty()))
-      || (!help.CheckValidtyOfString(tmpgender)))
+    vector<ComputerScientist> css = d.GetComputerScientist("first_name",false);
+    Refresh();
+    if(!help.ValidCSId(css,tmpid.toInt()))
     {
         valid = false;
+        ui->id_label->setText("<font color='red'>ID</font>");
     }
-
-    if(!tmpyearborn.toInt() || (tmpyearborn.toInt() > 2015) || (tmpyearborn.toInt() < 0)
-      || (!tmpyeardied.toInt() && !tmpyeardied.isEmpty())
-      || ((tmpyearborn.toInt() > tmpyeardied.toInt()) && !tmpyeardied.isEmpty()))
+    if((!help.CheckValidtyOfString(tmpname)))
     {
         valid = false;
+        ui->first_label->setText("<font color='red'>First Name</font>");
     }
-
+    if((!help.CheckValidtyOfString(tmplast)))
+    {
+        valid = false;
+        ui->last_label->setText("<font color='red'>Last Name</font>");
+    }
+    if((!help.CheckValidtyOfString(tmpmid))&& (!tmpmid.empty()))
+    {
+        valid = false;
+        ui->middle_label->setText("<font color='red'>Middle Name</font>");
+    }
+    if(!tmpyearborn.toInt())
+    {
+        valid = false;
+        ui->born_label->setText("<font color='red'>Birth Year</font>");
+    }
+    if((tmpyearborn.toInt() > 2015) || (tmpyearborn.toInt() < 0))
+    {
+        valid = false;
+        ui->born_label->setText("<font color='red'>Birth Year</font>");
+    }
+    if((!tmpyeardied.toInt() && !tmpyeardied.isEmpty())
+            || ((tmpyearborn.toInt() > tmpyeardied.toInt()) && !tmpyeardied.isEmpty()))
+    {
+        valid = false;
+        ui->dead_label->setText("<font color='red'>Death Year</font>");
+    }
     help.Tolower(tmpgender);
     if(!((tmpgender == "male") || (tmpgender == "female")))
     {
         valid = false;
+        ui->gender_label->setText("<font color='red'>Gender</font>");
     }
+
     if(valid == true)
     {
         ComputerScientist cstemp;
