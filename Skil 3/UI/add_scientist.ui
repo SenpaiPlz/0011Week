@@ -159,6 +159,16 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>FirstName</tabstop>
+  <tabstop>MidName</tabstop>
+  <tabstop>LastName</tabstop>
+  <tabstop>Gender</tabstop>
+  <tabstop>YearBorn</tabstop>
+  <tabstop>Yeardied</tabstop>
+  <tabstop>pushButton</tabstop>
+  <tabstop>pushButton_2</tabstop>
+ </tabstops>
  <resources>
   <include location="../themelogo.qrc"/>
  </resources>

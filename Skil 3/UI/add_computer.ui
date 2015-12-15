@@ -120,6 +120,14 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>Name</tabstop>
+  <tabstop>Year</tabstop>
+  <tabstop>Type</tabstop>
+  <tabstop>BuiltCheckBox</tabstop>
+  <tabstop>Add</tabstop>
+  <tabstop>cancel</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
