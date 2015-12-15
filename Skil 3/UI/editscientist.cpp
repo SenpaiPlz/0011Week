@@ -67,7 +67,7 @@ void EditScientist::on_pushButton_Edit_clicked()
         valid = false;
         ui->born_label->setText("<font color='red'>Birth Year</font>");
     }
-    if((tmpyearborn.toInt() > 2015) || (tmpyearborn.toInt() < 0))
+    if((tmpyearborn.toInt() > help.CurrentYear()) || (tmpyearborn.toInt() < 0))
     {
         valid = false;
         ui->born_label->setText("<font color='red'>Birth Year</font>");

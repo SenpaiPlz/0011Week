@@ -58,7 +58,14 @@ void DeleteScientist::showCS(vector<ComputerScientist>& css)
         ui->table_original->setItem(i,3, new QTableWidgetItem(QString::fromStdString(temp.getLast())));
         ui->table_original->setItem(i,4, new QTableWidgetItem(QString::fromStdString(temp.getGender())));
         ui->table_original->setItem(i,5, yearborn);
-        ui->table_original->setItem(i,6, yeardied);
+        if(temp.getDday() != 0)
+        {
+            ui->table_original->setItem(i,6, yeardied);
+        }
+        else
+        {
+            ui->table_original->setItem(i,6,new QTableWidgetItem(QString("Alive")));
+        }
     }
 
     ui->table_original->setSortingEnabled(true);
@@ -97,7 +104,14 @@ void DeleteScientist::showDELCS(vector<ComputerScientist>& css)
         ui->table_delete->setItem(i,3, new QTableWidgetItem(QString::fromStdString(temp.getLast())));
         ui->table_delete->setItem(i,4, new QTableWidgetItem(QString::fromStdString(temp.getGender())));
         ui->table_delete->setItem(i,5, yearborn);
-        ui->table_delete->setItem(i,6, yeardied);
+        if(temp.getDday() != 0)
+        {
+            ui->table_delete->setItem(i,6, yeardied);
+        }
+        else
+        {
+            ui->table_delete->setItem(i,6,new QTableWidgetItem(QString("Alive")));
+        }
     }
 
     ui->table_delete->setSortingEnabled(true);

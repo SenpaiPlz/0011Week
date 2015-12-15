@@ -84,7 +84,14 @@ void MainWindow::displayCS(vector<ComputerScientist>& css)
         ui->MainTable->setItem(i,3, new QTableWidgetItem(QString::fromStdString(temp.getLast())));
         ui->MainTable->setItem(i,4, new QTableWidgetItem(QString::fromStdString(temp.getGender())));
         ui->MainTable->setItem(i,5, yearborn);
-        ui->MainTable->setItem(i,6, yeardied);
+        if(temp.getDday() != 0)
+        {
+            ui->MainTable->setItem(i,6, yeardied);
+        }
+        else
+        {
+            ui->MainTable->setItem(i,6,new QTableWidgetItem(QString("Alive")));
+        }
     }
 
     ui->MainTable->setSortingEnabled(true);
@@ -275,7 +282,7 @@ void MainWindow::Edit_Triggered()
             edit.SetLast(ui->MainTable->item(rowidx,3)->text());
             edit.SetGender(ui->MainTable->item(rowidx,4)->text());
             edit.SetBday(ui->MainTable->item(rowidx,5)->text());
-            if(ui->MainTable->item(rowidx,6)->text() != "0")
+            if(ui->MainTable->item(rowidx,6)->text() != "Alive")
             {
                 edit.SetDday(ui->MainTable->item(rowidx,6)->text());
             }
