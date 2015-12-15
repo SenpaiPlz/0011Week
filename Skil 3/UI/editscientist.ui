@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>495</width>
-    <height>287</height>
+    <height>306</height>
    </rect>
   </property>
   <property name="font">
@@ -72,7 +72,11 @@
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="QLineEdit" name="edit_middle_name"/>
+      <widget class="QLineEdit" name="edit_middle_name">
+       <property name="placeholderText">
+        <string>optional</string>
+       </property>
+      </widget>
      </item>
      <item row="3" column="0">
       <widget class="QLabel" name="label_5">
@@ -92,7 +96,11 @@
       </widget>
      </item>
      <item row="4" column="1">
-      <widget class="QLineEdit" name="edit_gender"/>
+      <widget class="QLineEdit" name="edit_gender">
+       <property name="placeholderText">
+        <string>male/female</string>
+       </property>
+      </widget>
      </item>
      <item row="5" column="0">
       <widget class="QLabel" name="label_7">
@@ -102,7 +110,11 @@
       </widget>
      </item>
      <item row="5" column="1">
-      <widget class="QLineEdit" name="edit_bday"/>
+      <widget class="QLineEdit" name="edit_bday">
+       <property name="placeholderText">
+        <string>0 &lt; Valid Year &lt;= Current Year</string>
+       </property>
+      </widget>
      </item>
      <item row="6" column="0">
       <widget class="QLabel" name="label_8">
@@ -112,7 +124,14 @@
       </widget>
      </item>
      <item row="6" column="1">
-      <widget class="QLineEdit" name="edit_dday"/>
+      <widget class="QLineEdit" name="edit_dday">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="placeholderText">
+        <string>Year Born &lt; Year Died - optional</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
