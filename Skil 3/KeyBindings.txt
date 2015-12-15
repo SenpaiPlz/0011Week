@@ -12,5 +12,7 @@ CTRL + ALT + D = Delete Menu for Computers;
 
 SHIFT + ALT + D = Delete Menu for ComputerScientists;
 
+CTRL + S = ShortCut Menu
+
 
 //You can customize your own keybindings under the KeyBindings() functions in MainWindow.cpp
