@@ -26,7 +26,7 @@ void EditComputers::on_pushButton_edit_clicked()
     {
         valid = false;
     }
-    if(!(ui->edit_year->text().toInt()) || (ui->edit_year->text().toInt() < 0 || ui->edit_year->text().toInt() > 2015))
+    if(!(ui->edit_year->text().toInt()) || (ui->edit_year->text().toInt() < 0 || ui->edit_year->text().toInt() > help.CurrentYear()))
     {
         valid = false;
     }

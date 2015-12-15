@@ -54,7 +54,7 @@ void Add_Scientist::on_pushButton_clicked()
         valid = false;
         ui->middle_label->setText("<font color='red'>Middle Name</font>");
     }
-    if(!(tmpyearborn.toInt()) || (tmpyearborn.toInt() > 2015) || (tmpyearborn.toInt() < 0))
+    if(!(tmpyearborn.toInt()) || (tmpyearborn.toInt() > help.CurrentYear()) || (tmpyearborn.toInt() < 0))
     {
         valid = false;
         ui->born_lable->setText("<font color='red'>Year Born*</font>");

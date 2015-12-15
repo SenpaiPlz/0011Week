@@ -43,7 +43,7 @@ void add_computer::on_Add_clicked()
         valid = false;
         ui->type_label->setText("<font color='red'>Type</font>");
     }
-    if(!(ui->Year->text().toInt()) || ui->Year->text().toInt() < 0 || ui->Year->text().toInt() > 2015)
+    if(!(ui->Year->text().toInt()) || ui->Year->text().toInt() < 0 || ui->Year->text().toInt() > help.CurrentYear())
     {
         valid = false;
         ui->year_label->setText("<font color='red'>Year Built</font>");
