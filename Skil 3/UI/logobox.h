@@ -1,5 +1,6 @@
 #ifndef LOGOBOX_H
 #define LOGOBOX_H
+#include <QMessageBox>
 
 #include <QDialog>
 

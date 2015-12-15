@@ -20,5 +20,12 @@ void LogoBox::on_start_button_clicked()
 
 void LogoBox::on_shortcut_button_clicked()
 {
-
+    QMessageBox::information(this,"Shortcuts",
+    "<p><b><font size='4'><font color ='#1f5f2c'> Current Keybindings for MainWindow</font></b></p> \n\n "
+    "<p><font color ='#1f5f2c'> CTRL + Q = Quit</font></p>\n\n "
+    "<p><font color ='#1f5f2c'>CTRL + E = Edit Currently selected item</font></p>\n\n "
+    "<p><font color ='#1f5f2c'>CTRL + A = Add Item of currently selected table</font></p>\n\n "
+    "<p><font color ='#1f5f2c'>CTRL + D = Mark for deletion/Delete currently selected item</font></p>\n\n "
+    "<p><font color ='#1f5f2c'>CTRL + ALT + D = Delete Menu for Computers</font></p>\n\n "
+    "<p><font color ='#1f5f2c'>SHIFT + ALT + D = Delete Menu for ComputerScientists</font><p>\n");
 }

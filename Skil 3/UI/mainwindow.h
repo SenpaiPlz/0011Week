@@ -64,6 +64,8 @@ private slots:
 
     void quit();
 
+    void on_actionShortcuts_triggered();
+
 private:
     Domain d;
     Ui::MainWindow *ui;
