@@ -17,6 +17,8 @@ DeleteComputer::~DeleteComputer()
     delete ui;
 }
 
+//----------    Display functions    ----------//
+
 void DeleteComputer::Refresh()
 {
     vector<Computer> css = d.GetComputers("name", false);
@@ -87,13 +89,17 @@ void DeleteComputer::showDelComputer(vector<Computer>& computer)
     ui->table_delete->setSortingEnabled(true);
 }
 
-void DeleteComputer::on_table_original_clicked(const QModelIndex &index)
+
+//----------    Trigger functions    ----------//
+
+
+void DeleteComputer::on_table_original_clicked()
 {
     ui->button_mark->setEnabled(true);
     ui->button_unmark->setEnabled(false);
 }
 
-void DeleteComputer::on_table_delete_clicked(const QModelIndex &index)
+void DeleteComputer::on_table_delete_clicked()
 {
     ui->button_mark->setEnabled(false);
     ui->button_unmark->setEnabled(true);
@@ -101,6 +107,8 @@ void DeleteComputer::on_table_delete_clicked(const QModelIndex &index)
 
 void DeleteComputer::on_button_mark_clicked()
 {
+    //check if current selection on table == valid. Prevents unexpected crashing
+
     if(ui->table_original->selectionModel()->currentIndex().isValid())
     {
         int rowindex = ui->table_original->selectionModel()->currentIndex().row();
@@ -113,6 +121,8 @@ void DeleteComputer::on_button_mark_clicked()
 
 void DeleteComputer::on_button_unmark_clicked()
 {
+    //check if current selection on table == valid. Prevents unexpected crashing
+
     if(ui->table_delete->selectionModel()->currentIndex().isValid())
     {
         int rowindex = ui->table_delete->selectionModel()->currentIndex().row();
@@ -140,12 +150,12 @@ void DeleteComputer::on_button_delete_all_clicked()
     }
 }
 
-void DeleteComputer::on_table_original_doubleClicked(const QModelIndex &index)
+void DeleteComputer::on_table_original_doubleClicked()
 {
     on_button_mark_clicked();
 }
 
-void DeleteComputer::on_table_delete_doubleClicked(const QModelIndex &index)
+void DeleteComputer::on_table_delete_doubleClicked()
 {
     on_button_unmark_clicked();
 }

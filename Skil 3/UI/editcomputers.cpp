@@ -15,6 +15,8 @@ EditComputers::~EditComputers()
 
 void EditComputers::Refresh()
 {
+    //Reset label colour.
+
     ui->id_lable->setText("ID");
     ui->name_label->setText("Name");
     ui->type_label->setText("Type");
@@ -32,6 +34,9 @@ void EditComputers::on_pushButton_edit_clicked()
     int tmpyear;
     vector<Computer> css = d.GetComputers("name",false);
     Refresh();
+
+
+    //Error check
     if(!help.ValidComputerId(css,ui->edit_id->text().toInt()))
     {
         valid = false;
@@ -55,6 +60,7 @@ void EditComputers::on_pushButton_edit_clicked()
     tmpyear = ui->edit_year->text().toInt();
     tmpid = ui->edit_id->text().toInt();
 
+
     if(valid)
     {
         Computer comptemp;
@@ -74,6 +80,8 @@ void EditComputers::on_pushButton_cancel_clicked()
     this->done(0);
 }
 
+
+//Set functions to set the values to what is selected in the table, if double clicked/shortcut used.
 
 void EditComputers::SetID(const QString& str)
 {

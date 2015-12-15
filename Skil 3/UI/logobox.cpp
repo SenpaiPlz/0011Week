@@ -1,6 +1,8 @@
 #include "logobox.h"
 #include "ui_logobox.h"
 
+//Really only here to popup at start
+
 LogoBox::LogoBox(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::LogoBox)

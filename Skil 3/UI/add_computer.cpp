@@ -15,6 +15,7 @@ add_computer::~add_computer()
 
 void add_computer::Refresh()
 {
+    //Reset label colour
     ui->name_label->setText("Name");
     ui->type_label->setText("Type");
     ui->year_label->setText("Year Built");
@@ -33,6 +34,8 @@ void add_computer::on_Add_clicked()
     bool built = ui->BuiltCheckBox->isChecked();
     int tmpyear;
     Refresh();
+
+    //Error checking
     if(!help.CheckValidtyOfString(tmpname))
     {
         valid = false;

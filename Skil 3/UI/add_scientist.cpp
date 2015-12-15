@@ -15,6 +15,7 @@ Add_Scientist::~Add_Scientist()
 
 void Add_Scientist::Refresh()
 {
+    //reset label colour
     ui->first_label->setText("First Name*");
     ui->middle_label->setText("Middle Name");
     ui->last_lable->setText("Last Name*");
@@ -24,12 +25,14 @@ void Add_Scientist::Refresh()
 
 }
 
-void Add_Scientist::on_pushButton_2_clicked()
+//cancel
+void Add_Scientist::on_cancel_clicked()
 {
     this->done(0);
 }
 
-void Add_Scientist::on_pushButton_clicked()
+//add
+void Add_Scientist::on_add_clicked()
 {
     bool valid = true;
     string tmpname = ui->FirstName->text().toStdString();
@@ -39,6 +42,8 @@ void Add_Scientist::on_pushButton_clicked()
     QString tmpyearborn = ui->YearBorn->text();
     QString tmpyeardied = ui->Yeardied->text();
     Refresh();
+
+    //Error checking
     if(!help.CheckValidtyOfString(tmpname))
     {
         valid = false;

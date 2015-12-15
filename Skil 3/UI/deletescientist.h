@@ -22,9 +22,11 @@ public:
 private slots:
 
 
-    void on_table_original_clicked(const QModelIndex &index);
+    //Unlocks buttons
+    void on_table_original_clicked();
 
-    void on_table_delete_clicked(const QModelIndex &index);
+    void on_table_delete_clicked();
+//-----------------------------------//
 
     void on_button_mark_clicked();
 
@@ -32,9 +34,10 @@ private slots:
 
     void on_button_delete_all_clicked();
 
-    void on_table_original_doubleClicked(const QModelIndex &index);
+    //Automatic for double click
+    void on_table_original_doubleClicked();
 
-    void on_table_delete_doubleClicked(const QModelIndex &index);
+    void on_table_delete_doubleClicked();
 
 private:
     Ui::DeleteScientist *ui;

@@ -16,6 +16,9 @@ DeleteLink::~DeleteLink()
     delete ui;
 }
 
+//----------    Display functions    ----------//
+
+
 void DeleteLink::Refresh()
 {
     vector<ComputerScientist> cssinner = d.GetCSInnerJoin();
@@ -61,6 +64,9 @@ void DeleteLink::showLink(vector<ComputerScientist>& cssinner, vector<Computer>&
     ui->table_link->setSortingEnabled(true);
 }
 
+
+//----------    Trigger functions    ----------//
+
 void DeleteLink::on_button_delete_clicked()
 {
     int rowindex = ui->table_link->selectionModel()->currentIndex().row();
@@ -83,7 +89,7 @@ void DeleteLink::on_table_link_itemSelectionChanged()
     ui->button_delete->setEnabled(true);
 }
 
-void DeleteLink::on_table_link_doubleClicked(const QModelIndex &index)
+void DeleteLink::on_table_link_doubleClicked()
 {
     on_button_delete_clicked();
 }

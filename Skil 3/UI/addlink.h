@@ -21,13 +21,15 @@ public:
 
 private slots:
 
-    void on_table_linking_clicked(const QModelIndex &index);
+    //activate buttons
+    void on_table_linking_clicked();
 
     void on_button_select_clicked();
 
     void on_button_Link_clicked();
 
-    void on_table_linking_doubleClicked(const QModelIndex &index);
+    //automatic select/link on double click
+    void on_table_linking_doubleClicked();
 
 private:
     int CSID;

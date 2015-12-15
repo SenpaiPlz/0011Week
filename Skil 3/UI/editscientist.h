@@ -16,6 +16,9 @@ class EditScientist : public QDialog
 public:
     explicit EditScientist(QWidget *parent = 0);
     ~EditScientist();
+
+    //Set functions to automaticly get info from table if edit is selected from table
+    //with right click or shortcut
     void SetID(const QString &str);
     void SetFirst(const QString &str);
     void SetMid(const QString &str);

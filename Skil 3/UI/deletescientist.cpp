@@ -17,6 +17,8 @@ DeleteScientist::~DeleteScientist()
     delete ui;
 }
 
+//----------    Display functions    ----------//
+
 void DeleteScientist::Refresh()
 {
     vector<ComputerScientist> css = d.GetComputerScientist("first_name",false);
@@ -117,13 +119,16 @@ void DeleteScientist::showDELCS(vector<ComputerScientist>& css)
     ui->table_delete->setSortingEnabled(true);
 }
 
-void DeleteScientist::on_table_original_clicked(const QModelIndex &index)
+
+//----------    Trigger functions    ----------//
+
+void DeleteScientist::on_table_original_clicked()
 {
     ui->button_mark->setEnabled(true);
     ui->button_unmark->setEnabled(false);
 }
 
-void DeleteScientist::on_table_delete_clicked(const QModelIndex &index)
+void DeleteScientist::on_table_delete_clicked()
 {
     ui->button_mark->setEnabled(false);
     ui->button_unmark->setEnabled(true);
@@ -131,6 +136,8 @@ void DeleteScientist::on_table_delete_clicked(const QModelIndex &index)
 
 void DeleteScientist::on_button_mark_clicked()
 {
+    //Checking index to prevent crash.
+
     if(ui->table_original->selectionModel()->currentIndex().isValid())
     {
         int rowidx = ui->table_original->selectionModel()->currentIndex().row();
@@ -142,6 +149,8 @@ void DeleteScientist::on_button_mark_clicked()
 
 void DeleteScientist::on_button_unmark_clicked()
 {
+    //Checking index to prevent crash.
+
     if(ui->table_delete->selectionModel()->currentIndex().isValid())
     {
         int rowidx = ui->table_delete->selectionModel()->currentIndex().row();
@@ -168,12 +177,12 @@ void DeleteScientist::on_button_delete_all_clicked()
     }
 }
 
-void DeleteScientist::on_table_original_doubleClicked(const QModelIndex &index)
+void DeleteScientist::on_table_original_doubleClicked()
 {
     on_button_mark_clicked();
 }
 
-void DeleteScientist::on_table_delete_doubleClicked(const QModelIndex &index)
+void DeleteScientist::on_table_delete_doubleClicked()
 {
     on_button_unmark_clicked();
 }

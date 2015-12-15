@@ -142,14 +142,14 @@
       </layout>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="add">
        <property name="text">
         <string>Add</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="cancel">
        <property name="text">
         <string>Cancel</string>
        </property>
@@ -166,8 +166,8 @@
   <tabstop>Gender</tabstop>
   <tabstop>YearBorn</tabstop>
   <tabstop>Yeardied</tabstop>
-  <tabstop>pushButton</tabstop>
-  <tabstop>pushButton_2</tabstop>
+  <tabstop>add</tabstop>
+  <tabstop>cancel</tabstop>
  </tabstops>
  <resources>
   <include location="../themelogo.qrc"/>

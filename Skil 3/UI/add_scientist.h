@@ -20,9 +20,9 @@ public:
     ~Add_Scientist();
 
 private slots:
-    void on_pushButton_2_clicked();
+    void on_cancel_clicked();
 
-    void on_pushButton_clicked();
+    void on_add_clicked();
 
 private:
     helper help;

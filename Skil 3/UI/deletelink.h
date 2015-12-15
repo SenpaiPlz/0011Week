@@ -25,7 +25,8 @@ private slots:
 
     void on_table_link_itemSelectionChanged();
 
-    void on_table_link_doubleClicked(const QModelIndex &index);
+    //Automatic deletion on double click
+    void on_table_link_doubleClicked();
 
 private:
     Ui::DeleteLink *ui;

@@ -17,6 +17,9 @@ AddLink::~AddLink()
     delete ui;
 }
 
+//----------    Display functions    ----------//
+
+
 void AddLink::displayCSS(vector<ComputerScientist>& css)
 {
     ui->table_linking->setSortingEnabled(false);
@@ -50,7 +53,14 @@ void AddLink::displayCSS(vector<ComputerScientist>& css)
         ui->table_linking->setItem(i,3, new QTableWidgetItem(QString::fromStdString(temp.getLast())));
         ui->table_linking->setItem(i,4, new QTableWidgetItem(QString::fromStdString(temp.getGender())));
         ui->table_linking->setItem(i,5, yearborn);
-        ui->table_linking->setItem(i,6, yeardied);
+        if(temp.getDday() != 0)
+        {
+            ui->table_linking->setItem(i,6, yeardied);
+        }
+        else
+        {
+            ui->table_linking->setItem(i,6,new QTableWidgetItem(QString("Alive")));
+        }
     }
 
     ui->table_linking->setSortingEnabled(true);
@@ -87,8 +97,15 @@ void AddLink::displayComp(vector<Computer>& computer)
     ui->table_linking->setSortingEnabled(true);
 }
 
-void AddLink::on_table_linking_clicked(const QModelIndex &index)
+
+//----------    Trigger functions    ----------//
+
+
+void AddLink::on_table_linking_clicked()
 {
+    //Table count can only become 2 if the button has been clicked once.
+    //Which means we have already selected from 1 table.
+
     ui->button_select->setEnabled(true);
     if(TableCount > 1)
     {
@@ -99,6 +116,9 @@ void AddLink::on_table_linking_clicked(const QModelIndex &index)
 
 void AddLink::on_button_select_clicked()
 {
+
+    //Checking index to prevent crash.
+
     if(ui->table_linking->selectionModel()->currentIndex().isValid())
     {
         ui->button_select->setDisabled(true);
@@ -112,6 +132,9 @@ void AddLink::on_button_select_clicked()
 
 void AddLink::on_button_Link_clicked()
 {
+
+    //Checking index to prevent crash.
+
     if(ui->table_linking->selectionModel()->currentIndex().isValid())
     {
         int rowidx = ui->table_linking->selectionModel()->currentIndex().row();
@@ -121,7 +144,7 @@ void AddLink::on_button_Link_clicked()
     }
 }
 
-void AddLink::on_table_linking_doubleClicked(const QModelIndex &index)
+void AddLink::on_table_linking_doubleClicked()
 {
     if(TableCount == 1)
     {

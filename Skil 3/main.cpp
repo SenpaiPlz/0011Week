@@ -1,14 +1,14 @@
 #include "UI/mainwindow.h"
-#include <QApplication>
 #include "UI/logobox.h"
+#include <QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
-    LogoBox logo;
-    logo.show();
+    LogoBox box;
+    box.show();
 
     return a.exec();
 }

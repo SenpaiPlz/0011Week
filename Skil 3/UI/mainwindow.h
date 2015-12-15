@@ -32,9 +32,10 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_SELECT_TABLE_currentIndexChanged(int index);
+    //Generic triggers
+    void on_SELECT_TABLE_currentIndexChanged();
 
-    void on_Filter_textChanged(const QString &arg1);
+    void on_Filter_textChanged();
 
     void on_actionDelete_Scientists_triggered();
 
@@ -48,23 +49,24 @@ private slots:
 
     void on_actionAdd_Computer_triggered();
 
-    void Edit_Triggered();
-
     void on_actionEdit_ComputerScientist_triggered();
 
     void on_actionEdit_Computer_triggered();
+
+    void on_MainTable_doubleClicked();
+
+    void on_actionAdd_Link_triggered();
+
+    void on_actionShortcuts_triggered();
+
+    //custom triggers and functions
+    void Edit_Triggered();
 
     void Delete_Triggered();
 
     void Add_Triggered();
 
-    void on_MainTable_doubleClicked(const QModelIndex &index);
-
-    void on_actionAdd_Link_triggered();
-
     void quit();
-
-    void on_actionShortcuts_triggered();
 
 private:
     Domain d;

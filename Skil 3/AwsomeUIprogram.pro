@@ -30,7 +30,8 @@ SOURCES += main.cpp\
     UI/deletescientist.cpp \
     UI/editcomputers.cpp \
     UI/editscientist.cpp \
-    UI/addlink.cpp
+    UI/addlink.cpp \
+    UI/logobox.cpp
 
 HEADERS  += UI/mainwindow.h \
     The_Children/computer.h \
@@ -47,7 +48,8 @@ HEADERS  += UI/mainwindow.h \
     UI/deletescientist.h \
     UI/editcomputers.h \
     UI/editscientist.h \
-    UI/addlink.h
+    UI/addlink.h \
+    UI/logobox.h
 
 FORMS    += UI/mainwindow.ui \
     UI/add_scientist.ui \
@@ -57,4 +59,10 @@ FORMS    += UI/mainwindow.ui \
     UI/deletescientist.ui \
     UI/editcomputers.ui \
     UI/editscientist.ui \
-    UI/addlink.ui
+    UI/addlink.ui \
+    UI/logobox.ui
+
+RESOURCES += \
+    themelogo.qrc
+
+DISTFILES +=

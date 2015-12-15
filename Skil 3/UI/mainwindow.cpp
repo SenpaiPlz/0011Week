@@ -30,8 +30,17 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
+//----------    Display Functions    ----------//
+
 void MainWindow::displayAll(int index)
 {
+    //Index refers to which table is active determined by GetCurrentTable
+    /* 1 = cs
+     * 2 = computers
+     * 3 = linking
+     */
+
     if(index == 1)
     {
         vector<ComputerScientist> css = d.GetComputerScientist("first_name",false);
@@ -71,6 +80,7 @@ void MainWindow::displayCS(vector<ComputerScientist>& css)
     {
         ComputerScientist temp = css[i];
 
+        //We use set data for numbers so that the sort works properly i.e 1,2,3 instead of 1,10,11.
         QTableWidgetItem* id = new QTableWidgetItem;
         QTableWidgetItem* yearborn = new QTableWidgetItem;
         QTableWidgetItem* yeardied = new QTableWidgetItem;
@@ -115,6 +125,7 @@ void MainWindow::displayComputer(vector<Computer>& computer)
     {
         Computer temp = computer[i];
 
+        //We use set data for numbers so that the sort works properly i.e 1,2,3 instead of 1,10,11.
         QTableWidgetItem* id = new QTableWidgetItem;
         id->setData(Qt::DisplayRole,temp.getID());
 
@@ -144,10 +155,12 @@ void MainWindow::displayLink(vector<ComputerScientist>& cssinner, vector<Compute
 
     for(size_t i = 0; i < cssinner.size(); i++)
     {
+        //combine the name into a single string
         QString csname = QString::fromStdString(cssinner[i].getFirst()) + " "
                 + QString::fromStdString(cssinner[i].getMid()) + " "
                 + QString::fromStdString(cssinner[i].getLast());
 
+        //We use set data for numbers so that the sort works properly i.e 1,2,3 instead of 1,10,11.
         QTableWidgetItem* roid = new QTableWidgetItem;
         QTableWidgetItem* csid = new QTableWidgetItem;
         QTableWidgetItem* compid = new QTableWidgetItem;
@@ -165,8 +178,13 @@ void MainWindow::displayLink(vector<ComputerScientist>& cssinner, vector<Compute
     ui->MainTable->setSortingEnabled(true);
 }
 
-void MainWindow::on_SELECT_TABLE_currentIndexChanged(int index)
+
+//----------    SELECT TABLE combobox    ----------//
+
+
+void MainWindow::on_SELECT_TABLE_currentIndexChanged()
 {
+    //clear filter, disable filter if on link table, refresh tables
     ui->Filter->clear();
     ui->Filter->setEnabled(true);
     if(GetCurrentTable() == 3)
@@ -195,7 +213,10 @@ int MainWindow::GetCurrentTable()
     return 1;
 }
 
-void MainWindow::on_Filter_textChanged(const QString &arg1)
+
+//----------    Filter Line Edit    ----------//
+
+void MainWindow::on_Filter_textChanged()
 {
     QString userinput = ui->Filter->text();
     if(GetCurrentTable() == 1)
@@ -209,6 +230,38 @@ void MainWindow::on_Filter_textChanged(const QString &arg1)
         displayComputer(computer);
     }
 }
+
+
+//----------    Add dropdown triggers    ----------//
+
+
+void MainWindow::on_actionAdd_Computer_Scientist_triggered()
+{
+    Add_Scientist add;
+    add.exec();
+    ui->Filter->clear();
+    displayAll(GetCurrentTable());
+}
+
+void MainWindow::on_actionAdd_Computer_triggered()
+{
+    add_computer add;
+    add.exec();
+    ui->Filter->clear();
+    displayAll(GetCurrentTable());
+}
+
+void MainWindow::on_actionAdd_Link_triggered()
+{
+    AddLink add;
+    add.exec();
+    ui->Filter->clear();
+    displayAll(GetCurrentTable());
+}
+
+
+//----------    Delete dropdown triggers    ----------//
+
 
 void MainWindow::on_actionDelete_Scientists_triggered()
 {
@@ -235,6 +288,45 @@ void MainWindow::on_actionDelete_Link_triggered()
 }
 
 
+//----------    Edit dropdown triggers    ----------//
+
+
+void MainWindow::on_actionEdit_ComputerScientist_triggered()
+{
+    EditScientist edit;
+    edit.exec();
+    ui->Filter->clear();
+    displayAll(GetCurrentTable());
+}
+
+void MainWindow::on_actionEdit_Computer_triggered()
+{
+    EditComputers edit;
+    edit.exec();
+    ui->Filter->clear();
+    displayAll(GetCurrentTable());
+}
+
+
+//----------    help dropdown triggers    ----------//
+
+
+void MainWindow::on_actionShortcuts_triggered()
+{
+    QMessageBox::information(this,"Shortcuts",
+    "<p><b><font size='4'><font color ='#1f5f2c'> Current Keybindings for MainWindow</font></b></p> \n\n "
+    "<p><font color ='#1f5f2c'> CTRL + Q = Quit</font></p>\n\n "
+    "<p><font color ='#1f5f2c'>CTRL + E = Edit Currently selected item</font></p>\n\n "
+    "<p><font color ='#1f5f2c'>CTRL + A = Add Item of currently selected table</font></p>\n\n "
+    "<p><font color ='#1f5f2c'>CTRL + D = Mark for deletion/Delete currently selected item</font></p>\n\n "
+    "<p><font color ='#1f5f2c'>CTRL + ALT + D = Delete Menu for Computers</font></p>\n\n "
+    "<p><font color ='#1f5f2c'>SHIFT + ALT + D = Delete Menu for ComputerScientists</font><p>\n\n"
+    "<p><font color ='#1f5f2c'>CTRL + S = Opens Shortcut Box</font><p>\n");
+}
+
+
+//----------     Right Click triggers and custom context menu    ----------//
+
 void MainWindow::on_MainTable_ShowContextMenu(const QPoint& pos)
 {
     QPoint globpos = ui->MainTable->mapToGlobal(pos);
@@ -252,24 +344,30 @@ void MainWindow::on_MainTable_ShowContextMenu(const QPoint& pos)
     menu.exec(globpos);
 }
 
-void MainWindow::on_actionAdd_Computer_Scientist_triggered()
+void MainWindow::Add_Triggered()
 {
-    Add_Scientist add;
-    add.exec();
-    ui->Filter->clear();
-    displayAll(GetCurrentTable());
+    if(GetCurrentTable() == 1)
+    {
+        on_actionAdd_Computer_Scientist_triggered();
+    }
+    else if(GetCurrentTable() == 2)
+    {
+        on_actionAdd_Computer_triggered();
+    }
+    else if(GetCurrentTable() == 3)
+    {
+        on_actionAdd_Link_triggered();
+    }
 }
 
-void MainWindow::on_actionAdd_Computer_triggered()
-{
-    add_computer add;
-    add.exec();
-    ui->Filter->clear();
-    displayAll(GetCurrentTable());
-}
 
 void MainWindow::Edit_Triggered()
 {
+
+    //This if sentences checks if the current index is valid. i.e it is still being selected
+    //If this check does not occurr, the program will crash trying to work with the invalid index.
+    //Everywhere the currentIndex().isValid() check is performed it is to prevent this crash.
+
     if(ui->MainTable->currentIndex().isValid())
     {
         if(GetCurrentTable() == 1)
@@ -329,44 +427,7 @@ void MainWindow::Delete_Triggered()
     }
 }
 
-void MainWindow::Add_Triggered()
-{
-    if(GetCurrentTable() == 1)
-    {
-        on_actionAdd_Computer_Scientist_triggered();
-    }
-    else if(GetCurrentTable() == 2)
-    {
-        on_actionAdd_Computer_triggered();
-    }
-    else if(GetCurrentTable() == 3)
-    {
-        on_actionAdd_Link_triggered();
-    }
-}
-
-void MainWindow::on_actionEdit_ComputerScientist_triggered()
-{
-    EditScientist edit;
-    edit.exec();
-    ui->Filter->clear();
-    displayAll(GetCurrentTable());
-}
-
-void MainWindow::on_actionEdit_Computer_triggered()
-{
-    EditComputers edit;
-    edit.exec();
-    ui->Filter->clear();
-    displayAll(GetCurrentTable());
-}
-
-
-
-void MainWindow::on_MainTable_doubleClicked(const QModelIndex &index)
-{
-    Edit_Triggered();
-}
+//----------     Misc functions/trigger    ----------//
 
 void MainWindow::Keybinds()
 {
@@ -386,28 +447,12 @@ void MainWindow::Keybinds()
     connect(shortcut, SIGNAL(activated()), this, SLOT(on_actionShortcuts_triggered()));
 }
 
-void MainWindow::on_actionAdd_Link_triggered()
-{
-    AddLink add;
-    add.exec();
-    ui->Filter->clear();
-    displayAll(GetCurrentTable());
-}
-
 void MainWindow::quit()
 {
     close();
 }
 
-void MainWindow::on_actionShortcuts_triggered()
+void MainWindow::on_MainTable_doubleClicked()
 {
-    QMessageBox::information(this,"Shortcuts",
-    "<p><b><font size='4'><font color ='#1f5f2c'> Current Keybindings for MainWindow</font></b></p> \n\n "
-    "<p><font color ='#1f5f2c'> CTRL + Q = Quit</font></p>\n\n "
-    "<p><font color ='#1f5f2c'>CTRL + E = Edit Currently selected item</font></p>\n\n "
-    "<p><font color ='#1f5f2c'>CTRL + A = Add Item of currently selected table</font></p>\n\n "
-    "<p><font color ='#1f5f2c'>CTRL + D = Mark for deletion/Delete currently selected item</font></p>\n\n "
-    "<p><font color ='#1f5f2c'>CTRL + ALT + D = Delete Menu for Computers</font></p>\n\n "
-    "<p><font color ='#1f5f2c'>SHIFT + ALT + D = Delete Menu for ComputerScientists</font><p>\n\n"
-    "<p><font color ='#1f5f2c'>CTRL + S = Opens Shortcut Box</font><p>\n");
+    Edit_Triggered();
 }

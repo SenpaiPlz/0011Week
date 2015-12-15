@@ -15,6 +15,8 @@ EditScientist::~EditScientist()
 
 void EditScientist::Refresh()
 {
+    //Reset label colour.
+
     ui->id_label->setText("ID");
     ui->first_label->setText("First Name");
     ui->middle_label->setText("Middle Name");
@@ -22,12 +24,6 @@ void EditScientist::Refresh()
     ui->gender_label->setText("Gender");
     ui->born_label->setText("Year Born");
     ui->dead_label->setText("Year Died");
-
-}
-
-void EditScientist::on_pushButton_Cancel_clicked()
-{
-    this->done(0);
 }
 
 void EditScientist::on_pushButton_Edit_clicked()
@@ -42,6 +38,9 @@ void EditScientist::on_pushButton_Edit_clicked()
     QString tmpyeardied = ui->edit_dday->text();
     vector<ComputerScientist> css = d.GetComputerScientist("first_name",false);
     Refresh();
+
+    //ErrorCheck
+
     if(!help.ValidCSId(css,tmpid.toInt()))
     {
         valid = false;
@@ -85,6 +84,7 @@ void EditScientist::on_pushButton_Edit_clicked()
         ui->gender_label->setText("<font color='red'>Gender</font>");
     }
 
+
     if(valid == true)
     {
         ComputerScientist cstemp;
@@ -95,17 +95,21 @@ void EditScientist::on_pushButton_Edit_clicked()
         cstemp.setbday(tmpyearborn.toInt());
         cstemp.setdday(tmpyeardied.toInt());
 
-        int yearborn = tmpyearborn.toInt(0,10);
-        int yeardead = tmpyeardied.toInt(0,10);
-        int id = tmpid.toInt(0,10);
+        int yearborn = tmpyearborn.toInt();
+        int yeardead = tmpyeardied.toInt();
+        int id = tmpid.toInt();
 
         d.UpdateCS(QString::fromStdString(tmpname),QString::fromStdString(tmpmid), QString::fromStdString(tmplast), QString::fromStdString(tmpgender), yearborn, yeardead, id);
-        this->done(1);
+        this->done(0);
     }
 }
-//Just need to set for errors
 
+void EditScientist::on_pushButton_Cancel_clicked()
+{
+    this->done(0);
+}
 
+//Set functions to set the values to what is selected in the table, if double clicked/shortcut used.
 
 void EditScientist::SetID(const QString& str)
 {

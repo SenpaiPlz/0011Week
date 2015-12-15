@@ -16,6 +16,9 @@ class EditComputers : public QDialog
 public:
     explicit EditComputers(QWidget *parent = 0);
     ~EditComputers();
+
+    //Set functions to automaticly get info from table if edit is selected from table
+    //with right click or shortcut
     void SetID(const QString& str);
     void SetName(const QString& str);
     void SetYear(const QString& str);
